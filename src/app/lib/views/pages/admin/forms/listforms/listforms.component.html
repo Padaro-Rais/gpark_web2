@@ -18,10 +18,11 @@
         <drewlabs-datgrid-header
           [refreshButtonDisabled]="vm?.performingAction"
           [createButtonDisabled]="vm?.performingAction"
-          (createEvent)="navigateToCreateFormView()"
+          [showCreate]="isSelectionEnabled"
+          (createEvent)="onCreateButtonClicked()"
           (refreshEvent)="onDgHeaderRefresh()"
         >
-        <!-- Add a drop down content that show the rest of actions-->
+          <!-- Add a drop down content that show the rest of actions-->
           <clr-dropdown *ngIf="showExportDropdown">
             <button
               type="button"
@@ -46,27 +47,67 @@
           <!--\ Add a drop down content that show the rest of actions-->
         </drewlabs-datgrid-header>
       </clr-dg-action-bar>
-      <clr-dg-column>Statut</clr-dg-column>
-      <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
-      <clr-dg-column [clrDgField]="'title'">Titre</clr-dg-column>
-      <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
-      <clr-dg-column [clrDgField]="'endpoint_url'">Endpoint</clr-dg-column>
+      <clr-dg-column>ID</clr-dg-column>
+      <clr-dg-column [clrDgField]="'id'">
+        {{ 'Contexte' | uppercase }}
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'title'">
+        {{ 'Titre' | uppercase }}
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'endpoint_url'">
+        {{ 'Lien URL' | uppercase }}
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'description'">
+        {{ 'Description' | uppercase }}
+      </clr-dg-column>
+      <!-- FORM CONTROLS ROW -->
+      <clr-dg-row *ngIf="!isSelectionEnabled">
+        <clr-dg-action-overflow>
+          <button class="action-item" (click)="onCancelFormAction()">
+            ANNULER
+          </button>
+        </clr-dg-action-overflow>
+        <ng-container *ngIf="formState">
+          <clr-dg-cell><!-- Button--></clr-dg-cell>
+          <ng-container *ngFor="let name of controlNames; let last = last">
+            <clr-dg-cell>
+              <app-dynamic-inputs
+                [inline]="true"
+                [showLabelAndDescription]="false"
+                *ngIf="(formState?.formgroup?.controls)[name]"
+                [control]="formState?.formgroup?.get(name)"
+                [inputConfig]="(formState?.controlConfigs)[name]"
+              ></app-dynamic-inputs>
+              <button
+                (click)="
+                  createFormComponent.handleSubmitButtonClick(
+                    formState?.url,
+                    formState?.formgroup
+                  )
+                "
+                *ngIf="last"
+                class="btn submit-btn"
+              >
+                OK
+              </button>
+            </clr-dg-cell>
+          </ng-container>
+        </ng-container>
+      </clr-dg-row>
+      <!--\ FORM CONTROL ROW -->
       <clr-dg-row *ngFor="let item of vm?.dataSource.data">
         <clr-dg-action-overflow>
-          <button class="action-item" (click)="navigateToEditView(item)">ÉDITER</button>
+          <button class="action-item" (click)="navigateToEditView(item)">
+            ÉDITER
+          </button>
         </clr-dg-action-overflow>
-        <clr-dg-cell>
-          <span
-            [class]="
-              item?.status ? 'badge badge-success' : 'badge badge-danger'
-            "
-          ></span>
-        </clr-dg-cell>
         <clr-dg-cell>{{ item.id }}</clr-dg-cell>
-        <clr-dg-cell>{{ item.title | uppercase }}</clr-dg-cell>
-        <clr-dg-cell>{{ item?.description | uppercase }}</clr-dg-cell>
+        <clr-dg-cell>{{ item?.appcontext }}</clr-dg-cell>
+        <clr-dg-cell>{{ item?.title | uppercase }}</clr-dg-cell>
         <clr-dg-cell>{{ item.url }}</clr-dg-cell>
+        <clr-dg-cell>{{ item?.description | uppercase }}</clr-dg-cell>
       </clr-dg-row>
+      <clr-dg-footer></clr-dg-footer>
       <clr-dg-footer>
         {{ vm?.dataSource?.total }} Formulaires
         <clr-dg-pagination
@@ -82,3 +123,12 @@
     </clr-datagrid>
   </ng-container>
 </div>
+<!-- Component binding and Loading forms-->
+<app-create-form
+  #createFormComponent
+  [selected]="selected"
+  [id]="formID"
+  (stateChange)="onCreateFormStateChange($event)"
+  (actionCompleted)="resetFormState()"
+></app-create-form>
+<!--\ Component binding and Loading forms-->

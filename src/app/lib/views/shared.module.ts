@@ -19,6 +19,7 @@ import { TopBarModule } from './partials/topbar';
 import { DetailedTablePreviewModule } from './partials/detailed-table-preview';
 import { SidebarModule } from './partials/sidebar';
 import { AppModulesModule } from './partials/app-modules';
+import { ConfigurationModule } from "../core/configuration";
 
 @NgModule({
   imports: [
@@ -52,7 +53,10 @@ import { AppModulesModule } from './partials/app-modules';
     TopBarModule,
     DetailedTablePreviewModule,
     SidebarModule,
-    AppModulesModule
+    AppModulesModule,
+
+    // Configurations
+    ConfigurationModule
   ],
   declarations: [],
   providers: [{ provide: LOCALE_ID, useValue: "fr" }],

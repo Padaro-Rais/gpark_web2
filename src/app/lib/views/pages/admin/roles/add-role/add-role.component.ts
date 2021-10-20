@@ -27,7 +27,6 @@ import {
   updateRoleAction,
 } from "src/app/lib/core/auth/core/actions/roles";
 import { combineLatest, from } from "rxjs";
-import { loadFormUsingIDAction } from "src/app/lib/core/components/dynamic-inputs/core/v2/actions/form";
 import { onErrorAction } from "src/app/lib/core/rxjs/state/rx-state";
 import {
   DynamicFormHelpers,
@@ -36,18 +35,21 @@ import {
 import { doLog } from "src/app/lib/core/rxjs/operators";
 import { DynamicFormInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact";
 import { httpServerHost } from "src/app/lib/core/utils/url/url";
-import { ComponentReactiveFormHelpers } from "src/app/lib/core/components/dynamic-inputs/angular";
+import {
+  ComponentReactiveFormHelpers,
+  FORM_CLIENT,
+} from "src/app/lib/core/components/dynamic-inputs/angular";
 import { UIStateStatusCode } from "src/app/lib/core/contracts/ui-state";
 import { AppUIStateProvider } from "src/app/lib/core/ui-state";
 import { TranslationService } from "src/app/lib/core/translator";
-import { AbstractDynamicFormService } from "src/app/lib/core/components/dynamic-inputs/angular/services";
+import { FormsClient } from "src/app/lib/core/components/dynamic-inputs/core";
 
 @Component({
   selector: "app-add-role",
   templateUrl: "./add-role.component.html",
   styles: [],
 })
-export class AddRoleComponent implements OnInit, OnDestroy {
+export class AddRoleComponent implements OnDestroy {
   // tslint:disable-next-line: variable-name
   private _destroy$ = createSubject();
   // Translation values loaded from the translation sources
@@ -87,13 +89,7 @@ export class AddRoleComponent implements OnInit, OnDestroy {
     tap(() => this.uiState.endAction())
   );
   // tslint:disable-next-line: variable-name
-  _formState$ = this.forms.state$.pipe(
-    map((state) =>
-      (state.collections
-        ? Object.values(state.collections.items || {})
-        : []
-      ).find((form) => +form.id === environment.forms.roles)
-    ),
+  _formState$ = this.formsClient.get(environment.forms.roles).pipe(
     withLatestFrom(
       this.route.paramMap.pipe(
         takeUntil(this._destroy$),
@@ -186,7 +182,7 @@ export class AddRoleComponent implements OnInit, OnDestroy {
     private controlParser: DynamicControlParser,
     public readonly typeHelper: TypeUtilHelper,
     public roles: RolesProvider,
-    public forms: AbstractDynamicFormService,
+    @Inject(FORM_CLIENT) public formsClient: FormsClient,
     public client: DrewlabsRessourceServerClient,
     private translate: TranslationService,
     @Inject("AUTH_ROLES_RESOURCE_PATH") private path: string,
@@ -194,14 +190,6 @@ export class AddRoleComponent implements OnInit, OnDestroy {
   ) {
     this.uiState.startAction();
     this._formState$.pipe(takeUntil(this._destroy$)).subscribe();
-  }
-
-  ngOnInit() {
-    loadFormUsingIDAction(this.forms.store$)(
-      this.client,
-      "forms",
-      environment.forms.roles
-    );
   }
 
   onNavigateBack(): void {}

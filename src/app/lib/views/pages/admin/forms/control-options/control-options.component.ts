@@ -1,7 +1,15 @@
-import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { filter, map, take, tap } from "rxjs/operators";
 import {
+  FormsClient,
+  FormsProvider,
   IDynamicForm,
 } from "src/app/lib/core/components/dynamic-inputs/core";
 import { ControlOptionInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact/types";
@@ -23,17 +31,14 @@ import { ControlOptionViewComponent } from "./control-options-view.component";
 import { Dialog, KEY_NAMES } from "src/app/lib/core/utils/browser";
 import { AppUIStateProvider } from "src/app/lib/core/ui-state";
 import { doLog } from "src/app/lib/core/rxjs/operators";
-import {
-  AbstractDynamicFormService,
-  OptionsService,
-} from "src/app/lib/core/components/dynamic-inputs/angular/services";
+import { OptionsService } from "src/app/lib/core/components/dynamic-inputs/angular/services";
 import {
   DynamicFormHelpers,
   sortRawFormControls,
 } from "src/app/lib/core/components/dynamic-inputs/core/helpers";
-import { select_form } from "src/app/lib/core/components/dynamic-inputs/core/v2/operators";
 import { ActivatedRoute } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { FORM_CLIENT } from "src/app/lib/core/components/dynamic-inputs/angular";
 
 @Component({
   selector: "app-control-options",
@@ -66,20 +71,19 @@ export class ControlOptionsComponent implements OnInit {
   formgroup: FormGroup;
   form: IDynamicForm;
 
-  formState$ = this._formsService.state$.pipe(
-    select_form(
-      this.route.snapshot.data.formID || environment.forms.controlOptions
-    ),
-    filter((state) => (state ? true : false)),
-    take(1),
-    map((state) =>
-      DynamicFormHelpers.buildFormSync(sortRawFormControls(state))
-    ),
-    map((state) => ({
-      form: state,
-      formgroup: this._parser.buildFormGroupFromDynamicForm(state),
-    }))
-  );
+  formState$ = this.client
+    .get(this.route.snapshot.data.formID || environment.forms.controlOptions)
+    .pipe(
+      filter((state) => (state ? true : false)),
+      take(1),
+      map((state) =>
+        DynamicFormHelpers.buildFormSync(sortRawFormControls(state))
+      ),
+      map((state) => ({
+        form: state,
+        formgroup: this._parser.buildFormGroupFromDynamicForm(state),
+      }))
+    );
 
   state$ = combineLatest([
     this._provider.state$.pipe(doLog("Provider state: ")),
@@ -159,7 +163,7 @@ export class ControlOptionsComponent implements OnInit {
     private _uiState: AppUIStateProvider,
     public readonly translate: TranslatorHelperService,
     private dialog: Dialog,
-    private _formsService: AbstractDynamicFormService,
+    @Inject(FORM_CLIENT) private client: FormsClient,
     private route: ActivatedRoute
   ) {}
 

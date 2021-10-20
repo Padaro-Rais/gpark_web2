@@ -42,6 +42,7 @@ import {
   DROPZONE_DICT,
 } from "./lib/core/components/dropzone";
 import { map } from "rxjs/operators";
+import { ConfigurationModule } from "./lib/core/configuration";
 // #endregion Dropzone configuration
 
 export function AppDrewlabsV2_1LoginResultHandlerFunc(response: any) {
@@ -132,6 +133,10 @@ export const DropzoneDictLoader = async (translate: TranslateService) => {
       serverURL: environment.APP_SERVER_URL,
       requestResponseHandler: parseV3HttpResponse, // Modifiable
     }),
+    ConfigurationModule.forRoot({
+      environment: environment,
+      jsonConfigURL: '/assets/resources/config.json'
+    }),
     StorageModule.forRoot({ secretKey: environment.APP_SECRET }),
     AuthTokenModule.forRoot({}),
     AuthModule.forRoot({
@@ -158,12 +163,6 @@ export const DropzoneDictLoader = async (translate: TranslateService) => {
         uploadMultiple: false,
         maxFiles: 1,
         addRemoveLinks: true,
-      },
-    }),
-    DynamicFormControlModule.forRoot({
-      serverConfigs: {
-        host: environment.FORM_SERVER_URL,
-        controlBindingsPath: "api/v1/control-bindings",
       },
     }),
     DynamicFormControlModule.forRoot({

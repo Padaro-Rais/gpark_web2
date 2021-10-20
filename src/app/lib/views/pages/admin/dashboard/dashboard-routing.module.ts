@@ -6,11 +6,7 @@ import { AdminDashboardHomeComponent } from './home/home.component';
 import {
   FormsComponent,
   ListformsComponent,
-  FormControlAddComponent,
-  FormControlComponent,
-  FormsViewComponent,
   ControlOptionsComponent,
-  ControlOptionViewComponent
 } from '../forms';
 import {
   ModulesComponent,
@@ -259,10 +255,6 @@ export class AdminDashboardRoutingModule { }
 export const MODULE_DECLARATIONS = [
   AdminDashboardHomeComponent,
   AdminDashboardComponent,
-  FormsComponent,
-  FormsViewComponent,
-  FormControlComponent,
-  ListformsComponent,
   ModulesComponent,
   AddmoduleComponent,
   UsersComponent,
@@ -273,7 +265,6 @@ export const MODULE_DECLARATIONS = [
   AddRoleFormComponent,
   RoleListPresenterComponent,
   UserListComponent,
-  FormControlAddComponent,
   ListDepartmentComponent,
   DepartmentComponent,
   AddDepartementComponent,
@@ -284,12 +275,7 @@ export const MODULE_DECLARATIONS = [
 
   // Accounts & Settings components
   SettingsComponent,
-  UpdatePasswordViewComponent,
-
-
-  // Form control options
-  ControlOptionViewComponent,
-  ControlOptionsComponent,
+  UpdatePasswordViewComponent
 ];
 
 export const COMPONENTS_PROVIDERS: Provider[] = [
