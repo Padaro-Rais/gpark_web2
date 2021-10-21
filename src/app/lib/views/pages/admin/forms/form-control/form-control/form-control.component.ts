@@ -45,6 +45,11 @@ export class FormControlComponent implements AfterViewInit {
   // tslint:disable-next-line: variable-name
   private _destroy$ = createSubject();
 
+  // #region Component outputs
+  @Output() created = new EventEmitter<void>();
+  @Input() updated = new EventEmitter<void>();
+  // #endregion Component inputs
+
   state$ = combineLatest([
     this.provider.state$,
     this.translate.translate([
@@ -57,6 +62,7 @@ export class FormControlComponent implements AfterViewInit {
   ]).pipe(
     tap(([forms, translations]) => {
       if (forms.createControlResult) {
+        this.created.emit();
         this.uiState.endAction(
           `${translations.successfulRequest} ${translations["forms.createControlSuccess"]}`,
           UIStateStatusCode.OK
@@ -70,6 +76,7 @@ export class FormControlComponent implements AfterViewInit {
       }
 
       if (forms.updateControlResult) {
+        this.updated.emit();
         this.uiState.endAction(
           `${translations.successfulRequest} ${translations["forms.updateControlSuccess"]}`,
           UIStateStatusCode.OK
@@ -116,14 +123,13 @@ export class FormControlComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     timeout(() => {
-      console.log("Executing delete action...", this.previewComponent);
       this.previewComponent?.remove
         ?.pipe(
           takeUntil(this._destroy$),
           tap((_) => this.deleteControl())
         )
         .subscribe();
-    }, 2000);
+    }, 1000);
   }
 
   async upsert(request: { [index: string]: any }) {

@@ -17,7 +17,7 @@ export class AppNavComponent implements OnInit {
 
   public ngOnInit(): void {
     const appRoutes = environment?.appRoutes;
-  
+
     this.navbarRouteDefinitions = {
       navbar_user_groups_header: 'Utilisateurs & groupes',
       navbar_forms_managenents_header: 'Formulaires',
@@ -29,7 +29,7 @@ export class AppNavComponent implements OnInit {
       navbar_forms_list: 'Gestion des formulaires',
       navbar_form_control_options: 'Gestion des options de champs',
       navbar_modules_list: 'Gestion des modules',
-      navbar_modules_create: 'Ajouter un nouveau module', //
+      navbar_modules_create: 'Ajouter un nouveau module',
       navbar_department_management_header: 'Gestion des départements',
       navbar_department_list: 'Gestion des départements',
       navbar_account: 'Mon compte',
@@ -60,11 +60,11 @@ export class AppNavComponent implements OnInit {
         children: [
           {
             key: 'navbar_forms_list',
-            route: `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.formsManagementRoute}`
+            route: `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.forms}`
           },
           {
             key: 'navbar_form_control_options',
-            route: `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.controlOptionsRoute}`
+            route: `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.options}`
           }
         ]
       },

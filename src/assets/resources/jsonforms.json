@@ -7,7 +7,7 @@
     "status": 1,
     "parentId": null,
     "appcontext": null,
-    "formControls": [
+    "controls": [
       {
         "formId": 14,
         "controlName": "firstname",
@@ -711,7 +711,7 @@
     "title": "Créer un nouveau formulaire",
     "description": "Ajouter un nouveau formulaire à votre système. Les formulaires vous permet de collecter des données saisies depuis les interfaces utiliteurs.",
     "children": [],
-    "formControls": [
+    "controls": [
       {
         "label": "Intitulé",
         "placeholder": "Intitulé du formulaire",
@@ -835,11 +835,11 @@
     "id": "2a841446-c9a5-4328-bf7d-a2a071afdb75-12619",
     "title": "Création d'un champ de formulaire",
     "description": "Remplir les champs ci-dessous pour ajouter un nouveau champ au formulaire ci-après",
-    "formControls": [
+    "controls": [
 
       {
         "label": "Type du champ",
-        "placeholder": "Sélectionner le type du champ",
+        "placeholder": "Choisir...",
         "type": "select",
         "classes": "clr-input",
         "required": 1,
@@ -868,7 +868,7 @@
       },
       {
         "label": "Libellé",
-        "placeholder": "Intitulé du champ",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 1,
@@ -898,7 +898,7 @@
 
       {
         "label": "Attribut",
-        "placeholder": "Saisir le nom de l'attribut  name du champ",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 1,
@@ -928,7 +928,7 @@
       },
       {
         "label": "Placeholder",
-        "placeholder": "Saisir le texte réservé",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 0,
@@ -957,7 +957,7 @@
       },
       {
         "label": "Description",
-        "placeholder": "Description du champ",
+        "placeholder": "Saisir...",
         "type": "textarea",
         "classes": "clr-input",
         "required": 0,
@@ -986,7 +986,7 @@
       },
       {
         "label": "Index",
-        "placeholder": "Index du champ sur le formulaire",
+        "placeholder": "Saisir...",
         "type": "number",
         "classes": "clr-input",
         "required": 1,
@@ -1015,7 +1015,7 @@
       },
       {
         "label": "Longueur texte (Max)",
-        "placeholder": "Nbr. maximum de charactères",
+        "placeholder": "Saisir...",
         "type": "number",
         "classes": "clr-input",
         "required": 0,
@@ -1045,7 +1045,7 @@
       },
       {
         "label": "Longueur texte (Min)",
-        "placeholder": "Nbr. minimum de charactères",
+        "placeholder": "Saisir...",
         "type": "number",
         "classes": "clr-input",
         "required": 0,
@@ -1075,7 +1075,7 @@
       },
       {
         "label": "Valeur (Max)",
-        "placeholder": "Valeur maximale du champ",
+        "placeholder": "Saisir...",
         "type": "number",
         "classes": "clr-input",
         "required": 0,
@@ -1105,7 +1105,7 @@
       },
       {
         "label": "Valeur (Min)",
-        "placeholder": "Valeur minimale du champ",
+        "placeholder": "Saisir...",
         "type": "number",
         "classes": "clr-input",
         "required": 0,
@@ -1135,7 +1135,7 @@
       },
       {
         "label": "Date (Max)",
-        "placeholder": "Saisir la date maximale",
+        "placeholder": "Saisir...",
         "type": "date",
         "classes": "clr-input",
         "required": 0,
@@ -1165,7 +1165,7 @@
       },
       {
         "label": "Date (Min)",
-        "placeholder": "Choisir la date minimale",
+        "placeholder": "Saisir...",
         "type": "date",
         "classes": "clr-input",
         "required": 0,
@@ -1195,7 +1195,7 @@
       },
       {
         "label": "Source de données",
-        "placeholder": "Choisir la source des donné",
+        "placeholder": "Choisir...",
         "type": "select",
         "classes": "clr-input",
         "required": 0,
@@ -1210,7 +1210,7 @@
         "max": null,
         "minDate": null,
         "maxDate": null,
-        "selectableValues": "1:Simple selection|2:Associer une entité",
+        "selectableValues": "1:LISTE|2:ENTITÉ",
         "selectableModel": null,
         "multiple": 0,
         "options": null,
@@ -1225,7 +1225,7 @@
       },
       {
         "label": "Liste des valeurs",
-        "placeholder": "Saisir la liste des valeurs",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 0,
@@ -1254,8 +1254,8 @@
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
       {
-        "label": "Entité associée",
-        "placeholder": "Choisir l'entité associée à la source",
+        "label": "Entité",
+        "placeholder": "Choisir...",
         "type": "select",
         "classes": "clr-input",
         "required": 0,
@@ -1263,7 +1263,7 @@
         "readonly": 0,
         "unique": 0,
         "pattern": null,
-        "description": "Note: Veuillez choisir l'entité associée à ce champ.",
+        "description": "Veuillez choisir l'entité associée à ce champ.",
         "maxLength": null,
         "minLength": null,
         "min": null,
@@ -1315,7 +1315,7 @@
       },
       {
         "label": "Nbr. de lignes",
-        "placeholder": "Nombre total de lignes",
+        "placeholder": "Saisir...",
         "type": "number",
         "classes": "clr-input",
         "required": 0,
@@ -1345,7 +1345,7 @@
       },
       {
         "label": "Nbr. de colonnes",
-        "placeholder": "Nombre total de colonnes",
+        "placeholder": "Saisir...",
         "type": "number",
         "classes": "clr-input",
         "required": 0,
@@ -1375,7 +1375,7 @@
       },
       {
         "label": "URL de soumission",
-        "placeholder": "Saisir le lien de soumission du fichier si présent dans un formulaire",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 0,
@@ -1405,7 +1405,7 @@
       },
       {
         "label": "Valeur par défaut",
-        "placeholder": "Saisir la valeur par défaut associé au champ",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 0,
@@ -1579,7 +1579,7 @@
       },
       {
         "label": "Définir la condition d'unicité",
-        "placeholder": "Définissez la condition d'unicité",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 0,
@@ -1638,7 +1638,7 @@
       },
       {
         "label": "Définir la condition du champ",
-        "placeholder": "Saisir un expression régulière de validation du champ",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 0,
@@ -1697,7 +1697,7 @@
       },
       {
         "label": "Expression régulière de validation ?",
-        "placeholder": "Saisir un expression régulière de validation du champ",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 0,
@@ -1727,7 +1727,7 @@
       },
       {
         "label": "Classe(s) de la feuille de style",
-        "placeholder": "Veuillez saisir les class css associées au champ",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 1,
@@ -1756,7 +1756,7 @@
       },
       {
         "label": "Classe CSS du conteneur",
-        "placeholder": "Saisir la class du conteneur du champ",
+        "placeholder": "Saisir...",
         "type": "text",
         "classes": "clr-input",
         "required": 0,
@@ -1785,7 +1785,7 @@
       },
       {
         "label": "Hidden Control",
-        "placeholder": "Hidden Control Placeholder",
+        "placeholder": "",
         "type": "hidden",
         "classes": "clr-input",
         "required": 0,
@@ -1814,7 +1814,7 @@
       },
       {
         "label": "Hidden Control",
-        "placeholder": "Hidden Control Placeholder",
+        "placeholder": "",
         "type": "hidden",
         "classes": "clr-input",
         "required": 0,
@@ -1847,7 +1847,7 @@
     "id": "d85dddce-7418-4313-9d54-218950ca4395-12619",
     "title": "AJOUT DE D'UNE CONFIGURATION DE D'OPTION DE CHAMPS DE SÉLECTION",
     "description": "Remplir les champs ci-dessous pour ajouter une nouvelle configuration d'options de champe de selection.",
-    "formControls": [
+    "controls": [
       {
         "label": "Namespace Model",
         "placeholder": "Saisir..",

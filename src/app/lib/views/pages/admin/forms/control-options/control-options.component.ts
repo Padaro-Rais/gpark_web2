@@ -75,6 +75,7 @@ export class ControlOptionsComponent implements OnInit {
     .pipe(
       filter((state) => (state ? true : false)),
       take(1),
+      doLog('Form Interface'),
       map((state) =>
         DynamicFormHelpers.buildFormSync(sortRawFormControls(state))
       ),

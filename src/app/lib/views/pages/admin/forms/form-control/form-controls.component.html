@@ -8,9 +8,11 @@
       #newFormControl
       *ngIf="showCreatePreview"
       [formID]="form?.id"
+      (created)="newFormPreview.reset()"
       (remove)="onRemoveCreatePreview()"
     >
       <app-form-control-preview
+        #newFormPreview
         [form]="formState"
         [isExpanded]="false"
         [title]="'CHAMP'"
@@ -31,14 +33,17 @@
             [formID]="form?.id"
             (cdkDragDropped)="onControlDropped($event, control)"
             class="form-control-box"
+            (updated)="formControlElementPreview.isExpanded = false"
             cdkDrag
           >
             <app-form-control-preview
+              #formControlElementPreview
               [title]="control.label"
               [badge]="control.controlIndex"
               [control]="control"
               [form]="formState"
               [isExpanded]="false"
+              (submit)="formControlElement.upsert($event)"
               (remove)="formControlElement?.deleteControl()"
             ></app-form-control-preview>
           </app-form-control>

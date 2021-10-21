@@ -20,7 +20,7 @@ export class UsersComponent {
     this.createUserRoutePath = `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.createUsersRoute}`;
     this.listUserRoutePath = `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.listUsersRoute}`;
     this.manageRolesPath = `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.rolesManagementRoute}`;
-    this.manageFormsPath = `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.formsManagementRoute}`;
+    this.manageFormsPath = `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.forms}`;
     this.manageModulesPath = `/${defaultPath}/${appRoutes.managementsRoute}/${appRoutes.modulesManagementRoute}`;
   }
 }

@@ -41,15 +41,14 @@ export const environment = {
     createUsersRoute: "users/create",
     updatedUserRoute: "users/update",
     listUsersRoute: "users/list",
-    formsManagementRoute: "forms",
-    createFormsRoute: "forms/create",
+    forms: "forms",
     modulesManagementRoute: "modules",
     createModulesRoute: "modules/create",
     updateModulesRoute: "modules/update",
     departmentManagementRoute: "departments",
     createDepartmentRoute: "department",
     globalConfigurationsRoute: "configurations-globales",
-    controlOptionsRoute: "form-control-options",
+    options: "control-options",
   },
   dev: {
     users: {

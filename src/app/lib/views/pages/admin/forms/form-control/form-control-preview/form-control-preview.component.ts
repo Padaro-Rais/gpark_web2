@@ -4,6 +4,8 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  OnDestroy,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { Validators } from "@angular/forms";
 import { IDynamicForm } from "src/app/lib/core/components/dynamic-inputs/core/contracts/dynamic-form";
@@ -18,17 +20,24 @@ import {
   DynamicFormView,
 } from "src/app/lib/core/components/dynamic-inputs/angular";
 import { before } from "src/app/lib/core/utils/types/strings";
-import { timeout } from "src/app/lib/core/rxjs/helpers";
+import { createSubject, timeout } from "src/app/lib/core/rxjs/helpers";
+import { takeUntil, tap } from "rxjs/operators";
+import { doLog } from "src/app/lib/core/rxjs/operators";
+import { SelectableControlDataSource } from "src/app/lib/core/components/dynamic-inputs/core";
 
 @Component({
   selector: "app-form-control-preview",
   templateUrl: "./form-control-preview.component.html",
   styleUrls: ["./form-control-preview.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormControlPreviewComponent {
+export class FormControlPreviewComponent implements OnDestroy {
+  // Properties defintions
+  _destroy$ = createSubject();
   // #region outputs
   @Output() submit = new EventEmitter<{ [index: string]: any }>();
   @Output() remove = new EventEmitter<void>();
+  @Output() titleChange = new EventEmitter<string>();
   // #endregion outputs
 
   // #region Inputs Properties
@@ -46,13 +55,11 @@ export class FormControlPreviewComponent {
   // #endregion
 
   async onSubmit() {
-    ComponentReactiveFormHelpers.validateFormGroupFields(
-      this.formViewComponent?.formgroup
-    );
-    if (this.formViewComponent?.formgroup.valid) {
-      if (this.formViewComponent?.formgroup.valid) {
+    const formgroup = this.formViewComponent.validateForm();
+    if (formgroup.valid) {
+      if (formgroup.valid) {
         this.submit.emit({
-          body: this.formViewComponent?.formgroup.getRawValue(),
+          body: formgroup.getRawValue(),
           requestURL: this.form.endpointURL,
           id: this.control ? this.control.id : undefined,
         });
@@ -61,9 +68,56 @@ export class FormControlPreviewComponent {
   }
 
   onComponentReadyStateChanges() {
-    timeout(() => {
-      this.fillForm();
-    }, 1000);
+    this.fillForm();
+    // #region Listen for data_source changes
+    this.formViewComponent
+      ?.getControl("data_source")
+      .valueChanges.pipe(
+        takeUntil(this._destroy$),
+        doLog("Datasource control changes..."),
+        tap((state) => {
+          if (state && +state === SelectableControlDataSource.LIST) {
+            this.formViewComponent?.setControlValue(
+              "selectable_model",
+              undefined
+            );
+            ComponentReactiveFormHelpers.clearControlValidators(
+              this.formViewComponent?.getControl("selectable_model")
+            );
+            ComponentReactiveFormHelpers.setValidators(
+              this.formViewComponent?.getControl("selectable_values"),
+              Validators.compose([Validators.required])
+            );
+          } else if (state && +state === SelectableControlDataSource.MODEL) {
+            this.formViewComponent?.setControlValue("selectable_values", null);
+            ComponentReactiveFormHelpers.clearControlValidators(
+              this.formViewComponent?.getControl("selectable_values")
+            );
+            ComponentReactiveFormHelpers.setValidators(
+              this.formViewComponent?.getControl("selectable_model"),
+              Validators.compose([Validators.required])
+            );
+          }
+        }),
+        tap(() => {
+          console.log(this.formViewComponent?.getControl("data_source").value);
+        })
+      )
+      .subscribe();
+    // #endregion Listen for data_source changes
+    // #region Listen for label control changes
+    this.formViewComponent
+      ?.getControl("label")
+      .valueChanges.pipe(
+        takeUntil(this._destroy$),
+        tap((state) => {
+          if (state) {
+            this.title = state;
+          }
+        })
+      )
+      .subscribe();
+    // #endregion Listen for label control changes
   }
 
   fillForm() {
@@ -71,12 +125,14 @@ export class FormControlPreviewComponent {
       for (const [k, value] of Object.entries(formControlViewModelBindings())) {
         if (this.formViewComponent?.getControl(k)) {
           if (k === "required_if") {
-            this.formViewComponent
-              ?.getControl("control_is_conditionned")
-              .setValue(this.control[value] ? "1" : "0");
-            this.formViewComponent
-              ?.getControl("required_if")
-              .setValue(this.control[value]);
+            this.formViewComponent?.setControlValue(
+              "control_is_conditionned",
+              this.control[value] ? "1" : "0"
+            );
+            this.formViewComponent?.setControlValue(
+              "required_if",
+              this.control[value]
+            );
             continue;
           }
           if (k === "selectable_model" && this.control[value]) {
@@ -93,64 +149,45 @@ export class FormControlPreviewComponent {
               filters &&
               this.formViewComponent?.getControl("model_filters")
             ) {
-              this.formViewComponent
-                ?.getControl("model_filters")
-                .setValue(filters.replace("filters:", "").trim());
+              this.formViewComponent?.setControlValue(
+                "model_filters",
+                filters.replace("filters:", "").trim()
+              );
             }
             if (tableFilters) {
               const v = tableFilters.replace("table:", "").trim();
-              this.formViewComponent?.getControl("data_source").setValue("2");
-              this.formViewComponent
-                ?.getControl("selectable_model")
-                .setValue(v);
+              this.formViewComponent?.setControlValue("data_source", "2");
+              this.formViewComponent?.setControlValue("selectable_model", v);
             }
             continue;
           }
           if (k === "min_date" || k === "max_date") {
-            this.formViewComponent
-              ?.getControl(k)
-              .setValue(
-                this.control[value]
-                  ? MomentUtils.parseDate(
-                      this.control[value] as string,
-                      null,
-                      "YYYY-MM-DD"
-                    )
-                  : null
-              );
+            this.formViewComponent?.setControlValue(
+              k,
+              this.control[value]
+                ? MomentUtils.parseDate(
+                    this.control[value] as string,
+                    null,
+                    "YYYY-MM-DD"
+                  )
+                : null
+            );
             continue;
           }
           if (k === "selectable_values" && this.control[value]) {
-            this.formViewComponent?.getControl("data_source").setValue("1");
+            this.formViewComponent?.setControlValue("data_source", "1");
           }
-          this.formViewComponent?.getControl(k).setValue(this.control[value]);
+          this.formViewComponent?.setControlValue(k, this.control[value]);
         }
       }
     }
-    this.formViewComponent
-      ?.getControl("data_source")
-      .valueChanges.subscribe((state) => {
-        if (state && +state === 1) {
-          this.formViewComponent?.getControl("selectable_model").setValue(null);
-          ComponentReactiveFormHelpers.clearControlValidators(
-            this.formViewComponent?.getControl("selectable_model")
-          );
-          ComponentReactiveFormHelpers.setValidators(
-            this.formViewComponent?.getControl("selectable_values"),
-            Validators.compose([Validators.required])
-          );
-        } else {
-          this.formViewComponent
-            ?.getControl("selectable_values")
-            .setValue(null);
-          ComponentReactiveFormHelpers.clearControlValidators(
-            this.formViewComponent?.getControl("selectable_values")
-          );
-          ComponentReactiveFormHelpers.setValidators(
-            this.formViewComponent?.getControl("selectable_model"),
-            Validators.compose([Validators.required])
-          );
-        }
-      });
+  }
+
+  reset() {
+    this.formViewComponent?.reset();
+  }
+
+  ngOnDestroy() {
+    this._destroy$.next();
   }
 }
