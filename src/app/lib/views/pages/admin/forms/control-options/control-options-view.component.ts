@@ -25,7 +25,7 @@ import {
   IDynamicForm,
   IHTMLFormControl,
 } from "src/app/lib/core/components/dynamic-inputs/core";
-import { ControlOptionInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact/types";
+import { OptionInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact/types";
 import { TypeUtilHelper } from "src/app/lib/core/helpers";
 import { mapPaginatorStateWith } from "src/app/lib/core/pagination/helpers";
 import { createSubject } from "src/app/lib/core/rxjs/helpers";
@@ -131,7 +131,7 @@ import { AppUIStateProvider } from "src/app/lib/core/ui-state";
   ],
 })
 export class ControlOptionViewComponent implements OnDestroy {
-  @Input() selected: ControlOptionInterface;
+  @Input() selected: OptionInterface;
   @Input() formgroup: FormGroup;
   private _form: IDynamicForm;
   @Input() set form(value: IDynamicForm) {
@@ -147,8 +147,8 @@ export class ControlOptionViewComponent implements OnDestroy {
     return this._form;
   }
 
-  @Output() editingEvent = new EventEmitter<ControlOptionInterface>();
-  @Output() deleteEvent = new EventEmitter<ControlOptionInterface>();
+  @Output() editingEvent = new EventEmitter<OptionInterface>();
+  @Output() deleteEvent = new EventEmitter<OptionInterface>();
   @Output() formSubmittedEvent = new EventEmitter<{ [index: string]: any }>();
 
   // Collection of controls configuration object
@@ -200,11 +200,11 @@ export class ControlOptionViewComponent implements OnDestroy {
     this.onDgRefresh();
   }
 
-  editBtnClicked(event: ControlOptionInterface) {
+  editBtnClicked(event: OptionInterface) {
     this.editingEvent.emit(event);
   }
 
-  deleteBtnClicked(event: ControlOptionInterface) {
+  deleteBtnClicked(event: OptionInterface) {
     this.deleteEvent.emit(event);
   }
 

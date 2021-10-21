@@ -1,0 +1,32 @@
+.clr-accordion {
+  display: block;
+  counter-reset: accordion;
+  margin-bottom: 5px;
+}
+
+span.badge.badge-orange {
+  float: right;
+}
+
+clr-accordion-title.clr-accordion-title {
+  width: 100%;
+}
+
+.field-title.section-title {
+  margin-bottom: 1rem;
+}
+
+.accordion-header-content {
+  position: relative;
+}
+
+.remove-button {
+  display: block;
+  position: absolute;
+  float: right;
+  top: -1.1rem !important;
+  height: 1.9rem !important;
+  right: -1.4rem !important;
+  border: none;
+  // min-width: 1.5rem !important;
+}

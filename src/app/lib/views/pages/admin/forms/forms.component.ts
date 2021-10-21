@@ -5,10 +5,6 @@ import { ActivatedRoute } from "@angular/router";
 import { TypeUtilHelper } from "src/app/lib/core/helpers/type-utils-helper";
 import { isDefined, MomentUtils } from "src/app/lib/core/utils";
 import { createSubject, observableOf } from "../../../../core/rxjs/helpers";
-import {
-  serializeControlRequestBodyUsing,
-  serializeFormFormControlRequestBodyUsing,
-} from "src/app/lib/core/components/dynamic-inputs/core/v2/models";
 import { DynamicControlParser } from "src/app/lib/core/helpers";
 import { FormGroup } from "@angular/forms";
 import { Dialog } from "../../../../core/utils/browser/window-ref";
@@ -23,7 +19,7 @@ import {
   withLatestFrom,
 } from "rxjs/operators";
 import { combineLatest } from "rxjs";
-import { DynamicFormInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact/types";
+import { FormInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact/types";
 import {
   FormStoreActions,
   FormsProvider,
@@ -36,7 +32,7 @@ import {
   FORM_RESOURCES_PATH,
 } from "src/app/lib/core/components/dynamic-inputs/dynamic-form-control";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
-import { DynamicFormControlInterface } from "../../../../core/components/dynamic-inputs/core/compact/types";
+import { ControlInterface } from "../../../../core/components/dynamic-inputs/core/compact/types";
 import { httpServerHost } from "src/app/lib/core/utils/url/url";
 import { UIStateStatusCode } from "src/app/lib/core/contracts/ui-state";
 import { AppUIStateProvider } from "src/app/lib/core/ui-state";
@@ -143,7 +139,7 @@ export class FormsComponent implements OnDestroy {
     "clr-col-lg-7 clr-col-md-12 clr-col-sm-12";
 
   // tslint:disable-next-line: variable-name
-  _currentForm$ = createSubject<DynamicFormInterface>();
+  _currentForm$ = createSubject<FormInterface>();
 
   formState$ = this.route.paramMap.pipe(
     tap(() => {
@@ -357,7 +353,7 @@ export class FormsComponent implements OnDestroy {
     form,
   }: {
     event: { [index: string]: any };
-    form: DynamicFormInterface;
+    form: FormInterface;
   }) {
     if (isDefined(event.body)) {
       let { id, body } = {
@@ -366,14 +362,15 @@ export class FormsComponent implements OnDestroy {
       };
       this.uiState.startAction();
       // #region Create FormControl and FormFormControl request body
-      const formFormControlRequestBody =
-        serializeFormFormControlRequestBodyUsing({
-          ...body,
-          form_id: form.id,
-        });
-      const formControlsRequestBody = serializeControlRequestBodyUsing(
-        event.body
-      );
+      const formFormControlRequestBody = body;
+        // serializeFormFormControlRequestBodyUsing({
+        //   ...body,
+        //   form_id: form.id,
+        // });
+      const formControlsRequestBody = body;
+      // serializeControlRequestBodyUsing(
+      //   event.body
+      // );
       //!#endregion Create FormControl and FormFormControl request body
       body = {
         ...formControlsRequestBody,
@@ -420,28 +417,11 @@ export class FormsComponent implements OnDestroy {
   async onDissociateFormControl(value: IDissociateFormControlEvent) {
     const translations = await this.translate.translate(["prompt"]).toPromise();
     if (this.dialog.confirm(translations.prompt)) {
-      this.provider.deleteFormControl(
+      this.provider.deleteControl(
         `${httpServerHost(this.host)}/${this.fFormControlsPath}/${
           value.control.formId
         }/${value.control.id}`,
         value.control.id
-      );
-    }
-  }
-
-  onControlDropped(
-    event: CdkDragDrop<any>,
-    control: DynamicFormControlInterface
-  ) {
-    if (!(event.previousIndex === event.currentIndex)) {
-      this.provider.updateControl(
-        `${httpServerHost(this.host)}/${this.formControlsPath}/${control.id}`,
-        {
-          form_form_controls: serializeFormFormControlRequestBodyUsing({
-            form_id: control.formId,
-            index: event.currentIndex + 1,
-          }),
-        }
       );
     }
   }

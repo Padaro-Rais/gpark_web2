@@ -33,7 +33,7 @@ import {
   sortformbyindex,
 } from "src/app/lib/core/components/dynamic-inputs/core/helpers";
 import { doLog } from "src/app/lib/core/rxjs/operators";
-import { DynamicFormInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact";
+import { FormInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact";
 import { httpServerHost } from "src/app/lib/core/utils/url/url";
 import {
   ComponentReactiveFormHelpers,
@@ -66,9 +66,7 @@ export class AddRoleComponent implements OnDestroy {
     );
   // tslint:disable-next-line: variable-name
   _buildComponentForm$ =
-    createStateful<{ form: DynamicFormInterface; selectedID: number | string }>(
-      null
-    );
+    createStateful<{ form: FormInterface; selectedID: number | string }>(null);
   componentFormState$ = this._buildComponentForm$.pipe(
     doLog("Add role Form state: "),
     filter((source) => isDefined(source)),

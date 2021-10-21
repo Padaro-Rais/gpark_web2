@@ -1,6 +1,5 @@
 import { Component, ViewChild, OnDestroy, Inject, Input } from "@angular/core";
 import { ClrDatagrid, ClrDatagridStateInterface } from "@clr/angular";
-import { Router } from "@angular/router";
 import {
   debounceTime,
   distinctUntilChanged,
@@ -15,9 +14,8 @@ import { mapPaginatorStateWith } from "src/app/lib/core/pagination/helpers";
 import { createSubject, observableOf } from "src/app/lib/core/rxjs/helpers";
 import { doLog } from "src/app/lib/core/rxjs/operators";
 import { partialConfigs } from "src/app/lib/views/partials/partials-configs";
-import { FormV2 } from "../../../../../core/components/dynamic-inputs/core/v2/models/form";
+import { Form } from "../../../../../core/components/dynamic-inputs/core/v2/models/form";
 import { httpServerHost } from "src/app/lib/core/utils/url/url";
-import { environment } from "src/environments/environment";
 import { AppUIStateProvider } from "src/app/lib/core/ui-state";
 import { isDefined } from "src/app/lib/core/utils";
 import { writeStream } from "src/app/lib/core/utils/io";
@@ -36,7 +34,10 @@ import {
   ConfigurationManager,
   CONFIG_MANAGER,
 } from "src/app/lib/core/configuration";
-import { formViewModelBindings } from "src/app/lib/core/components/dynamic-inputs/core/compact";
+import {
+  FormInterface,
+  formViewModelBindings,
+} from "src/app/lib/core/components/dynamic-inputs/core/compact";
 
 @Component({
   selector: "app-listforms",
@@ -93,9 +94,9 @@ export class ListformsComponent implements OnDestroy {
   @Input() formID: string | number = this.config.get("forms.forms");
   // #endregion List og component inputs
   isSelectionEnabled = true;
-  selected: FormV2 | undefined = undefined;
+  selected: Form | undefined = undefined;
   // tslint:disable-next-line: variable-name
-  private _destroy$ = createSubject<{}>();
+  private _destroy$ = createSubject();
 
   // #region State observables
   state$ = this.provider.state$.pipe(
@@ -121,7 +122,7 @@ export class ListformsComponent implements OnDestroy {
       debounceTime(500),
       distinctUntilChanged(),
       switchMap((state: ClrDatagridStateInterface) => observableOf(state)),
-      shareReplay(1)
+      // shareReplay(1)
     )
     .pipe(
       map((state) => {
@@ -133,8 +134,8 @@ export class ListformsComponent implements OnDestroy {
       doLog("Forms Datagrid state: ")
     );
   // #endregion State observables
-
   @ViewChild("clrDataGrid", { static: false }) dataGrid: ClrDatagrid;
+  createPreviewViewIndex = undefined;
 
   constructor(
     @Inject(FORMS_PROVIDER) private provider: FormsProvider,
@@ -147,7 +148,7 @@ export class ListformsComponent implements OnDestroy {
   }
 
   // tslint:disable-next-line: typedef
-  navigateToEditView(item: FormV2) {
+  navigateToEditView(item: Form) {
     this.selected = item;
     this.isSelectionEnabled = false;
     this.selectedValues = undefined;
@@ -199,10 +200,6 @@ export class ListformsComponent implements OnDestroy {
   onDgRefresh = (state: ClrDatagridStateInterface) =>
     this._datagridState$.next(mapPaginatorStateWith([])(state));
 
-  ngOnDestroy(): void {
-    this._destroy$.next();
-  }
-
   onCreateFormStateChange(state: { form: IDynamicForm; formgroup: FormGroup }) {
     this.formState = {
       ...state,
@@ -248,5 +245,17 @@ export class ListformsComponent implements OnDestroy {
       .toPromise();
     this.selectedValues = [];
     this._uiState.endAction();
+  }
+
+  showCreateView(value: FormInterface) {
+    this.createPreviewViewIndex = value.id;
+  }
+
+  ngOnDestroy() {
+    this.provider.handle(FormStoreActions.CREATE_RESULT_ACTION, {
+      createResult: null,
+      currentForm: null,
+    });
+    this._destroy$.next();
   }
 }

@@ -18,14 +18,14 @@ import {
 } from "src/app/lib/core/components/dynamic-inputs/angular";
 import { AngularReactiveFormBuilderBridge } from "src/app/lib/core/components/dynamic-inputs/angular";
 import {
+  Form,
   FormsClient,
   FormsProvider,
   FormStoreActions,
   IDynamicForm,
   sortRawFormControls,
+  DynamicFormHelpers,
 } from "src/app/lib/core/components/dynamic-inputs/core";
-import { DynamicFormHelpers } from "src/app/lib/core/components/dynamic-inputs/core";
-import { FormV2 } from "src/app/lib/core/components/dynamic-inputs/core/v2/models";
 import {
   ConfigurationManager,
   CONFIG_MANAGER,
@@ -78,9 +78,9 @@ export class CreateFormComponent
   @Output() actionCompleted = new EventEmitter();
 
   /**
-   * @var FormV2
+   * @var Form
    */
-  @Input() selected: FormV2;
+  @Input() selected: Form;
 
   state$ = combineLatest([
     this.provider.state$,

@@ -95,10 +95,13 @@
         </ng-container>
       </clr-dg-row>
       <!--\ FORM CONTROL ROW -->
-      <clr-dg-row *ngFor="let item of vm?.dataSource.data">
+      <clr-dg-row *ngFor="let item of vm?.dataSource.data" [clrDgItem]="item">
         <clr-dg-action-overflow>
           <button class="action-item" (click)="navigateToEditView(item)">
             ÉDITER
+          </button>
+          <button class="action-item" (click)="showCreateView(item)">
+            NOUVEAU CHAMP
           </button>
         </clr-dg-action-overflow>
         <clr-dg-cell>{{ item.id }}</clr-dg-cell>
@@ -107,7 +110,18 @@
         <clr-dg-cell>{{ item.url }}</clr-dg-cell>
         <clr-dg-cell>{{ item?.description | uppercase }}</clr-dg-cell>
       </clr-dg-row>
-      <clr-dg-footer></clr-dg-footer>
+      <!--- DETAILS VIEW -->
+      <clr-dg-detail *clrIfDetail="let state">
+        <clr-dg-detail-header>{{ state.title }}</clr-dg-detail-header>
+        <clr-dg-detail-body>
+          <app-form-controls
+            [form]="state"
+            (showCreatePreviewChange)="createPreviewViewIndex = undefined"
+            [showCreatePreview]="createPreviewViewIndex === state?.id"
+          ></app-form-controls>
+        </clr-dg-detail-body>
+      </clr-dg-detail>
+      <!--\ DETAILS VIEW  -->
       <clr-dg-footer>
         {{ vm?.dataSource?.total }} Formulaires
         <clr-dg-pagination

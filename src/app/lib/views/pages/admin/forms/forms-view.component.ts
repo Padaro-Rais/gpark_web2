@@ -4,7 +4,7 @@ import { IDynamicForm } from "src/app/lib/core/components/dynamic-inputs/core";
 import { DynamicControlParser } from "src/app/lib/core/helpers/dynamic-control-parser";
 import { TypeUtilHelper } from "src/app/lib/core/helpers/type-utils-helper";
 import { Dialog, isDefined } from "src/app/lib/core/utils";
-import { DynamicFormInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact/types";
+import { FormInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact/types";
 import { formViewModelBindings } from "src/app/lib/core/components/dynamic-inputs/core/compact";
 import { ComponentReactiveFormHelpers } from "src/app/lib/core/components/dynamic-inputs/angular";
 import { TranslationService } from "src/app/lib/core/translator";
@@ -28,11 +28,11 @@ export class FormsViewComponent {
     return this._currentForm;
   }
   // tslint:disable-next-line: variable-name
-  _currentForm: DynamicFormInterface;
+  _currentForm: FormInterface;
 
   @Input() set formViewState(value: {
     form: IDynamicForm;
-    model: DynamicFormInterface;
+    model: FormInterface;
     formgroup: FormGroup;
   }) {
     if (value) {
@@ -51,7 +51,7 @@ export class FormsViewComponent {
   // tslint:disable-next-line: variable-name
   _formViewState: {
     form: IDynamicForm;
-    model: DynamicFormInterface;
+    model: FormInterface;
     formgroup: FormGroup;
   };
 
@@ -106,7 +106,7 @@ export class FormsViewComponent {
     return isDefined(value);
   }
 
-  async onClickedEditForm(form: DynamicFormInterface) {
+  async onClickedEditForm(form: FormInterface) {
     // Handle Edit operations
     ComponentReactiveFormHelpers.validateFormGroupFields(
       this.componentFormGroup

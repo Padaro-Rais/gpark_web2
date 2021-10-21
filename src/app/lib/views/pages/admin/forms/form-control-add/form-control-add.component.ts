@@ -4,11 +4,13 @@ import {
   Output,
   EventEmitter,
   OnDestroy,
+  Inject,
 } from "@angular/core";
 import { IDynamicForm } from "src/app/lib/core/components/dynamic-inputs/core";
 import { FormGroup } from "@angular/forms";
-import { DynamicControlParser } from "src/app/lib/core/helpers/dynamic-control-parser";
 import {
+  AngularReactiveFormBuilderBridge,
+  ANGULAR_REACTIVE_FORM_BRIDGE,
   cloneAbstractControl,
   ComponentReactiveFormHelpers,
 } from "src/app/lib/core/components/dynamic-inputs/angular";
@@ -35,9 +37,7 @@ export class FormControlAddComponent implements OnDestroy {
       this.componentFormGroup = localValue.formgroup
         ? cloneAbstractControl(localValue.formgroup)
         : this.componentFormGroup ||
-          (this.controlParser.buildFormGroupFromDynamicForm(
-            this.form
-          ) as FormGroup);
+          (this.builder.group(this.form) as FormGroup);
     }
   }
 
@@ -50,7 +50,8 @@ export class FormControlAddComponent implements OnDestroy {
    */
   constructor(
     private uiState: AppUIStateProvider,
-    private controlParser: DynamicControlParser
+    @Inject(ANGULAR_REACTIVE_FORM_BRIDGE)
+    private builder: AngularReactiveFormBuilderBridge
   ) {}
 
   cancel() {
@@ -76,7 +77,7 @@ export class FormControlAddComponent implements OnDestroy {
   }
 
   onFormRequestSubmittedSuccessfully() {
-    this.componentFormGroup = this.controlParser.buildFormGroupFromDynamicForm(
+    this.componentFormGroup = this.builder.group(
       this.form
     ) as FormGroup;
   }

@@ -1,0 +1,49 @@
+<div class="fields-container">
+  <div class="loader-container" [hidden]="!performingAction">
+    <clr-spinner class="spinner" [clrMedium]="true"></clr-spinner>
+  </div>
+  <div class="field-content" *ngIf="formState$ | async as formState">
+    <!-- NOUVEAU CHAMP -->
+    <app-form-control
+      #newFormControl
+      *ngIf="showCreatePreview"
+      [formID]="form?.id"
+      (remove)="onRemoveCreatePreview()"
+    >
+      <app-form-control-preview
+        [form]="formState"
+        [isExpanded]="false"
+        [title]="'CHAMP'"
+        (remove)="newFormControl?.deleteControl()"
+        (submit)="newFormControl.upsert($event)"
+      ></app-form-control-preview>
+    </app-form-control>
+    <!--\ NOUVEAU CHAMP -->
+    <div class="field-title section-title">
+      Champs du formulaire
+    </div>
+    <ng-container *ngIf="form?.controls?.length !== 0">
+      <div cdkDropList class="form-control-list">
+        <div *ngFor="let control of form?.controls">
+          <app-form-control
+            #formControlElement
+            [id]="control?.id"
+            [formID]="form?.id"
+            (cdkDragDropped)="onControlDropped($event, control)"
+            class="form-control-box"
+            cdkDrag
+          >
+            <app-form-control-preview
+              [title]="control.label"
+              [badge]="control.controlIndex"
+              [control]="control"
+              [form]="formState"
+              [isExpanded]="false"
+              (remove)="formControlElement?.deleteControl()"
+            ></app-form-control-preview>
+          </app-form-control>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

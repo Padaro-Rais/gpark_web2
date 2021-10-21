@@ -1,0 +1,37 @@
+<clr-accordion>
+  <clr-accordion-panel [(clrAccordionPanelOpen)]="isExpanded">
+    <clr-accordion-title class="">
+      <div class="accordion-header-content">
+        <span class="title">{{ title }}</span>
+        <span class="badge badge-orange" *ngIf="badge">
+          {{ badge }}
+        </span>
+        <button
+          class="remove-button btn btn-sm btn-danger"
+          (click)="remove.emit()"
+        >
+          <clr-icon shape="times-circle"></clr-icon>
+        </button>
+      </div>
+    </clr-accordion-title>
+    <clr-accordion-content *clrIfExpanded>
+      <app-simple-dynamic-form
+        #simpleFormComponent
+        *ngIf="form"
+        [submitable]="false"
+        [form]="form"
+        (componentReadyStateChanges)="onComponentReadyStateChanges()"
+      ></app-simple-dynamic-form>
+      <div class="button-container">
+        <button
+          class="btn btn-outline-primary"
+          (click)="onSubmit()"
+          [disabled]="performingAction"
+        >
+          <clr-icon shape="floppy"></clr-icon>
+          SOUMETTRE
+        </button>
+      </div>
+    </clr-accordion-content>
+  </clr-accordion-panel>
+</clr-accordion>

@@ -8,18 +8,17 @@ import {
 import { FormGroup } from "@angular/forms";
 import { filter, map, take, tap } from "rxjs/operators";
 import {
+  createOptionElement,
   FormsClient,
-  FormsProvider,
   IDynamicForm,
 } from "src/app/lib/core/components/dynamic-inputs/core";
-import { ControlOptionInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact/types";
+import { OptionInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact";
 import {
   createControlOptionAction,
   deleteControlOptionAction,
   selectControlOptionAction,
   updateControlOptionAction,
 } from "src/app/lib/core/components/dynamic-inputs/core/v2/actions";
-import { ControlOption } from "src/app/lib/core/components/dynamic-inputs/core/v2/models";
 import {
   DynamicControlParser,
   TranslatorHelperService,
@@ -95,9 +94,7 @@ export class ControlOptionsComponent implements OnInit {
     })),
     tap((state) => {
       if (this.typeHelper.isDefined(state?.selected)) {
-        const serialized = ControlOption.builder().toSerialized(
-          state?.selected
-        );
+        const serialized = createOptionElement(state?.selected);
         for (const [k, v] of Object.entries(serialized)) {
           if (this.typeHelper.isDefined(this.formgroup.get(k))) {
             this.formgroup.get(k).setValue(v);
@@ -173,7 +170,7 @@ export class ControlOptionsComponent implements OnInit {
     this.formgroup = formgroup;
   }
 
-  public onEditingEvent(event: ControlOptionInterface) {
+  public onEditingEvent(event: OptionInterface) {
     selectControlOptionAction(this._provider.store$)(event);
   }
 
@@ -197,7 +194,7 @@ export class ControlOptionsComponent implements OnInit {
     );
   }
 
-  onDeleteEvent(event: ControlOptionInterface, translations: any) {
+  onDeleteEvent(event: OptionInterface, translations: any) {
     // Prompt
     if (this.dialog.confirm(translations.validationPrompt)) {
       deleteControlOptionAction(this._provider.store$)(
