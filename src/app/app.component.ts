@@ -7,6 +7,7 @@ import "moment/locale/fr";
 import "moment/locale/en-gb";
 import * as lodash from "lodash";
 import { AppUIStateProvider } from "./lib/core/ui-state";
+import { timeout } from "./lib/core/rxjs/helpers";
 
 @Component({
   selector: "app-root",
@@ -40,7 +41,7 @@ export class AppComponent {
   }
 
   onIsAuthenticated(value: boolean) {
-    setTimeout(() => {
+    timeout(() => {
       const currentPath = this.location.path();
       if (value && lodash.isEmpty(currentPath)) {
         this.router.navigateByUrl(
@@ -48,7 +49,7 @@ export class AppComponent {
         );
         return;
       }
-    }, 0);
+    }, 300);
     this.showComponentLoadingDirective = false;
   }
 

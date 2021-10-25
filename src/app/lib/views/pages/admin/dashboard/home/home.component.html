@@ -1,14 +1,24 @@
 <div class="clr-row welcome-admin">
   <div class="clr-col-6 text-section">
     <h1 class="welcome-text">Welcome to your Dashboard!</h1>
-    <p>We are very proud to welcome you everyday on this management dashboard of your platform. Please feel free but
-      cautiously to access all the areas of this dashboard.</p>
+    <p>
+      We are very proud to welcome you everyday on this management dashboard of
+      your platform. Please feel free but cautiously to access all the areas of
+      this dashboard.
+    </p>
     <div class="caution-message">
-      <p><strong>Be Careful : </strong>You are here because you know what is your responsibilities, anything you add
-        or modify should affect the users of your system.</p>
-      <p>If you are new here, please carefully <button class="btn btn-sm">
-          <clr-icon shape="book"></clr-icon> check the docs
-        </button></p>
+      <p>
+        <strong>Be Careful :</strong>
+        You are here because you know what is your responsibilities, anything
+        you add or modify should affect the users of your system.
+      </p>
+      <p>
+        If you are new here, please carefully
+        <button class="btn btn-sm">
+          <clr-icon shape="book"></clr-icon>
+          check the docs
+        </button>
+      </p>
     </div>
   </div>
 </div>
@@ -24,8 +34,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-lg btn-app" [routerLink]="listUserRoutePath">
-          <clr-icon shape="users"></clr-icon> Gérer les utilisateurs
+        <button
+          [disabled]="!users"
+          class="btn btn-lg btn-app"
+          [routerLink]="listUserRoutePath"
+        >
+          <clr-icon shape="users"></clr-icon>
+          Gérer les utilisateurs
         </button>
       </div>
     </div>
@@ -41,8 +56,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-lg btn-app" [routerLink]="manageRolesPath">
-          <clr-icon shape="file-group"></clr-icon> Gérer les rôles
+        <button
+          [disabled]="!users"
+          class="btn btn-lg btn-app"
+          [routerLink]="manageRolesPath"
+        >
+          <clr-icon shape="file-group"></clr-icon>
+          Gérer les rôles
         </button>
       </div>
     </div>
@@ -58,8 +78,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-lg btn-app" [routerLink]="manageFormsPath">
-          <clr-icon shape="form"></clr-icon> Gérer les formulaires
+        <button
+          [disabled]="!forms"
+          class="btn btn-lg btn-app"
+          [routerLink]="manageFormsPath"
+        >
+          <clr-icon shape="form"></clr-icon>
+          Gérer les formulaires
         </button>
       </div>
     </div>
@@ -77,8 +102,9 @@
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-lg btn-app" [routerLink]="manageModulesPath">
-          <clr-icon shape="view-cards"></clr-icon> Gérer les modules
+        <button [disabled]="!modules" class="btn btn-lg btn-app" [routerLink]="manageModulesPath">
+          <clr-icon shape="view-cards"></clr-icon>
+          Gérer les modules
         </button>
       </div>
     </div>
@@ -94,8 +120,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-lg btn-app" [routerLink]="manageDepartmentsPath">
-          <clr-icon shape="organization"></clr-icon> Gérer les départements
+        <button
+          [disabled]="!departments"
+          class="btn btn-lg btn-app"
+          [routerLink]="manageDepartmentsPath"
+        >
+          <clr-icon shape="organization"></clr-icon>
+          Gérer les départements
         </button>
       </div>
     </div>
@@ -111,8 +142,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-lg btn-app" [routerLink]="manageGeneralConfigPath">
-          <clr-icon shape="cog"></clr-icon> Configurer le système
+        <button
+          [disabled]="!configurations"
+          class="btn btn-lg btn-app"
+          [routerLink]="manageGeneralConfigPath"
+        >
+          <clr-icon shape="cog"></clr-icon>
+          Configurer le système
         </button>
       </div>
     </div>

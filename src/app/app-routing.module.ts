@@ -7,7 +7,7 @@ import { partialConfigs } from './lib/views/partials/partials-configs';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: `/${partialConfigs.routes.commonRoutes.dashboardRoute}`,
     pathMatch: 'full'
   },
   {

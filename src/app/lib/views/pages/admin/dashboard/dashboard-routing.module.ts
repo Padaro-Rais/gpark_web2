@@ -35,7 +35,7 @@ export const getRoutes = () => {
   const appRoutes = environment?.appRoutes;
   const adminAuthorizations = AUTH_RESOURCES_AUTHORIZATIONS;
 
-  const childRoutes: Routes = [
+  let childRoutes: Routes = [
     {
       path: "",
       component: AdminDashboardComponent,
@@ -62,147 +62,150 @@ export const getRoutes = () => {
         authorizations: adminAuthorizations,
       },
     },
-    {
-      path: appRoutes.managementsRoute,
-      component: UsersComponent,
-      canActivate: [AuthGuardService, AuthorizationsGuard],
-      data: {
-        authorizations: adminAuthorizations,
-      },
-    },
-    {
-      path: `${appRoutes.managementsRoute}/${appRoutes.createUsersRoute}`,
-      component: AddUserComponent,
-      canActivate: [AuthGuardService, AuthorizationsGuard],
-      data: {
-        authorizations: adminAuthorizations,
-        formID: environment.forms.users,
-      },
-    },
-    {
-      path: `${appRoutes.managementsRoute}/${appRoutes.updatedUserRoute}/:id`,
-      component: AddUserComponent,
-      canActivate: [AuthGuardService, AuthorizationsGuard],
-      data: {
-        authorizations: adminAuthorizations,
-        formID: environment.forms.users,
-      },
-    },
-    {
-      path: `${appRoutes.managementsRoute}/${appRoutes.listUsersRoute}`,
-      component: UserListComponent,
-      canActivate: [AuthGuardService, AuthorizationsGuard],
-      data: {
-        authorizations: adminAuthorizations,
-      },
-    },
-    {
-      path: `${appRoutes.managementsRoute}/${appRoutes.rolesManagementRoute}`,
-      component: RolesComponent,
-      canActivate: [AuthGuardService, AuthorizationsGuard],
-      data: {
-        authorizations: adminAuthorizations,
-      },
-    },
-    {
-      path: `${appRoutes.managementsRoute}/${appRoutes.createRole}`,
-      component: AddRoleComponent,
-      canActivate: [AuthGuardService, AuthorizationsGuard],
-      data: {
-        authorizations: adminAuthorizations,
-      },
-    },
-    {
-      path: `${appRoutes.managementsRoute}/${appRoutes.updatedRoleRoute}/:id`,
-      component: AddRoleComponent,
-      canActivate: [AuthGuardService, AuthorizationsGuard],
-      data: {
-        authorizations: adminAuthorizations,
-      },
-    },
   ];
+  if (environment?.isUsersWorkspaceEnabled) {
+    childRoutes = [
+      ...childRoutes,
+
+      {
+        path: appRoutes.managementsRoute,
+        component: UsersComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
+        },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.createUsersRoute}`,
+        component: AddUserComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
+          formID: environment.forms.users,
+        },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.updatedUserRoute}/:id`,
+        component: AddUserComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
+          formID: environment.forms.users,
+        },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.listUsersRoute}`,
+        component: UserListComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
+        },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.rolesManagementRoute}`,
+        component: RolesComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
+        },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.createRole}`,
+        component: AddRoleComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
+        },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.updatedRoleRoute}/:id`,
+        component: AddRoleComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
+        },
+      },
+    ];
+  }
   if (environment.isDepartmentWorkspaceEnabled) {
-    childRoutes.push(
-      ...[
-        {
-          path: `${appRoutes.managementsRoute}/${appRoutes.departmentManagementRoute}`,
-          component: ListDepartmentComponent,
-          canActivate: [AuthGuardService, AuthorizationsGuard],
-          data: {
-            authorizations: adminAuthorizations,
-          },
+    childRoutes = [
+      ...childRoutes,
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.departmentManagementRoute}`,
+        component: ListDepartmentComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
         },
-        {
-          path: `${appRoutes.managementsRoute}/${appRoutes.createDepartmentRoute}`,
-          component: DepartmentComponent,
-          canActivate: [AuthGuardService, AuthorizationsGuard],
-          data: {
-            authorizations: adminAuthorizations,
-          },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.createDepartmentRoute}`,
+        component: DepartmentComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
         },
-        {
-          path: `${appRoutes.managementsRoute}/${appRoutes.createDepartmentRoute}/:id`,
-          component: DepartmentComponent,
-          canActivate: [AuthGuardService, AuthorizationsGuard],
-          data: {
-            authorizations: adminAuthorizations,
-          },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.createDepartmentRoute}/:id`,
+        component: DepartmentComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
         },
-      ]
-    );
+      },
+    ];
   }
   if (environment.isModulesWorkspaceEnabled) {
-    childRoutes.push(
-      ...[
-        {
-          path: `${appRoutes.managementsRoute}/${appRoutes.modulesManagementRoute}`,
-          component: ModulesComponent,
-          canActivate: [AuthGuardService, AuthorizationsGuard],
-          data: {
-            authorizations: adminAuthorizations,
-          },
+    childRoutes = [
+      ...childRoutes,
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.modulesManagementRoute}`,
+        component: ModulesComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
         },
-        {
-          path: `${appRoutes.managementsRoute}/${appRoutes.createModulesRoute}`,
-          component: AddmoduleComponent,
-          canActivate: [AuthGuardService, AuthorizationsGuard],
-          data: {
-            authorizations: adminAuthorizations,
-          },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.createModulesRoute}`,
+        component: AddmoduleComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
         },
-        {
-          path: `${appRoutes.managementsRoute}/${appRoutes.updateModulesRoute}/:id`,
-          component: AddmoduleComponent,
-          canActivate: [AuthGuardService, AuthorizationsGuard],
-          data: {
-            authorizations: adminAuthorizations,
-          },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.updateModulesRoute}/:id`,
+        component: AddmoduleComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
         },
-      ]
-    );
+      },
+    ];
   }
   if (environment.isFormsWorkspaceEnabled) {
-    childRoutes.push(
-      ...[
-        {
-          path: `${appRoutes.managementsRoute}/${appRoutes.forms}`,
-          component: FormsComponent,
-          canActivate: [AuthGuardService, AuthorizationsGuard],
-          data: {
-            authorizations: adminAuthorizations,
-          },
+    childRoutes = [
+      ...childRoutes,
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.forms}`,
+        component: FormsComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
         },
-        {
-          path: `${appRoutes.managementsRoute}/${appRoutes.options}`,
-          component: ControlOptionsComponent,
-          canActivate: [AuthGuardService, AuthorizationsGuard],
-          data: {
-            authorizations: adminAuthorizations,
-            formID: environment.forms.controlOptions,
-          },
+      },
+      {
+        path: `${appRoutes.managementsRoute}/${appRoutes.options}`,
+        component: ControlOptionsComponent,
+        canActivate: [AuthGuardService, AuthorizationsGuard],
+        data: {
+          authorizations: adminAuthorizations,
+          formID: environment.forms.controlOptions,
         },
-      ]
-    );
+      },
+    ]
   }
   return [
     {

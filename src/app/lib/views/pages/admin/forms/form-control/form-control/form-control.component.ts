@@ -116,7 +116,7 @@ export class FormControlComponent implements AfterViewInit {
     private translate: TranslationService,
     @Inject(FORMS_PROVIDER)
     private provider: FormsProvider,
-    @Inject(FORM_CONTROL_RESOURCES_PATH) private formControlsPath: string,
+    @Inject(FORM_CONTROL_RESOURCES_PATH) private controlsPath: string,
     @Inject("FORM_SERVER_HOST") private host: string,
     private dialog: Dialog
   ) {}
@@ -153,12 +153,12 @@ export class FormControlComponent implements AfterViewInit {
       };
       if (id) {
         this.provider.updateControl(
-          `${httpHost(this.host)}/${this.formControlsPath}/${id}`,
+          `${httpHost(this.host)}/${this.controlsPath}/${id}`,
           body
         );
       } else {
         this.provider.createControl(
-          `${httpHost(this.host)}/${this.formControlsPath}`,
+          `${httpHost(this.host)}/${this.controlsPath}`,
           body
         );
       }
@@ -172,8 +172,9 @@ export class FormControlComponent implements AfterViewInit {
         .toPromise();
       if (this.dialog.confirm(translations.prompt)) {
         this.provider.deleteControl(
-          `${httpHost(this.host)}/${this.formControlsPath}/${this.id}`,
-          this.id
+          `${httpHost(this.host)}/${this.controlsPath}/${this.id}`,
+          this.id,
+          this.formID
         );
       }
     } else {

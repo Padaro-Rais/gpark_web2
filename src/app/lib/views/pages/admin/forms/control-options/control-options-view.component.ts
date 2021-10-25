@@ -40,7 +40,6 @@ import { AppUIStateProvider } from "src/app/lib/core/ui-state";
         #clrDataGrid
         (clrDgRefresh)="onDgRefresh($event)"
         [clrDgLoading]="vm?.performingAction"
-        class="datagrid-compact"
       >
         <clr-dg-action-bar>
           <drewlabs-datgrid-header
@@ -237,6 +236,5 @@ export class ControlOptionViewComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this._destroy$.next();
-    ``;
   }
 }

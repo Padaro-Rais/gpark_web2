@@ -9,10 +9,10 @@ export const environment = {
   authTokenStorageKey: "ELEWOU_ADMIN_X_AUTH_TOKEN",
   authRememberTokenStorageKey: "ELEWOU_ADMIN_AUTH_REMEMBER_TOKEN",
   forms: {
-    roles: 13,
+    roles: undefined,
     users: "c7205502-1883-11ec-9621-0242ac130002-12619",
-    departments: 18,
-    modules: 15,
+    departments: undefined,
+    modules: undefined,
     forms: "4f25087d-a5e7-4439-9fde-2c48dda4898b-12619",
     controls: "2a841446-c9a5-4328-bf7d-a2a071afdb75-12619",
     controlOptions: "d85dddce-7418-4313-9d54-218950ca4395-12619"
@@ -26,6 +26,7 @@ export const environment = {
   isModulesWorkspaceEnabled: false,
   isFormsWorkspaceEnabled: true,
   isConfigurationWorkspaceEnabled: false,
+  isUsersWorkspaceEnabled: false,
   endpoints: {
     forms: "api/v1/forms",
     formControls: "api/v1/form-controls",

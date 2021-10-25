@@ -98,9 +98,6 @@ export class FormControlPreviewComponent implements OnDestroy {
               Validators.compose([Validators.required])
             );
           }
-        }),
-        tap(() => {
-          console.log(this.formViewComponent?.getControl("data_source").value);
         })
       )
       .subscribe();

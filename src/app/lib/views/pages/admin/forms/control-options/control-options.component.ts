@@ -8,9 +8,9 @@ import {
 import { FormGroup } from "@angular/forms";
 import { filter, map, take, tap } from "rxjs/operators";
 import {
-  createOptionElement,
   FormsClient,
   IDynamicForm,
+  serializedOptionElement,
 } from "src/app/lib/core/components/dynamic-inputs/core";
 import { OptionInterface } from "src/app/lib/core/components/dynamic-inputs/core/compact";
 import {
@@ -20,7 +20,6 @@ import {
   updateControlOptionAction,
 } from "src/app/lib/core/components/dynamic-inputs/core/v2/actions";
 import {
-  DynamicControlParser,
   TranslatorHelperService,
   TypeUtilHelper,
 } from "src/app/lib/core/helpers";
@@ -37,7 +36,11 @@ import {
 } from "src/app/lib/core/components/dynamic-inputs/core/helpers";
 import { ActivatedRoute } from "@angular/router";
 import { environment } from "src/environments/environment";
-import { FORM_CLIENT } from "src/app/lib/core/components/dynamic-inputs/angular";
+import {
+  AngularReactiveFormBuilderBridge,
+  ANGULAR_REACTIVE_FORM_BRIDGE,
+  FORM_CLIENT,
+} from "src/app/lib/core/components/dynamic-inputs/angular";
 
 @Component({
   selector: "app-control-options",
@@ -75,13 +78,13 @@ export class ControlOptionsComponent implements OnInit {
     .pipe(
       filter((state) => (state ? true : false)),
       take(1),
-      doLog('Form Interface'),
+      doLog("Form Interface"),
       map((state) =>
         DynamicFormHelpers.buildFormSync(sortRawFormControls(state))
       ),
       map((state) => ({
         form: state,
-        formgroup: this._parser.buildFormGroupFromDynamicForm(state),
+        formgroup: this.builder?.group(state),
       }))
     );
 
@@ -95,8 +98,9 @@ export class ControlOptionsComponent implements OnInit {
     })),
     tap((state) => {
       if (this.typeHelper.isDefined(state?.selected)) {
-        const serialized = createOptionElement(state?.selected);
+        const serialized = serializedOptionElement(state?.selected);
         for (const [k, v] of Object.entries(serialized)) {
+          console.log("Key - Value", k, v);
           if (this.typeHelper.isDefined(this.formgroup.get(k))) {
             this.formgroup.get(k).setValue(v);
           }
@@ -108,7 +112,7 @@ export class ControlOptionsComponent implements OnInit {
       if (state.createResult) {
         this._uiState.endAction(
           state.translations.successfulRequest,
-          UIStateStatusCode.STATUS_CREATED
+          UIStateStatusCode.OK
         );
         this.controlOptionViewComponent.onDgRefresh();
         if (this.typeHelper.isDefined(this.formgroup)) {
@@ -121,7 +125,7 @@ export class ControlOptionsComponent implements OnInit {
       if (state?.updateResult) {
         this._uiState.endAction(
           state.translations.successfulRequest,
-          UIStateStatusCode.STATUS_OK
+          UIStateStatusCode.OK
         );
         this.controlOptionViewComponent.onDgRefresh();
         if (this.typeHelper.isDefined(this.formgroup)) {
@@ -135,7 +139,7 @@ export class ControlOptionsComponent implements OnInit {
       if (state?.deleteResult) {
         this._uiState.endAction(
           state.translations.successfulRequest,
-          UIStateStatusCode.STATUS_OK
+          UIStateStatusCode.OK
         );
         this.controlOptionViewComponent.onDgRefresh();
       }
@@ -152,10 +156,15 @@ export class ControlOptionsComponent implements OnInit {
         this.formgroup.reset();
       }
     }
+
+    if (event.code === KEY_NAMES.ENTER) {
+      this.controlOptionViewComponent?.onSubmitBtnClicked();
+    }
   }
 
   constructor(
-    private _parser: DynamicControlParser,
+    @Inject(ANGULAR_REACTIVE_FORM_BRIDGE)
+    private builder: AngularReactiveFormBuilderBridge,
     public readonly typeHelper: TypeUtilHelper,
     private _provider: OptionsService,
     private _uiState: AppUIStateProvider,
@@ -168,7 +177,7 @@ export class ControlOptionsComponent implements OnInit {
   public async ngOnInit() {
     const { form, formgroup } = await this.formState$.toPromise();
     this.form = form;
-    this.formgroup = formgroup;
+    this.formgroup = formgroup as FormGroup;
   }
 
   public onEditingEvent(event: OptionInterface) {
