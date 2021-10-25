@@ -23,7 +23,7 @@
           (refreshEvent)="onDgHeaderRefresh()"
         >
           <!-- Add a drop down content that show the rest of actions-->
-          <clr-dropdown *ngIf="showExportDropdown">
+          <clr-dropdown *ngIf="selectedValues?.length !== 0">
             <button
               type="button"
               [disabled]="vm?.performingAction || selectedValues?.length === 0"
@@ -111,7 +111,11 @@
         <clr-dg-cell>{{ item?.description | uppercase }}</clr-dg-cell>
       </clr-dg-row>
       <!--- DETAILS VIEW -->
-      <ng-template clrIfDetail let-detail (clrIfDetailChange)="onDetailsStateChange($event)">
+      <ng-template
+        clrIfDetail
+        let-detail
+        (clrIfDetailChange)="onDetailsStateChange($event)"
+      >
         <clr-dg-detail>
           <clr-dg-detail-header>{{ detail.title }}</clr-dg-detail-header>
           <clr-dg-detail-body>

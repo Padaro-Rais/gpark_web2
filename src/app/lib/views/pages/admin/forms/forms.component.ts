@@ -15,7 +15,7 @@ import { doLog } from "src/app/lib/core/rxjs/operators";
 import { partialConfigs } from "src/app/lib/views/partials/partials-configs";
 import { httpServerHost } from "src/app/lib/core/utils/url/url";
 import { AppUIStateProvider } from "src/app/lib/core/ui-state";
-import { isDefined } from "src/app/lib/core/utils";
+import { isDefined, toBinary } from "src/app/lib/core/utils";
 import { writeStream } from "src/app/lib/core/utils/io";
 import {
   ComponentReactiveFormHelpers,
@@ -224,24 +224,11 @@ export class FormsComponent implements OnDestroy {
 
   async onExportToExcelEvent() {
     this._uiState.startAction();
-    await this.provider
-      .getAll({
-        _query: JSON.stringify({
-          whereIn: [
-            "id",
-            this.selectedValues
-              .filter((value) => isDefined(value?.id))
-              .map((value) => value?.id),
-          ],
-        }),
-        with_controls: true,
-      })
-      .pipe(
-        tap(async (values) => {
-          await writeStream(JSON.stringify(values), "jsonforms.json");
-        })
-      )
-      .toPromise();
+    await writeStream(
+      btoa(toBinary(JSON.stringify(this.selectedValues ?? []))),
+      "jsonforms.json",
+      "application/json"
+    );
     this.selectedValues = [];
     this._uiState.endAction();
   }
@@ -252,7 +239,7 @@ export class FormsComponent implements OnDestroy {
   }
 
   onDetailsStateChange(event: any) {
-    if (typeof event === 'undefined' || event === null) {
+    if (typeof event === "undefined" || event === null) {
       this.showCreatePreview = false;
     }
   }
