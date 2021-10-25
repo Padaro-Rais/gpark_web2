@@ -1458,7 +1458,7 @@
         "controlIndex": 23,
         "columns": null,
         "rows": null,
-        "value": null,
+        "value": "0",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
       {
@@ -1487,7 +1487,7 @@
         "controlIndex": 24,
         "columns": null,
         "rows": null,
-        "value": null,
+        "value": "1",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
       {
@@ -1516,7 +1516,7 @@
         "controlIndex": 25,
         "columns": null,
         "rows": null,
-        "value": 0,
+        "value": "0",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
       {
@@ -1545,7 +1545,7 @@
         "controlIndex": 26,
         "columns": null,
         "rows": null,
-        "value": 0,
+        "value": "0",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
       {
@@ -1574,7 +1574,7 @@
         "controlIndex": 27,
         "columns": null,
         "rows": null,
-        "value": 0,
+        "value": "0",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
       {
@@ -1633,7 +1633,7 @@
         "controlIndex": 29,
         "columns": null,
         "rows": null,
-        "value": 0,
+        "value": "0",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
       {
@@ -1662,7 +1662,7 @@
         "controlIndex": 30,
         "columns": null,
         "rows": null,
-        "value": null,
+        "value": "",
         "requiredIf": "control_is_conditionned:1",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
@@ -1692,7 +1692,7 @@
         "controlIndex": 31,
         "columns": null,
         "rows": null,
-        "value": 0,
+        "value": "0",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
       {
@@ -1721,7 +1721,7 @@
         "controlIndex": 32,
         "columns": null,
         "rows": null,
-        "value": null,
+        "value": "",
         "requiredIf": "type:text,email,password,file",
         "containerClass": "clr-col-md-12 clr-col-sm-12"
       },
