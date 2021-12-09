@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
       <div class="branding">
         <a href="..." class="nav-link">
           <!-- <clr-icon shape="my-custom-shape"></clr-icon> -->
-          <span class="title" id="app">LIKMAT</span>
+          <span class="title" id="app">ARCHLIK</span>
         </a>
       </div>
       <div class="header-nav">
