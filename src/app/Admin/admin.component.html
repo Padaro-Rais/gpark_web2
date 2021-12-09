@@ -1,8 +1,18 @@
 <div class="main-container">
   <app-header></app-header>
   <div class="content-container">
-    <clr-vertical-nav [clrVerticalNavCollapsible]="true">
+    <clr-vertical-nav  class="clr-vertical-nav nav-trigger--bottom clr-nav-level-1 has-nav-groups has-icons">
+
+      <button type="button" class="nav-trigger ng-star-inserted" aria-expanded="true" aria-label="Toggle vertical navigation">
+        <cds-icon shape="angle-double" class="nav-trigger-icon" direction="left" title="Collapse"></cds-icon>
+      </button>
+      
+      <div class="nav-content">
       <app-seadbar></app-seadbar>
+    </div>
+
+
+
     </clr-vertical-nav>
     <div class="content-area" id="home">
          <router-outlet></router-outlet>
