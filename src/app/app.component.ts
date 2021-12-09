@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core'
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'LGMAO'
+  title = 'Archlik'
   //
   constructor(private translate: TranslateService) {
     this.translate.addLangs(['en', 'fr'])

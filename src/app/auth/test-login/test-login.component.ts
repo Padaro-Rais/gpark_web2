@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServivesService } from '../login/auth-servives.service';
 import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 
 @Component({
@@ -12,21 +14,29 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TestLoginComponent implements OnInit {
 
-  title = 'LGMAO'
+  isLoggedIn = false
+  isLoginFailed = false
+  errorMessage = ''
+  roles: string[] = []
+
+  constructor(
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+  ) {}
+
+  title = 'Arch_Lik'
   formGroup: any
   iscon: boolean = false
   hideBtn: boolean = true
   showBtn: boolean = false
 
-  token: any
-  data: any
-
-  constructor(
-    private AuthService: AuthServivesService,
-    private router: Router,
-    private toastr: ToastrService,
-  ) {}
   ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true
+      this.roles = this.tokenStorage.getUser().roles
+    }
+
     this.initForm()
   }
 
@@ -38,27 +48,28 @@ export class TestLoginComponent implements OnInit {
   }
 
   LoginProcess() {
-    this.hideBtn = false
-    this.showBtn = true
+    this.authService
+      .login(this.formGroup.value.email, this.formGroup.value.password)
+      .subscribe(
+        (data) => {
+          this.tokenStorage.saveTokenType(data.token_type)
+          this.tokenStorage.saveToken(data.access_token)
+          this.tokenStorage.saveTokenExpired(data.expires_in)
+          this.tokenStorage.saveUser(data.user)
+          this.tokenStorage.savePermissions(data.permissions)
 
-    if (this.formGroup.valid) {
-      this.AuthService.login(this.formGroup.value).subscribe(
-        (res) => {
-          ;(this.data = res), localStorage.setItem('token', this.data.token)
-
-          localStorage.setItem('permission', this.data.user.role_id)
-
-          console.log(this.data.user.role_id)
-          this.iscon = true
-
+          this.isLoginFailed = false
+          this.isLoggedIn = true
           this.router.navigateByUrl('/app/dashbord')
         },
         (err) => {
-          this.hideBtn = true
-          this.showBtn = false
-          this.toastr.error('Email ou mot de passe incorect')
+          this.errorMessage = err.error.message
+          this.isLoginFailed = true
         },
       )
-    }
+  }
+
+  reloadPage(): void {
+    window.location.reload()
   }
 }

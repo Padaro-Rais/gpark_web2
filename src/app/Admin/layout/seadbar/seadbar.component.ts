@@ -1,4 +1,3 @@
-import { Materiel } from './../../../Models/materiel';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

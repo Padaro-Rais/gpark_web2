@@ -17,6 +17,8 @@ import { NgxChartModule } from 'ngx-chart'
 import { PipeModule } from './partials/pipe.module'
 import { ConfirmDialogComponent } from './helpers/confirm-dialog/confirm-dialog.component';
 import { TestFormComponent } from './views/test-form/test-form.component'
+import { MatDialogModule } from '@angular/material/dialog'
+import { DynamicFormControlModule } from '../core/components/dynamic-inputs/angular'
 
 
 
@@ -55,6 +57,8 @@ export const AdminRoute: Routes = [
     FullCalendarModule,
     NgxChartModule,
     PipeModule,
+    MatDialogModule,
+    DynamicFormControlModule
   ],
 })
 export class AdminModule {}
