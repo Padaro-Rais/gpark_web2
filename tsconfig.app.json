@@ -3,7 +3,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": ["resize-observer-browser"]
+    "types": []
   },
   "files": [
     "src/main.ts",

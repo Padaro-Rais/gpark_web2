@@ -1,0 +1,85 @@
+.header {
+  line-height: 1;
+  height: var(--app-header-height);
+
+  .branding{
+    height: var(--app-header-height);
+   .nav-link{
+      height: 1.7rem;
+    }
+    .title.module_name{
+      line-height: 2rem;
+    }
+    .app-logo {
+      display: block;
+      margin-right: 1rem;
+      width: 20%;
+    }
+  }
+  .header-nav{
+    a.nav-link.nav-text.active,
+    a.nav-link.nav-text {
+      padding: 13px;
+    }
+  }
+  .header-actions{
+    button.nav-icon {
+      height: var(--app-header-height);
+      width: 2rem;
+    }
+  }
+}
+
+header .settings .nav-link.active, header .header-nav .nav-link.active, header .header-actions .nav-link.active, .header .settings .nav-link.active, .header .header-nav .nav-link.active, .header .header-actions .nav-link.active, .header .header-actions .nav-link{
+  height: var(--app-header-height);
+}
+
+header .settings>.dropdown>.dropdown-toggle, header .header-actions>.dropdown>.dropdown-toggle, .header .settings>.dropdown>.dropdown-toggle, .header .header-actions>.dropdown>.dropdown-toggle {
+  line-height: 0rem;
+  height: var(--app-header-height);
+}
+
+header .header-nav .nav-link:first-of-type::before, header .header-nav .nav-link:last-of-type::after, .header .header-nav .nav-link:first-of-type::before, .header .header-nav .nav-link:last-of-type::after{
+  top: 0;
+}
+
+header .settings>.dropdown .dropdown-menu, header .header-actions>.dropdown .dropdown-menu, .header .settings>.dropdown .dropdown-menu, .header .header-actions>.dropdown .dropdown-menu {
+  margin-top: -1rem;
+}
+.header .branding .app-logo {
+  display: block;
+  margin-right: 1rem;
+  /* width: 20%; */
+  line-height: 1;
+  margin-top: 7px;
+  font-weight: 700;
+}
+
+.dropdown-menu{
+  z-index: 99999999999999;
+}
+
+.main-container .header-hamburger-trigger {
+  height: 2rem;
+}
+
+.sub-navigation {
+  font-weight: 300;
+  // color: #fff;
+  padding: 0.2rem 0.1rem 0;
+  position: relative;
+  z-index: 9999;
+
+  .sub-nav,
+  .subnav {
+    a,
+    .nav-link {
+      // color:var(--flat-clouds);
+
+      &:hover,
+      &.active {
+        // box-shadow:0 -.15rem 0 var(--sedana-alt-color) inset;
+      }
+    }
+  }
+}

@@ -1,32 +1,40 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AUTH_RESOURCES_AUTHORIZATIONS } from './lib/views/authorizations';
-import { partialConfigs } from './lib/views/partials/partials-configs';
+import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './auth/auth.guard';
+
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: `/${partialConfigs.routes.commonRoutes.dashboardRoute}`,
-    pathMatch: 'full'
+    redirectTo: 'auth/login',
+    pathMatch: 'full',
   },
+
   {
-    path: 'login',
-    loadChildren: () => import('./lib/views/login/login.module').then(m => m.LoginModule),
-    data: {
-      path: partialConfigs.routes.commonRoutes.dashboardHomeRoute,
-      authorizations: AUTH_RESOURCES_AUTHORIZATIONS,
-      moduleName: 'Administration'
-    }
+    path: 'auth',
+    loadChildren: () =>
+      import('src/app/auth/auth.module').then((m) => m.LoginModule),
   },
+
   {
-    path: partialConfigs.routes.commonRoutes.dashboardRoute,
-    loadChildren: () => import('./lib/views/pages/admin/dashboard/dashboard.module').then(m => m.DashboardModule)
-  }
+    path: 'app',
+    loadChildren: () =>
+      import('src/app/Admin/admin.module').then((m) => m.AdminModule),
+      canActivate: [AuthGuard],
+  },
+
+  {
+    path: '**',
+    component: NotfoundComponent,
+  },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  // routermodule.forchild()
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

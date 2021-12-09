@@ -1,0 +1,188 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr";
+@import "~ngx-chart/styles.scss";
+
+.a {
+  width: 288px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+#baniere {
+  background-color: #eff4f8;
+}
+
+body h3:not([cds-text]) {
+  font-size: 0.95rem;
+  margin-bottom: 1.1rem;
+}
+
+#sd {
+  background-color: #1b4f72;
+}
+
+.requi {
+  color: red;
+}
+
+.sib_items {
+  font-weight: bold;
+  font-size: 130%;
+}
+
+.sib_item {
+  font-size: 130%;
+}
+
+#print-section {
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 40px;
+}
+
+#header {
+  background-color: #044672;
+}
+
+#bord {
+  color: white;
+  font-weight: bold;
+  font-size: 50;
+}
+
+#app {
+  color: white;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.datagrid-table .datagrid-cell {
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+#profil {
+  font-size: 0.7rem;
+}
+
+.clr-col-7 {
+  width: 100%;
+  min-height: 0.05rem;
+  padding-right: 0.6rem;
+  padding-left: 0.6rem;
+}
+
+.card.big-card {
+  border: 1px solid;
+  border-radius: 8px;
+}
+
+#example3 {
+  border: 1px solid;
+}
+
+#btnLigne {
+  text-decoration: none;
+}
+
+.btn-block {
+  text-align: left;
+  margin: 2%;
+}
+.hr1 {
+  border: 0;
+  height: 1px;
+  background: #095484;
+  background-image: linear-gradient(to right, #ccc, #095484, #ccc);
+}
+
+
+/** ========================= BUTTON MODIFIER ========================= */
+/* #modifier {
+  background-color: orange;
+  margin-bottom: 0%;
+  color: black;
+  border-style: none;
+  display: block;
+} */
+/* #btnModifier {
+  background-color: orange;
+  color: black;
+  border-style: none;
+} */
+/* #btnCalendar {
+  display: block;
+  margin-top: 0%;
+} */
+
+/** ========================= TABLEAUX ========================= */
+#lib {
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+#donnees {
+  font-size: 0.65rem;
+  font-weight: 420;
+}
+
+/** ========================= DETAILS CARD ========================= */
+
+#customers {
+  width: 100%;
+}
+
+#customers td,
+#customers th {
+  border: 2px solid #ddd;
+  padding: 8px;
+}
+
+#customers td {
+  text-align: right;
+}
+
+#customers tr:hover {
+  background-color: rgb(202, 202, 202);
+}
+
+#customers th {
+  font-size: 0.8rem;
+  line-height: 1rem;
+  background-color: #f3f3f3;
+  text-align: left;
+}
+
+#img-card {
+  width: 70%;
+}
+
+#rupture {
+  color: rgb(75, 78, 75);
+  margin-top: 0%;
+  margin-bottom: 1rem;
+}
+/** ========================= FORMULAIRE ========================= */
+.form-label {
+  font-size: 0.85rem;
+  display: flex;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid;
+}
+
+select {
+  width: 100%;
+  padding: 5px;
+}

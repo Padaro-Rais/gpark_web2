@@ -1,1 +1,0 @@
-export { CreateFormComponentInterface } from "./types";

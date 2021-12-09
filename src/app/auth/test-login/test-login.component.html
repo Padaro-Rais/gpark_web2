@@ -1,0 +1,64 @@
+<div class="login-wrapper">
+  <div class="login-overlay">
+    <form
+      class="login clr-form"
+      [formGroup]="formGroup"
+      (ngSubmit)="LoginProcess()"
+    >
+      <div class="login-group">
+        <div class="title">
+          <div class="login-logo" id="logo">
+            <!-- <img [src]="elewouLogo" alt="ELEWOU" /> -->
+            <img src="../../../assets/LIKMAT.png" alt="LGMAO" />
+          </div>
+          <span class="module-name"><h2>Gestion du matériel</h2></span>
+          <h5 class="hint" [translate]="'login.loginSubText'">ACCÉDEZ À L'APPLICATION AVEC VOS PARAMÈTRES DE CONNEXION.</h5>
+        </div>
+        <div class="form form-container">
+          <ng-container>
+            <label class="clr-sr-only">Email</label>
+            <input
+              class="form-control form-control-sm"
+              type="email"
+              clrInput
+              placeholder="Email"
+              formControlName="email"
+            />
+
+            <label class="clr-sr-only">Password</label>
+            <input
+              class="form-control form-control-sm"
+              type="password"
+              clrInput
+              placeholder="mot de passe"
+              formControlName="password"
+            />
+          </ng-container>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="BtnLogin"
+            *ngIf="hideBtn"
+          >
+            <clr-icon shape="login"></clr-icon>
+            S'authentifier
+          </button>
+
+          <button
+            type="submit"
+            *ngIf="showBtn"
+            class="btn btn-primary"
+            id="BtnLogin"
+            disabled
+          >
+            <clr-icon shape="login"></clr-icon>
+            S'authentifier
+          </button>
+        </div>
+        <div class="app-login-footer">
+          <div class="app-login-logo-description">Powered by LIKSOFT</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

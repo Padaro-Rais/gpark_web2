@@ -1,0 +1,77 @@
+.light-mode{
+  clr-tabs ul.nav {
+    background-color: var(--light-vertical-nav-bg-color);
+  }
+
+  h3.section-title {
+    background: #f3f3f3;
+  }
+
+  .card {
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 0.8rem;
+    .card-header {
+      border-bottom: 1px solid #f3f3f3;
+      font-weight: 600;
+      &.editor-header {
+        background: #ececec;
+        box-shadow: 4px 5px 7px -3px #b3b3b3;
+        .clr-col-md-4 {
+          border-right: 1px solid #d4d4d4;
+        }
+      }
+    }
+    .card-block{
+        border-bottom: 1px solid #f3f3f3;
+    }
+  }
+  .summary-card{
+    .card-header{
+      background-color: var(--light-vertical-nav-bg-color);
+    }
+  }
+  .modal-header--accessible {
+    border-bottom: 1px solid #f3f3f3;
+  }
+
+  .ng-select .ng-select-container,.clr-input {
+    border: 1px solid;
+    border-color: var(--light-border-form-el-border-color);
+    border-radius: 5px 5px 0 0;
+  }
+
+  .clr-input-group{
+    border: none;
+  }
+
+  &.login-wrapper{
+    background-position: 0;
+
+    .login:after {
+      background: transparent;
+    }
+
+    .login-overlay {
+      background: #0f458de0;
+    }
+
+    form.login.clr-form {
+      background: transparent;
+    }
+
+    form .login-group {
+      background: var(--light-vertical-nav-bg-color);
+    }
+
+    .login .title .hint {
+      color:var(--light-main-font-color);
+    }
+
+    .module-name {
+      color: var(--light-project-main-color);
+    }
+  }
+}
+

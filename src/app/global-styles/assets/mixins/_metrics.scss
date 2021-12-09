@@ -1,0 +1,208 @@
+:root{
+  --app-header-height: 2rem;
+}
+
+body{
+  h1:not([cds-text]) {
+    font-size: 1.3rem;
+  }
+  h2:not([cds-text]) {
+    font-size: 1rem;
+  }
+  h3:not([cds-text]) {
+    font-size: 0.95rem;
+  }
+  h4:not([cds-text]) {
+    font-size: 0.90rem;
+  }
+  h5:not([cds-text]) {
+    font-size: 0.85rem;
+  }
+  h6:not([cds-text]) {
+    font-size: 0.80rem;
+  }
+}
+
+.clr-row .clr-row {
+  margin: 0;
+}
+
+.alert{
+  padding: 0.5rem 1rem;
+}
+
+h3.section-title {
+  margin-top: 2rem;
+  padding: 0.2rem 1rem;
+  margin-bottom: 0rem;
+  border-radius: 5px 5px 0 0;
+}
+.retraite-cap-content {
+  padding: 2rem 4rem;
+}
+
+.app-page-header{
+  h3{
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  h2{
+    font-size: 1rem;
+  }
+  .card {
+    padding: 0;
+    margin-top: 0!important;
+  }
+  p{
+    margin-top: 0;
+    font-size: small;
+  }
+  .button-container {
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.editor-header {
+  background: #ffe290;
+  // margin-left: 12px;
+}
+
+.app-intro {
+  font-weight: 300;
+  font-size: small;
+}
+
+// WIZARD
+.clr-wizard .clr-wizard-stepnav-item{
+  box-shadow: none;
+}
+.clr-wizard-content h2 {
+  margin: 0;
+}
+
+// vertical Nav
+.clr-vertical-nav .nav-link.active .nav-icon{
+  border-radius: 50%;
+}
+.clr-vertical-nav.has-nav-groups .nav-link, .clr-vertical-nav.has-nav-groups .nav-group .nav-group-text, .clr-vertical-nav.has-nav-groups .nav-group .nav-group-trigger {
+  font-weight: 300;
+}
+
+// Component Container
+.component-container{
+  max-width: 80%;
+  margin: 1rem auto 0;
+}
+
+// Card
+.card{
+  border: none;
+  .card-header{
+    font-weight: 300;
+  }
+  .card-block{
+    border-bottom: none;
+  }
+  .text-zone {
+    border-right: none;
+  }
+  &.waiting-block,
+  &.validated-block,
+  &.rejected-block
+   {
+    border-top-width: 5px;
+    border-top-style: solid;
+  }
+  .clr-control-label {
+    font-weight: 300;
+  }
+
+  &.big-card{
+    .card-block{
+      .big-icon {
+        clr-icon {
+          height: 32px;
+          width: 32px;
+          color: #0f468d;
+        }
+      }
+    }
+  }
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6{
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+// Tabs
+
+clr-tabs ul.nav{
+  box-shadow: none;
+}
+
+// Select
+.ng-select .ng-select-container,.clr-input {
+  border: 1px solid;
+  text-transform: initial;
+}
+
+.modal-header--accessible {
+  padding: 1rem 1.4rem!important;
+}
+
+.modal-header--accessible h2.modal-title {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.ng-value-container {
+  line-height: 1;
+}
+
+// Accordion
+.clr-accordion-panel-open .clr-accordion-header{
+  border-width: 1px;
+  border-style: solid;
+}
+
+  /* Change Autocomplete styles in Chrome*/
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border-width: 1px;
+    border-style:solid ;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+
+.editor-header{
+    position: fixed;
+    width: 89%;
+    margin-left: 12px;
+    z-index: 9999;
+    height: 2.5rem;
+    padding: 0;
+  h2 {
+    padding: 0 1rem;
+  }
+
+  ul.folder-details {
+    li:nth-of-type(1) {
+      width: 20%;
+    }
+    li:nth-of-type(2) {
+        width: 20%;
+    }
+    li:nth-of-type(3) {
+      width: 58%;
+   }
+  }
+}

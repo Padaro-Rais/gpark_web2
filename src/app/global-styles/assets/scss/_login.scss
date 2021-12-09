@@ -1,0 +1,60 @@
+.login-wrapper{
+  .login {
+    .login-group {
+      padding: 2.5rem 2rem;
+    }
+  }
+  .app-login-logo-description {
+    padding: .5em .3em;
+    text-align: center;
+    font-size: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .login .login-group .btn {
+    margin: 2rem 0 0;
+    max-width: none;
+  }
+
+  .login-overlay {
+    position: relative;
+    width: 100%;
+  }
+
+  form.login.clr-form {
+    margin: 0 auto;
+  }
+
+  form .login-group {
+    padding: 24px 27px;
+    border-radius: 8px;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .login-logo {
+    position: relative;
+    max-width: 100%;
+  }
+
+  .login-logo img {
+    position: relative;
+    width: 41%;
+    max-width: 100%;
+    margin-bottom: 0.6rem;
+  }
+
+  .login .title .hint {
+    font-size: 10px;
+    margin-bottom: 0;
+    margin-top: 0;
+    line-height: 1.1;
+  }
+
+  .module-name {
+  font-size: 20px;
+  font-weight: 700;
+  }
+}

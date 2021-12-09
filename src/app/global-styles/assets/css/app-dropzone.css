@@ -1,0 +1,21 @@
+.dropzone-file-info {
+    display: block !important;
+    margin-top: -8px;
+}
+
+.preview-file-icon {
+    font-size: .8rem;
+}
+
+.drop-zone-file-container {
+    margin-top: 8px;
+}
+
+.display-block {
+    display: block;
+}
+
+.dz-remove {
+    display: block;
+    margin-top: -4px;
+}

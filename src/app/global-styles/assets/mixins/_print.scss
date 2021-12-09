@@ -1,0 +1,158 @@
+/**
+ * Print stylesheet
+* @version         1.0
+* @lastmodified    02.10.2020
+* @author          Adevou Fera
+*/
+@media print {
+  main.content-area {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  html body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 1cm 1cm 1cm;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  @page :fisrt{
+    margin-top: 2pt;
+  }
+
+  // Classes for hide and show print
+  .show-for-print{
+    display: inline-block;
+  }
+
+  .hide-for-print,
+  .folder-actions{
+    display: none;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    line-height: 0pt !important;
+    white-space: nowrap;
+  }
+
+  // HEADER
+  clr-header.header{
+    box-shadow: none!important;
+  }
+
+  .header {
+    background: transparent;
+    height: 20px;
+    box-shadow: none;
+
+    .header-5{
+      background: transparent;
+    }
+
+    span.title.app-logo img {
+      width: 64px;
+    }
+
+    .branding {
+      height: 20px;
+
+      .title{
+        line-height: 1.8;
+        font-size: 9pt;
+        font-weight: 700;
+        color: #000;
+      }
+    }
+   .branding>.nav-link, .branding>a{
+      height: 20px;
+    }
+  }
+
+  // SIDENAV
+  .sidenav{
+    display: none;
+  }
+
+  // content
+  .main-container {
+    background: #ffffff;
+  }
+  .content-area {
+    .app-page-header .card{
+      padding: 0;
+    }
+    .card{
+      border: none;
+      .card-block {
+        padding: 2pt;
+      }
+      .card-header {
+        padding: 6pt 17pt;
+        background: #f3f3f3;
+        font-size: 10pt;
+      }
+    }
+  }
+
+  .editor-header {
+    position: relative!important;
+  }
+
+  .clr-form-control {
+      margin: 0;
+      .clr-subtext{
+        display: none;
+      }
+  }
+
+  .clr-control-label {
+      font-size: 12px;
+      display: inline-block;
+      width: 100%;
+      color: #ccc;
+  }
+
+  app-dynamic-inputs.clr-col-md-6, app-dynamic-inputs.clr-col-4 {
+      max-width: 50%!important;
+      flex: 0 0 50%;
+  }
+
+  .button-container, .btn{
+    display: none;
+  }
+
+  // LINKS
+  /* Displaying link color and link behaviour */
+  a:link, a:visited, a {
+    background: transparent;
+    color: rgb(15, 36, 160);
+    font-weight: normal;
+    text-decoration: none;
+    text-align: left;
+  }
+
+  a {
+    page-break-inside:avoid
+  }
+
+  a[href^=http]:after {
+    content:" < " attr(href) "> ";
+  }
+
+  a:after > img{
+    content: "";
+  }
+
+  article a[href^="#"]:after {
+    content: "";
+  }
+
+  a:not(:local-link):after {
+    content:" < " attr(href) "> ";
+  }
+}

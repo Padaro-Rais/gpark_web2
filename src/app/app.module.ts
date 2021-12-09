@@ -1,87 +1,61 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { SharedModule } from "./lib/views/shared.module";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { NgSelectModule } from '@ng-select/ng-select'
 
-// Register Fr local for it to be applied to global application local
-import { registerLocaleData } from "@angular/common";
-import localeFr from "@angular/common/locales/fr";
-import localeFrExtra from "@angular/common/locales/extra/fr";
-import { StorageModule } from "./lib/core/storage";
-import { AuthTokenModule } from "./lib/core/auth-token";
-import { AuthModule } from "./lib/core/auth";
-import { environment } from "src/environments/environment";
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { ClarityModule } from '@clr/angular'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { ToastrModule } from 'ngx-toastr'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { NotfoundComponent } from './notfound/notfound.component'
+
+// import modules
+
+import { FullCalendarModule } from '@fullcalendar/angular'
+import interactionPlugin from '@fullcalendar/interaction'
+import dayGridPlugin from '@fullcalendar/daygrid'
+
+import { NgxChartModule } from 'ngx-chart'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatButtonModule } from '@angular/material/button'
 import {
-  MissingTranslationHandler,
-  MissingTranslationHandlerParams,
+  TranslateLoader,
   TranslateModule,
   TranslateService,
-  TranslateLoader,
-} from "@ngx-translate/core";
-import { HttpClient } from "@angular/common/http";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { TranslationService } from "./lib/core/translator";
-import { DynamicFormControlModule } from "./lib/core/components/dynamic-inputs/dynamic-form-control";
-import { DrewlabsV2_1LoginResultHandlerFunc } from "./lib/core/auth/rxjs/operators";
-import { LoginV2_1Response } from "./lib/core/auth/contracts/v2/login.response";
-import { parseV3HttpResponse } from "./lib/core/http/core/v3/http-response";
-import { HttpModule } from "./lib/core/http";
+} from '@ngx-translate/core'
+import { map } from 'rxjs/operators'
+import { DropzoneDict, DropzoneModule, DROPZONE_DICT } from './core/components/dropzone'
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { HttpModule } from './core/http'
+import { environment } from 'src/environments/environment'
+import { parseV3HttpResponse } from './core/http/core/v3/http-response'
+import { DynamicFormControlModule } from './core/components/dynamic-inputs/angular'
 
-// #region UI state module imports
-import { UIStateComponentsModule } from "./lib/views/partials/ui-state-components";
-import { UIStateModule } from "./lib/core/ui-state";
-// #endregion UI state module imports
+FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin])
 
-// #region Dropzone configuration
-import {
-  DropzoneDict,
-  DropzoneModule,
-  DROPZONE_DICT,
-} from "./lib/core/components/dropzone";
-import { map } from "rxjs/operators";
-import { ConfigurationModule } from "./lib/core/configuration";
-// #endregion Dropzone configuration
-
-export function AppDrewlabsV2_1LoginResultHandlerFunc(response: any) {
-  return DrewlabsV2_1LoginResultHandlerFunc(LoginV2_1Response)(response);
-}
-
-registerLocaleData(localeFr, "fr", localeFrExtra);
-
-// AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
-}
-
-export class TranslateHandler implements MissingTranslationHandler {
-  handle = (params: MissingTranslationHandlerParams) => {
-    return params.key;
-  };
-}
-
+//
 export const DropzoneDictLoader = async (translate: TranslateService) => {
   return await translate
     .get(
       [
-        "dictAcceptedFilesLabel",
-        "dictFallbackMessageLabel",
-        "dictFileTooBigLabel",
-        "dictInvalidFileTypeLabel",
-        "dictCancelUploadLabel",
-        "dictResponseErrorLabel",
-        "dictCancelUploadConfirmationLabel",
-        "dictRemoveFileConfirmationLabel",
-        "dictRemoveFileLabel",
-        "dictMaxFilesExceededLabel",
-        "dictUploadCanceled",
+        'dictAcceptedFilesLabel',
+        'dictFallbackMessageLabel',
+        'dictFileTooBigLabel',
+        'dictInvalidFileTypeLabel',
+        'dictCancelUploadLabel',
+        'dictResponseErrorLabel',
+        'dictCancelUploadConfirmationLabel',
+        'dictRemoveFileConfirmationLabel',
+        'dictRemoveFileLabel',
+        'dictMaxFilesExceededLabel',
+        'dictUploadCanceled',
       ],
       {
-        maxFilesize: "{{maxFilesize}}",
-        filesize: "{{filesize}}",
-      }
+        maxFilesize: '{{maxFilesize}}',
+        filesize: '{{filesize}}',
+      },
     )
     .pipe(
       map(
@@ -100,65 +74,50 @@ export const DropzoneDictLoader = async (translate: TranslateService) => {
             dictMaxFilesExceeded: translations?.dictMaxFilesExceededLabel,
             dictUploadCanceled: translations?.dictUploadCanceled,
             dictAcceptedFiles: translations?.dictAcceptedFilesLabel,
-          } as DropzoneDict)
-      )
+          } as DropzoneDict),
+      ),
     )
-    .toPromise();
-};
+    .toPromise()
+}
+//
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http)
+}
+//
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotfoundComponent],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    ClarityModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
+    FullCalendarModule,
+    NgxChartModule,
+    ToastrModule.forRoot(),
+    //iport form
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-      missingTranslationHandler: environment?.production
-        ? []
-        : [
-            {
-              provide: MissingTranslationHandler,
-              useClass: TranslateHandler,
-            },
-          ],
     }),
-    SharedModule.forRoot(),
+    //
     HttpModule.forRoot({
-      serverURL: environment.APP_SERVER_URL,
-      requestResponseHandler: parseV3HttpResponse, // Modifiable
+      serverURL: '',
+      requestResponseHandler: parseV3HttpResponse,
     }),
-    ConfigurationModule.forRoot({
-      environment: environment,
-      jsonConfigURL: '/assets/resources/config.json'
-    }),
-    StorageModule.forRoot({ secretKey: environment.APP_SECRET }),
-    AuthTokenModule.forRoot({}),
-    AuthModule.forRoot({
-      loginResponseHandler: AppDrewlabsV2_1LoginResultHandlerFunc,
-      serverConfigs: {
-        host: null,
-        loginPath: "auth/v1/login",
-        logoutPath: "auth/v1/logout",
-        usersPath: "auth/v1/users",
-      },
-    }),
-    BrowserAnimationsModule,
-
-    // UI State module
-    UIStateModule.forRoot(),
-    UIStateComponentsModule.forRoot(),
-    // Configure Dropzone module for root
+    //
     DropzoneModule.forRoot({
       dropzoneConfig: {
-        url: environment.APP_FILE_SERVER_URL,
+        url: '', // url vers lapi de gestion de fichier
         maxFilesize: 10,
-        acceptedFiles: "image/*",
+        acceptedFiles: 'image/*',
         autoProcessQueue: false,
         uploadMultiple: false,
         maxFiles: 1,
@@ -167,30 +126,29 @@ export const DropzoneDictLoader = async (translate: TranslateService) => {
     }),
     DynamicFormControlModule.forRoot({
       serverConfigs: {
-        host: environment.FORM_SERVER_URL,
-        formsPath: environment.endpoints?.forms,
-        controlsPath: environment?.endpoints?.formControls,
-        controlOptionsPath: environment?.endpoints?.controlOptions,
-        controlBindingsPath: environment?.endpoints?.controlBindings,
+        host: '',
+        controlBindingsPath: 'api/v1/control-bindings',
       },
-      formsAssets: "/assets/resources/jsonforms.json",
+      formsAssets : 'assets/resources/forms.json'
     }),
   ],
+  exports: [
+    FullCalendarModule,
+    NgxChartModule,
+    MatDialogModule,
+    MatButtonModule,
+  ],
   providers: [
-    TranslationService,
-    TranslateService,
     {
       provide: DROPZONE_DICT,
       useFactory: async (translate: TranslateService) => {
-        return await DropzoneDictLoader(translate);
+        return await DropzoneDictLoader(translate)
       },
       deps: [TranslateService],
     },
-    {
-      provide: "FILE_STORE_PATH",
-      useValue: environment.APP_FILE_SERVER_URL,
-    },
   ],
+
+  ////////////////
   bootstrap: [AppComponent],
 })
 export class AppModule {}
