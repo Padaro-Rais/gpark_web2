@@ -56,7 +56,7 @@ import { Component, OnInit } from '@angular/core'
         shape="directory"
       ></clr-icon>
       <span class="nav-text">
-        DOSSIER
+        DOSSIERS
       </span>
     </a>
 
@@ -134,7 +134,7 @@ import { Component, OnInit } from '@angular/core'
           routerLink="./normal/snorlax"
           routerLinkActive="active"
         >
-          Groupe De Fichier
+          Groupe De Fichiers
         </a>
 
         <a
@@ -142,7 +142,7 @@ import { Component, OnInit } from '@angular/core'
           routerLink="./normal/snorlax"
           routerLinkActive="active"
         >
-          Utilisateurs & Prermissions
+          Utilisateurs & Permissions
         </a>
       </clr-vertical-nav-group-children>
     </clr-vertical-nav-group>
