@@ -17,41 +17,75 @@ import { Router } from '@angular/router';
     <!-- Page Content -->
     <div class="clr-col-12">
       <div class="clr-row">
+
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
-            <div class="card-header">Header</div>
+            <div class="card-header">Versement</div>
             <div class="card-block">
-              <div class="card-title">Versement</div>
+              <div class="card-title clr-col-9">
+                <clr-icon
+                  class="clr-col-3"
+                  shape="install"
+                  badge="info"
+                  size="90"
+                ></clr-icon>
+                Versement
+              </div>
               <div class="card-text">...</div>
             </div>
             <div class="card-footer">
-              <button class="btn btn-outline-primary">Nouveau Versement</button>
+              <button class="btn btn-outline-primary">
+                <clr-icon shape="folder-open" badge="danger"></clr-icon>
+                Nouveau Versement
+              </button>
             </div>
           </div>
         </div>
 
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
-            <div class="card-header">Header</div>
+            <div class="card-header">Dépôt de dossier</div>
             <div class="card-block">
-              <div class="card-title">Dépôt de dossier</div>
+              <div class="card-title clr-col-9">
+                <clr-icon
+                  class="clr-col-3"
+                  shape="folder-open"
+                  badge="info"
+                  size="90"
+                ></clr-icon>
+                Dépôt de dossier
+              </div>
               <div class="card-text">...</div>
             </div>
             <div class="card-footer">
-              <button class="btn btn-outline-primary">Nouveau Dossier</button>
+              <button class="btn btn-outline-primary">
+                <clr-icon shape="folder-open" badge="danger"></clr-icon>
+                Nouveau Dossier
+              </button>
             </div>
           </div>
         </div>
 
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
-            <div class="card-header">Header</div>
+            <div class="card-header">Enrégistrement de fichier</div>
             <div class="card-block">
-              <div class="card-title">Enrégistrement de fichier</div>
+              <div class="card-title clr-col-9">
+                <clr-icon
+                  class="clr-col-3"
+                  shape="file-group"
+                  badge="info"
+                  size="90"
+                ></clr-icon>
+                Enrégistrement de fichier
+              </div>
               <div class="card-text">...</div>
             </div>
             <div class="card-footer">
-              <button class="btn btn-outline-primary">Nouveau Fichier</button>
+              <button class="btn btn-outline-primary">
+                <clr-icon shape="folder-open" badge="danger"></clr-icon>
+                Nouveau Fichier
+              </button>
             </div>
           </div>
         </div>

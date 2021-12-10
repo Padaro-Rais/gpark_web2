@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-seadbar',
@@ -22,10 +22,9 @@ import { Component, OnInit } from '@angular/core'
         clrverticalnavicon
         role="none"
         shape="home"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        TABLEAU DE BORD
-      </span>
+      <span class="nav-text"> TABLEAU DE BORD </span>
     </a>
 
     <a
@@ -38,10 +37,9 @@ import { Component, OnInit } from '@angular/core'
         clrverticalnavicon
         role="none"
         shape="container"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        CONTENAIRES
-      </span>
+      <span class="nav-text"> CONTENAIRES </span>
     </a>
 
     <a
@@ -54,10 +52,9 @@ import { Component, OnInit } from '@angular/core'
         clrverticalnavicon
         role="none"
         shape="directory"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        DOSSIERS
-      </span>
+      <span class="nav-text"> DOSSIERS </span>
     </a>
 
     <a
@@ -70,10 +67,9 @@ import { Component, OnInit } from '@angular/core'
         clrverticalnavicon
         role="none"
         shape="document"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        FICHIERS
-      </span>
+      <span class="nav-text"> FICHIERS </span>
     </a>
 
     <a
@@ -86,19 +82,19 @@ import { Component, OnInit } from '@angular/core'
         clrverticalnavicon
         role="none"
         shape="clipboard"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        Journal
-      </span>
+      <span class="nav-text"> Journal </span>
     </a>
 
     <clr-vertical-nav-group routerLinkActive="active">
-      <clr-icon shape="file-settings"
+      <clr-icon
+        shape="file-settings"
+        size="30"
         role="none"
         clrverticalnavicon
-       ></clr-icon>
-        CONFIGURATIONS
-
+      ></clr-icon>
+      CONFIGURATIONS
 
       <clr-vertical-nav-group-children>
         <a
@@ -106,13 +102,15 @@ import { Component, OnInit } from '@angular/core'
           routerLink="./normal/pidgey"
           routerLinkActive="active"
         >
-         Entrepot
+          <clr-icon shape="container-volume" size="20"></clr-icon>
+          Entrepot
         </a>
         <a
           clrVerticalNavLink
           routerLink="./normal/snorlax"
           routerLinkActive="active"
         >
+          <clr-icon shape="container" size="20"></clr-icon>
           Type Contenaire
         </a>
         <a
@@ -120,6 +118,7 @@ import { Component, OnInit } from '@angular/core'
           routerLink="./normal/snorlax"
           routerLinkActive="active"
         >
+          <clr-icon shape="folder" size="20"></clr-icon>
           Categorie Dossier
         </a>
         <a
@@ -127,6 +126,7 @@ import { Component, OnInit } from '@angular/core'
           routerLink="./normal/snorlax"
           routerLinkActive="active"
         >
+          <clr-icon shape="folder" size="20"></clr-icon>
           Categorie Dossier
         </a>
         <a
@@ -134,6 +134,7 @@ import { Component, OnInit } from '@angular/core'
           routerLink="./normal/snorlax"
           routerLinkActive="active"
         >
+          <clr-icon shape="file-group" size="20"></clr-icon>
           Groupe De Fichiers
         </a>
 
@@ -142,6 +143,7 @@ import { Component, OnInit } from '@angular/core'
           routerLink="./normal/snorlax"
           routerLinkActive="active"
         >
+          <clr-icon shape="user" size="20"></clr-icon>
           Utilisateurs & Permissions
         </a>
       </clr-vertical-nav-group-children>
@@ -152,11 +154,11 @@ import { Component, OnInit } from '@angular/core'
 export class SeadbarComponent implements OnInit {
   constructor() {}
 
-  permission: boolean = false
+  permission: boolean = false;
 
   ngOnInit(): void {
     if (localStorage.getItem('permission') == '1') {
-      this.permission = true
+      this.permission = true;
     }
   }
 }
