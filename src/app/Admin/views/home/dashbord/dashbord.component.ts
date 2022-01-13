@@ -29,7 +29,7 @@ import { Router } from '@angular/router';
                   badge="info"
                   size="90"
                 ></clr-icon>
-                Versement
+                Versements
               </div>
               <div class="card-text">...</div>
             </div>
@@ -53,7 +53,7 @@ import { Router } from '@angular/router';
                   badge="info"
                   size="90"
                 ></clr-icon>
-                Dépôt de dossier
+                Dossiers
               </div>
               <div class="card-text">...</div>
             </div>
@@ -77,7 +77,7 @@ import { Router } from '@angular/router';
                   badge="info"
                   size="90"
                 ></clr-icon>
-                Enrégistrement de fichier
+                Fichiers
               </div>
               <div class="card-text">...</div>
             </div>
