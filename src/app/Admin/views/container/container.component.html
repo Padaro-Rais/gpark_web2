@@ -1,1 +1,153 @@
-<p>container works!</p>
+<div class="app-page-header clr-row">
+    <div class="clr-col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <!-- <div class="clr-row" id="baniere">
+            <div class="clr-col-6"> -->
+              <h2>CONTRATS DE MAINTENANCE</h2>
+            <!-- </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Content -->
+  <div class="app-page-content clr-row">
+    <!-- modification d'un contrat -->
+    <!-- <div id="content" #content >
+            <h1>PADARO</h1>
+    </div> -->
+    <!-- <div class="modal" *ngIf="modifer">
+      <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              aria-label="Close"
+              class="close"
+              type="button"
+              (click)="cancel()"
+            >
+              <clr-icon aria-hidden="true" shape="close"></clr-icon>
+            </button>
+            <h3 class="modal-title">Modification d'un contrat</h3>
+          </div>
+          <div class="modal-body">
+            <app-update-contract [id]="id_update"></app-update-contract>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-backdrop" aria-hidden="true" *ngIf="modifer"></div> -->
+    <div class="clr-col-12">
+      <clr-dg-action-bar>
+        <div class="btn-group">
+          <!-- <a routerLink="/app/add-Contract">
+            <button type="button" class="btn">
+              <clr-icon shape="plus-circle" size="25"></clr-icon>
+              Nouveau
+            </button>
+          </a> -->
+          <!-- <button (click)="download()">download</button> -->
+        </div>
+      </clr-dg-action-bar>
+      <clr-datagrid>
+        <clr-dg-column [clrDgField]="'contract.ref'" id="lib">
+          Référence
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'material.label'" id="lib">
+          Matériel
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'material.label'" id="lib">
+          Prestataire
+        </clr-dg-column>
+        <clr-dg-row
+          
+        >
+          <clr-dg-action-overflow>
+            <!-- <a routerLink="/app/update-contract/{{ contrat.id }}">
+              <button class="btn btn-primary" id="modifier">
+                <clr-icon shape="pencil" id="clr" size="20"></clr-icon>
+                Modifier
+              </button>
+            </a> -->
+            <button
+              class="btn btn-sm btn-link btn-block"
+            >
+              <clr-icon shape="pencil" size="20"></clr-icon>
+              Modifier
+            </button>
+            <button
+              class="btn btn-sm btn-link btn-block"
+            >
+              <clr-icon shape="trash" size="20"></clr-icon>
+              Supprimer
+            </button>
+            <a routerLink="" id="btnLigne">
+            <button class="btn btn-sm btn-link btn-block">
+            <clr-icon shape="export" size="20"></clr-icon>
+            Fiche du Contrat
+           </button>
+        </a>
+          </clr-dg-action-overflow>
+          <clr-dg-cell id="donnees">1</clr-dg-cell>
+          <clr-dg-cell id="donnees">aa</clr-dg-cell>
+          <clr-dg-cell id="donnees">aaa</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-detail *clrIfDetail="let detail">
+          <clr-dg-detail-header>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>cc</th>
+                  <th>xd</th>
+                  <th>xdd</th>
+                </tr>
+              </thead>
+            </table>
+          </clr-dg-detail-header>
+          <clr-dg-detail-body>
+            <h2>Matériel</h2>
+            <hr id="rupture" />
+            <table id="customers">
+              <tr>
+                <th>Libelle</th>
+                <td>ffg</td>
+              </tr>
+              <tr>
+                <th>Référence</th>
+                <td>xcvdfvd</td>
+              </tr>
+              <tr>
+                <th>Model</th>
+                <td>fdf</td>
+              </tr>
+              <tr>
+                <th>Numéro de serie</th>
+                <td>xfvdf</td>
+              </tr>
+              <tr>
+                <th>Numéro de USG</th>
+                <td>sdvsr</td>
+              </tr>
+             
+            </table>
+           
+            
+          </clr-dg-detail-body>
+        </clr-dg-detail>
+        <clr-dg-footer id="donnees">
+          <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">
+              Contrats par page
+            </clr-dg-page-size>
+            {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
+            {{ pagination.totalItems }} Contrats
+          </clr-dg-pagination>
+        </clr-dg-footer>
+        <!-- ... -->
+      </clr-datagrid>
+    </div>
+    <!-- <div class="clr-col-5">
+  <h3>Statistiques</h3>
+</div> -->
+  </div>

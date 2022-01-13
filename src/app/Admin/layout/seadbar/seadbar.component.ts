@@ -30,7 +30,7 @@ import { Component, OnInit } from '@angular/core';
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
-      routerLink="/app/materials"
+      routerLink="/app/container"
       routerLinkActive="active"
     >
       <clr-icon
@@ -45,7 +45,7 @@ import { Component, OnInit } from '@angular/core';
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
-      routerLink="/app/materials"
+      routerLink="/app/folder"
       routerLinkActive="active"
     >
       <clr-icon
@@ -60,7 +60,7 @@ import { Component, OnInit } from '@angular/core';
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
-      routerLink="/app/materials"
+      routerLink="/app/file"
       routerLinkActive="active"
     >
       <clr-icon
@@ -75,7 +75,7 @@ import { Component, OnInit } from '@angular/core';
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
-      routerLink="/app/materials"
+      routerLink="/app/logs"
       routerLinkActive="active"
     >
       <clr-icon
@@ -99,7 +99,7 @@ import { Component, OnInit } from '@angular/core';
       <clr-vertical-nav-group-children>
         <a
           clrVerticalNavLink
-          routerLink="./normal/pidgey"
+          routerLink="/app/warehouse"
           routerLinkActive="active"
         >
           <clr-icon shape="container-volume" size="20"></clr-icon>
@@ -107,7 +107,7 @@ import { Component, OnInit } from '@angular/core';
         </a>
         <a
           clrVerticalNavLink
-          routerLink="./normal/snorlax"
+          routerLink="/app/type-container"
           routerLinkActive="active"
         >
           <clr-icon shape="container" size="20"></clr-icon>
@@ -115,23 +115,16 @@ import { Component, OnInit } from '@angular/core';
         </a>
         <a
           clrVerticalNavLink
-          routerLink="./normal/snorlax"
+          routerLink="/app/category-folder"
           routerLinkActive="active"
         >
           <clr-icon shape="folder" size="20"></clr-icon>
           Categorie Dossier
         </a>
+       
         <a
           clrVerticalNavLink
-          routerLink="./normal/snorlax"
-          routerLinkActive="active"
-        >
-          <clr-icon shape="folder" size="20"></clr-icon>
-          Categorie Dossier
-        </a>
-        <a
-          clrVerticalNavLink
-          routerLink="./normal/snorlax"
+          routerLink="/app/group-folder"
           routerLinkActive="active"
         >
           <clr-icon shape="file-group" size="20"></clr-icon>
@@ -140,7 +133,7 @@ import { Component, OnInit } from '@angular/core';
 
         <a
           clrVerticalNavLink
-          routerLink="./normal/snorlax"
+          routerLink="/app/users"
           routerLinkActive="active"
         >
           <clr-icon shape="user" size="20"></clr-icon>

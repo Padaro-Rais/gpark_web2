@@ -66,3 +66,13 @@ form .login-group {
   margin-top: 5%;
   width: 100%;
 }
+
+#email{
+  border-radius: 1ch;
+  background-color: #dfe4ea;
+}
+
+#password{
+  border-radius: 1ch;
+  background-color: #dfe4ea;
+}

@@ -32,6 +32,12 @@ import { UpdateFileComponent } from './views/file/update-file/update-file.compon
 import { UsersComponent } from './views/users/users.component';
 import { AddUsersComponent } from './views/users/add-users/add-users.component';
 import { UpdateUsersComponent } from './views/users/update-users/update-users.component';
+import { LogsComponent } from './views/logs/logs.component';
+import { WarehouseComponent } from './views/config/warehouse/warehouse.component';
+import { TypeContainerComponent } from './views/config/type-container/type-container.component';
+import { CategoryFolderComponent } from './views/config/category-folder/category-folder.component';
+import { GroupFolderComponent } from './views/config/group-folder/group-folder.component';
+import { ProfileComponent } from './views/config/profile/profile.component';
 
 export const AdminRoute: Routes = [
   {
@@ -58,6 +64,18 @@ export const AdminRoute: Routes = [
       { path: 'users', component: UsersComponent },
       { path: 'add-users', component: AddUsersComponent },
       { path: 'update-users/:id', component: UpdateUsersComponent },
+
+      { path: 'logs', component: LogsComponent },
+      { path: 'warehouse', component: WarehouseComponent },
+      { path: 'type-container', component: TypeContainerComponent },
+
+      { path: 'category-folder', component: CategoryFolderComponent },
+      { path: 'group-folder', component: GroupFolderComponent },
+
+      { path: 'profile', component: ProfileComponent },
+
+
+
     ],
   },
 ];
@@ -84,6 +102,12 @@ export const AdminRoute: Routes = [
     UsersComponent,
     AddUsersComponent,
     UpdateUsersComponent,
+    LogsComponent,
+    WarehouseComponent,
+    TypeContainerComponent,
+    CategoryFolderComponent,
+    GroupFolderComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

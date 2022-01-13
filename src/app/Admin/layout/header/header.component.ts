@@ -33,7 +33,7 @@ import { Router } from '@angular/router';
           </button>
           <clr-dropdown-menu *clrIfOpen clrPosition="bottom-left">
             <a
-              routerLink="/app/dashbord"
+              routerLink="/app/profile"
               clrDropdownItem
               *ngIf="true"
               id="profil"
