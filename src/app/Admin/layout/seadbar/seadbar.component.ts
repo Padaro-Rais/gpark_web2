@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-seadbar',
@@ -22,127 +22,122 @@ import { Component, OnInit } from '@angular/core'
         clrverticalnavicon
         role="none"
         shape="home"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        TABLEAU DE BORD
-      </span>
+      <span class="nav-text"> TABLEAU DE BORD </span>
     </a>
 
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
-      routerLink="/app/materials"
+      routerLink="/app/container"
       routerLinkActive="active"
     >
       <clr-icon
         clrverticalnavicon
         role="none"
         shape="container"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        CONTENAIRES
-      </span>
+      <span class="nav-text"> CONTENAIRES </span>
     </a>
 
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
-      routerLink="/app/materials"
+      routerLink="/app/folder"
       routerLinkActive="active"
     >
       <clr-icon
         clrverticalnavicon
         role="none"
         shape="directory"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        DOSSIER
-      </span>
+      <span class="nav-text"> DOSSIERS </span>
     </a>
 
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
-      routerLink="/app/materials"
+      routerLink="/app/file"
       routerLinkActive="active"
     >
       <clr-icon
         clrverticalnavicon
         role="none"
         shape="document"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        FICHIERS
-      </span>
+      <span class="nav-text"> FICHIERS </span>
     </a>
 
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
-      routerLink="/app/materials"
+      routerLink="/app/logs"
       routerLinkActive="active"
     >
       <clr-icon
         clrverticalnavicon
         role="none"
         shape="clipboard"
+        size="30"
       ></clr-icon>
-      <span class="nav-text">
-        Journal
-      </span>
+      <span class="nav-text"> Journal </span>
     </a>
 
     <clr-vertical-nav-group routerLinkActive="active">
-      <clr-icon shape="file-settings"
+      <clr-icon
+        shape="file-settings"
+        size="30"
         role="none"
         clrverticalnavicon
-       ></clr-icon>
-        CONFIGURATIONS
-
+      ></clr-icon>
+      CONFIGURATIONS
 
       <clr-vertical-nav-group-children>
         <a
           clrVerticalNavLink
-          routerLink="./normal/pidgey"
+          routerLink="/app/warehouse"
           routerLinkActive="active"
         >
-         Entrepot
+          <clr-icon shape="container-volume" size="20"></clr-icon>
+          Entrepot
         </a>
         <a
           clrVerticalNavLink
-          routerLink="./normal/snorlax"
+          routerLink="/app/type-container"
           routerLinkActive="active"
         >
+          <clr-icon shape="container" size="20"></clr-icon>
           Type Contenaire
         </a>
         <a
           clrVerticalNavLink
-          routerLink="./normal/snorlax"
+          routerLink="/app/category-folder"
           routerLinkActive="active"
         >
+          <clr-icon shape="folder" size="20"></clr-icon>
           Categorie Dossier
         </a>
+       
         <a
           clrVerticalNavLink
-          routerLink="./normal/snorlax"
+          routerLink="/app/group-folder"
           routerLinkActive="active"
         >
-          Categorie Dossier
-        </a>
-        <a
-          clrVerticalNavLink
-          routerLink="./normal/snorlax"
-          routerLinkActive="active"
-        >
-          Groupe De Fichier
+          <clr-icon shape="file-group" size="20"></clr-icon>
+          Groupe De Fichiers
         </a>
 
         <a
           clrVerticalNavLink
-          routerLink="./normal/snorlax"
+          routerLink="/app/users"
           routerLinkActive="active"
         >
-          Utilisateurs & Prermissions
+          <clr-icon shape="user" size="20"></clr-icon>
+          Utilisateurs & Permissions
         </a>
       </clr-vertical-nav-group-children>
     </clr-vertical-nav-group>
@@ -152,11 +147,11 @@ import { Component, OnInit } from '@angular/core'
 export class SeadbarComponent implements OnInit {
   constructor() {}
 
-  permission: boolean = false
+  permission: boolean = false;
 
   ngOnInit(): void {
     if (localStorage.getItem('permission') == '1') {
-      this.permission = true
+      this.permission = true;
     }
   }
 }
