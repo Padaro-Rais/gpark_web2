@@ -1,0 +1,3 @@
+[submodule "src/app/global-styles"]
+	path = src/app/global-styles
+	url = https://github.com/liksoft/elewou-light-styles.git
