@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr";
+@import "~ngx-chart/styles.scss";
+
+.a {
+  width: 288px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body h3:not([cds-text]) {
+  font-size: 0.95rem;
+  margin-bottom: 1.1rem;
+}
+
+#sd {
+  background-color: #1b4f72;
+}
+
+.requi {
+  color: red;
+}
+
+.sib_items {
+  font-weight: bold;
+  font-size: 130%;
+}
+
+.sib_item {
+  font-size: 130%;
+}
+
+
+
+.datagrid-table .datagrid-cell {
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+#example3 {
+  border: 1px solid;
+}
+
+#btnLigne {
+  text-decoration: none;
+}
+
+.btn-block {
+  text-align: left;
+  margin: 2%;
+}
+.hr1 {
+  border: 0;
+  height: 1px;
+  background: #095484;
+  background-image: linear-gradient(to right, #ccc, #095484, #ccc);
+}
+
+/** ========================= TABLEAUX ========================= */
+#lib {
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+#donnees {
+  font-size: 0.65rem;
+  font-weight: 420;
+}
+
+/** ========================= DETAILS CARD ========================= */
+
+/** ========================= FORMULAIRE ========================= */
+
+.card-header {
+  font-weight: 400;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+.backform {
+  background-color: #f0f0f0;
+}
