@@ -9,7 +9,7 @@
   </div>
   
   <!-- Page Content -->
-  <div class="clr-col-12" id="backform">
+  <div class="clr-col-12backform">
     <ng-container *ngIf="forms | async as form">
       <app-simple-dynamic-form #formvalue [form]="form" (formEvent)="onSubmit($event)" (componentReadyStateChanges)="onComponentReadyChange()"></app-simple-dynamic-form>
     </ng-container>
