@@ -1,0 +1,6 @@
+[submodule "src/app/global-styles"]
+	path = src/app/global-styles
+	url = https://github.com/liksoft/elewou-light-styles.git
+[submodule "src/app/core"]
+	path = src/app/core
+	url = https://github.com/liksoft/drewlabs-angular-domain.git

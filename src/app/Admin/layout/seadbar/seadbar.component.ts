@@ -28,6 +28,21 @@ import { Component, OnInit } from '@angular/core';
     </a>
 
     <a
+    class="nav-link ng-star-inserted"
+    clrVerticalNavLink
+    routerLink="/app/deposits"
+    routerLinkActive="active"
+  >
+    <clr-icon
+      clrverticalnavicon
+      role="none"
+      shape="home"
+      size="30"
+    ></clr-icon>
+    <span class="nav-text"> VERSEMENT </span>
+  </a>
+
+    <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
       routerLink="/app/container"
@@ -39,7 +54,7 @@ import { Component, OnInit } from '@angular/core';
         shape="container"
         size="30"
       ></clr-icon>
-      <span class="nav-text"> CONTENAIRES </span>
+      <span class="nav-text"> CONTENEURS</span>
     </a>
 
     <a
