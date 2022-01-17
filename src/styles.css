@@ -37,11 +37,25 @@ body h3:not([cds-text]) {
   font-size: 130%;
 }
 
+#bord {
+  color: white;
+  font-weight: bold;
+  font-size: 50;
+}
 
+#app {
+  color: white;
+  font-weight: bold;
+  font-size: 150%;
+}
 
 .datagrid-table .datagrid-cell {
   font-size: 0.7rem;
   line-height: 1.5;
+}
+
+#profil {
+  font-size: 0.7rem;
 }
 
 #example3 {
@@ -77,10 +91,15 @@ body h3:not([cds-text]) {
 
 /** ========================= FORMULAIRE ========================= */
 
-.card-header {
+.app-page-header {
   font-weight: 400;
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  margin-top: -25px;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
 }
 .backform {
   background-color: #f0f0f0;
+}
+.page-title {
+  font-weight: 400;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
