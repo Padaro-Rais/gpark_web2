@@ -38,6 +38,7 @@ import { TypeContainerComponent } from './views/config/type-container/type-conta
 import { CategoryFolderComponent } from './views/config/category-folder/category-folder.component';
 import { GroupFolderComponent } from './views/config/group-folder/group-folder.component';
 import { ProfileComponent } from './views/config/profile/profile.component';
+import { DepositComponent } from './views/deposit/deposit.component';
 
 export const AdminRoute: Routes = [
   {
@@ -47,6 +48,9 @@ export const AdminRoute: Routes = [
       { path: 'statistiques', component: HomeComponent },
       { path: 'dashbord', component: DashbordComponent },
       { path: 'testform', component: TestFormComponent },
+
+      { path: 'deposits', component: DepositComponent },
+
 
       { path: 'container', component: ContainerComponent },
       { path: 'add-container', component: AddContainerComponent },
@@ -108,6 +112,7 @@ export const AdminRoute: Routes = [
     CategoryFolderComponent,
     GroupFolderComponent,
     ProfileComponent,
+    DepositComponent,
   ],
   imports: [
     CommonModule,

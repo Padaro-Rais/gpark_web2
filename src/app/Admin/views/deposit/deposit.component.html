@@ -2,7 +2,7 @@
     <div class="clr-col-sm-12">
       <div class="page-title">
         <div class="card-header">
-          <h2>DOSSIERS</h2>
+          <h2>VERSEMENTS</h2>
         </div>
       </div>
     </div>
@@ -47,8 +47,8 @@
         Etat
       </clr-dg-column>
       <clr-dg-row
-        *clrDgItems="let folder of folders"
-        [clrDgItem]="folder"
+        *clrDgItems="let deposit of deposits"
+        [clrDgItem]="deposit"
       >
         <clr-dg-action-overflow>
           <!-- <a (click)="updateData(material.id)">
@@ -92,11 +92,11 @@
             </button>
           </a> -->
         </clr-dg-action-overflow>
-        <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-        <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-        <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-        <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-        <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
+        <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
+        <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
+        <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
+        <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
+        <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
         <!-- <clr-dg-cell>
           <span class="label label-light-blue">
             {{ material.details.current_status }}
@@ -172,7 +172,7 @@
             Materiels par page
           </clr-dg-page-size>
           {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
-          {{ pagination.totalItems }} folder
+          {{ pagination.totalItems }} deposits
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>
