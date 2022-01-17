@@ -72,13 +72,6 @@ body h3:not([cds-text]) {
   font-size: 0.7rem;
 }
 
-
-/* .card.big-card {
-  border: 1px solid;
-  border-radius: 8px;
-  min-height: 240px;
-} */
-
 #example3 {
   border: 1px solid;
 }
@@ -110,55 +103,6 @@ body h3:not([cds-text]) {
 
 /** ========================= DETAILS CARD ========================= */
 
-#customers {
-  width: 100%;
-}
 
-#customers td,
-#customers th {
-  border: 2px solid #ddd;
-  padding: 8px;
-}
-
-#customers td {
-  text-align: right;
-}
-
-#customers tr:hover {
-  background-color: rgb(202, 202, 202);
-}
-
-#customers th {
-  font-size: 0.8rem;
-  line-height: 1rem;
-  background-color: #f3f3f3;
-  text-align: left;
-}
-
-#img-card {
-  width: 70%;
-}
-
-#rupture {
-  color: rgb(75, 78, 75);
-  margin-top: 0%;
-  margin-bottom: 1rem;
-}
 /** ========================= FORMULAIRE ========================= */
-.form-label {
-  font-size: 0.85rem;
-  display: flex;
-  font-weight: 600;
-  line-height: 1.5rem;
-}
 
-.form-control {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid;
-}
-
-select {
-  width: 100%;
-  padding: 5px;
-}
