@@ -14,26 +14,25 @@ import { Router } from '@angular/router';
       </div>
     </div>
 
-    <br>
+    <br />
 
     <!-- Page Content -->
     <div class="clr-col-12">
       <div class="clr-row">
-
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
             <div class="card-header">Versement</div>
+            <hr>
             <div class="card-block">
               <div class="card-title clr-col-9">
                 <clr-icon
-                  class="clr-col-3"
+                  class="clr-col-6"
                   shape="install"
-                  badge="info"
                   size="90"
                 ></clr-icon>
                 Versements
               </div>
-              <div class="card-text">...</div>
+              <div class="card-text"></div>
             </div>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
@@ -47,17 +46,17 @@ import { Router } from '@angular/router';
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
             <div class="card-header">Dépôt de dossier</div>
+            <hr>
             <div class="card-block">
               <div class="card-title clr-col-9">
                 <clr-icon
-                  class="clr-col-3"
+                  class="clr-col-6"
                   shape="folder-open"
-                  badge="info"
                   size="90"
                 ></clr-icon>
                 Dossiers
               </div>
-              <div class="card-text">...</div>
+              <div class="card-text"></div>
             </div>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
@@ -71,17 +70,17 @@ import { Router } from '@angular/router';
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
             <div class="card-header">Enrégistrement de fichier</div>
+            <hr>
             <div class="card-block">
               <div class="card-title clr-col-9">
                 <clr-icon
-                  class="clr-col-3"
+                  class="clr-col-6"
                   shape="file-group"
-                  badge="info"
                   size="90"
                 ></clr-icon>
                 Fichiers
               </div>
-              <div class="card-text">...</div>
+              <div class="card-text"></div>
             </div>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
