@@ -9,7 +9,7 @@
 </div>
 
 <!-- Page Content -->
-<div class="clr-col-sm-12 backform" *ngIf="true" >
+<div class="clr-col-sm-12 backform" >
   <ng-container *ngIf="forms | async as form">
     <app-simple-dynamic-form
       #formvalue
@@ -21,6 +21,7 @@
 </div>
 
 <div class="clr-col-sm-12">
+
   <clr-datagrid>
     <clr-dg-action-bar>
       <!-- <a routerLink="/app/add-Material">
@@ -34,6 +35,8 @@
     <clr-dg-column [clrDgField]="'group.label'" id="lib">
       Libellé
     </clr-dg-column>
+
+    <clr-spinner [clrMedium]="true"></clr-spinner>
 
     <clr-dg-row
       *clrDgItems="let warehouse of warehouses"
@@ -55,6 +58,7 @@
             </button>
           </a> -->
       </clr-dg-action-overflow>
+
       <clr-dg-cell>{{ warehouse.ref }}</clr-dg-cell>
       <clr-dg-cell>{{ warehouse.label }}</clr-dg-cell>
       <!-- <clr-dg-cell>
@@ -79,4 +83,7 @@
       </clr-dg-pagination>
     </clr-dg-footer>
   </clr-datagrid>
+
+  <clr-spinner  [clrMedium]="true"></clr-spinner>
+
 </div>

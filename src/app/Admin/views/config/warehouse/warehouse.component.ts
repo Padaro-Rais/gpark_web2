@@ -25,7 +25,7 @@ export class WarehouseComponent implements OnInit {
 
   data: any;
   warehouses: any;
-  add : boolean = true
+  sniper : boolean = true
 
   ngOnInit(): void {
       this.getData()
@@ -36,17 +36,21 @@ export class WarehouseComponent implements OnInit {
       this.data = res;
       this.warehouses = this.data.data;
       console.log(this.warehouses);
+      this.sniper = false
     });
   }
 
 
   onSubmit(body: {[prop:string]: any}){
     console.log(body.label)
+    this.sniper = true
+
     this.service.post(body).subscribe(
       (res) => {
         this.toastr.success('sauvegarde réussi !');
         this.formvalue.reset()
         this.getData()
+        this.sniper = false
       },
 
       (err) => {
