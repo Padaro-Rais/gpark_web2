@@ -24,12 +24,10 @@
 
   <clr-datagrid>
     <clr-dg-action-bar>
-      <!-- <a routerLink="/app/add-Material">
           <button type="button" class="btn">
-            <clr-icon shape="plus-circle" size="25"></clr-icon>
-            Nouveau
+            <clr-icon shape="sync" size="25"></clr-icon>
+            Actualiser
           </button>
-        </a> -->
     </clr-dg-action-bar>
     <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
     <clr-dg-column [clrDgField]="'group.label'" id="lib">
@@ -49,7 +47,7 @@
               Modifier
             </button>
           </a> -->
-        <button class="btn btn-link btn-block btn-sm">Modifier</button>
+        <button class="btn btn-link btn-block btn-sm" (click)="onEditAction(warehouse)">Modifier</button>
         <button class="btn btn-link btn-block btn-sm">Supprimer</button>
             <!-- <a routerLink="/app/material/calender/{{ material.id }}">
             <button class="action-item">
@@ -84,6 +82,6 @@
     </clr-dg-footer>
   </clr-datagrid>
 
-  <clr-spinner  [clrMedium]="true"></clr-spinner>
+  <clr-spinner *ngIf="sniper" [clrMedium]="true"></clr-spinner>
 
 </div>

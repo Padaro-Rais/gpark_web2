@@ -25,7 +25,9 @@ export class WarehouseComponent implements OnInit {
 
   data: any;
   warehouses: any;
-  sniper : boolean = true
+  sniper : boolean = true;
+
+  selectedValue: any;
 
   ngOnInit(): void {
       this.getData()
@@ -45,7 +47,16 @@ export class WarehouseComponent implements OnInit {
     console.log(body.label)
     this.sniper = true
 
-    this.service.post(body).subscribe(
+    if(this.selectedValue) {
+      this.toastr.success('modification');
+
+    } else {
+      this.createWareHouse(body);
+    }
+  }
+
+  private createWareHouse(value: {[index:string]:any}) {
+    this.service.post(value).subscribe(
       (res) => {
         this.toastr.success('sauvegarde réussi !');
         this.formvalue.reset()
@@ -60,6 +71,14 @@ export class WarehouseComponent implements OnInit {
         }
       }
     );
+  }
+
+  onEditAction(value: {[index:string]:any}) {
+    this.selectedValue = value;
+
+    if(this.formvalue) {
+      this.formvalue.setControlValue('label', value.label);
+    }
   }
 
   onComponentReadyChange(){
