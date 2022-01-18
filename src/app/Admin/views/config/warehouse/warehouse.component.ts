@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { FORM_CLIENT } from 'src/app/core/components/dynamic-inputs/angular';
@@ -20,17 +21,18 @@ export class WarehouseComponent implements OnInit {
   @ViewChild("formvalue") private formvalue!: SimpleDynamicFormComponent
   /////////////////////////
 
-  constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: WarehouseService) { }
+  constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: WarehouseService, private router: Router,) { }
 
   data: any;
   warehouses: any;
+  add : boolean = true
 
   ngOnInit(): void {
       this.getData()
   }
 
   getData() {
-    this.service.getData().subscribe((res) => {
+    this.service.get().subscribe((res) => {
       this.data = res;
       this.warehouses = this.data.data;
       console.log(this.warehouses);
@@ -39,7 +41,21 @@ export class WarehouseComponent implements OnInit {
 
 
   onSubmit(body: {[prop:string]: any}){
-    console.log(body)
+    console.log(body.label)
+    this.service.post(body).subscribe(
+      (res) => {
+        this.toastr.success('sauvegarde réussi !');
+        this.formvalue.reset()
+        this.getData()
+      },
+
+      (err) => {
+        this.toastr.error(err.error.message);
+        if(err.error.message==="Unauthorized"){
+          this.router.navigateByUrl('/auth/login')
+        }
+      }
+    );
   }
 
   onComponentReadyChange(){
