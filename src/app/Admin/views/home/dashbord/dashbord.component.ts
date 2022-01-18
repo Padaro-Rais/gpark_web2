@@ -53,7 +53,7 @@ import { Router } from '@angular/router';
           <div class="card big-card">
             <div class="card-header">
               <clr-icon shape="drag-handle-corner" size="30"></clr-icon>
-              Dépôt de dossier
+              Création de dossiers
             </div>
             <hr />
             <div class="card-block">
@@ -64,7 +64,7 @@ import { Router } from '@angular/router';
                   size="50"
                 ></clr-icon>
                 <div class="clr-col-9">
-                  Accédez au formulaire d'ajout d'un nouveau dossier
+                  Accédez au formulaire de création d'un nouveau dossier
                 </div>
               </div>
               <div class="card-text"></div>
@@ -93,7 +93,7 @@ import { Router } from '@angular/router';
                   shape="file-group"
                   size="50"
                 ></clr-icon>
-                <div class="clr-col-9">Ajoutez un nouveau fichier</div>
+                <div class="clr-col-9">Ajoutez un nouveau fichiers</div>
               </div>
               <div class="card-text"></div>
             </div>
