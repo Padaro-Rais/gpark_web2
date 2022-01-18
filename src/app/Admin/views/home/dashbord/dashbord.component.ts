@@ -82,8 +82,8 @@ import { Router } from '@angular/router';
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
             <div class="card-header">
-              <clr-icon shape="drag-handle-corner" size="30"></clr-icon
-              >Enrégistrement de fichier
+              <clr-icon shape="drag-handle-corner" size="30"></clr-icon>
+              Enrégistrement de fichier
             </div>
             <hr />
             <div class="card-block">
