@@ -6,24 +6,18 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Page Content -->
-<div class="clr-col-12" id="backform">
-  <ng-container *ngIf="forms | async as form">
-    <app-simple-dynamic-form
-      #formvalue
-      [form]="form"
-      (formEvent)="onSubmit($event)"
-      (componentReadyStateChanges)="onComponentReadyChange()"
-    ></app-simple-dynamic-form>
-  </ng-container>
-</div>
-
-<div class="clr-col-12">
-  <clr-datagrid>
-    <clr-dg-action-bar>
-      <!-- <a routerLink="/app/add-Material">
+  
+  <!-- Page Content -->
+  <div class="clr-col-12 backform">
+    <ng-container *ngIf="forms | async as form">
+      <app-simple-dynamic-form #formvalue [form]="form" (formEvent)="onSubmit($event)" (componentReadyStateChanges)="onComponentReadyChange()"></app-simple-dynamic-form>
+    </ng-container>
+  </div>
+  
+  <div class="clr-col-12">
+    <clr-datagrid>
+      <clr-dg-action-bar>
+        <!-- <a routerLink="/app/add-Material">
           <button type="button" class="btn">
             <clr-icon shape="plus-circle" size="25"></clr-icon>
             Nouveau

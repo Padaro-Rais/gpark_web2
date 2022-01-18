@@ -36,7 +36,7 @@ import { Component, OnInit } from '@angular/core';
     <clr-icon
       clrverticalnavicon
       role="none"
-      shape="home"
+      shape="install"
       size="30"
     ></clr-icon>
     <span class="nav-text"> VERSEMENT </span>
@@ -81,7 +81,7 @@ import { Component, OnInit } from '@angular/core';
       <clr-icon
         clrverticalnavicon
         role="none"
-        shape="document"
+        shape="file-group"
         size="30"
       ></clr-icon>
       <span class="nav-text"> FICHIERS </span>
@@ -133,7 +133,7 @@ import { Component, OnInit } from '@angular/core';
           routerLink="/app/category-folder"
           routerLinkActive="active"
         >
-          <clr-icon shape="folder" size="20"></clr-icon>
+          <clr-icon shape="folder" class="has-badge-info" size="20"></clr-icon>
           Categorie Dossier
         </a>
        
@@ -151,7 +151,7 @@ import { Component, OnInit } from '@angular/core';
           routerLink="/app/users"
           routerLinkActive="active"
         >
-          <clr-icon shape="user" size="20"></clr-icon>
+          <clr-icon shape="user" class="has-badge-info" size="20"></clr-icon>
           Utilisateurs & Permissions
         </a>
       </clr-vertical-nav-group-children>
