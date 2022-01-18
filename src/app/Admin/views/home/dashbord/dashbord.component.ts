@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
             <div class="card-block">
               <div class="card-title clr-col-9">
                 <clr-icon
-                  class="clr-col-6"
+                  class="clr-col-5"
                   shape="install"
                   size="90"
                 ></clr-icon>
@@ -50,7 +50,7 @@ import { Router } from '@angular/router';
             <div class="card-block">
               <div class="card-title clr-col-9">
                 <clr-icon
-                  class="clr-col-6"
+                  class="clr-col-5"
                   shape="folder-open"
                   size="90"
                 ></clr-icon>
@@ -74,7 +74,7 @@ import { Router } from '@angular/router';
             <div class="card-block">
               <div class="card-title clr-col-9">
                 <clr-icon
-                  class="clr-col-6"
+                  class="clr-col-5"
                   shape="file-group"
                   size="90"
                 ></clr-icon>
