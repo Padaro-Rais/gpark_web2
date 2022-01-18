@@ -76,43 +76,6 @@
                 "dynamicControlContainerClass": "clr-col-6"
             },
             {
-                "id": 71,
-                "formId": 18,
-                "formFormControlId": null,
-                "label": "Date",
-                "placeholder": null,
-                "type": "date",
-                "classes": "clr-input",
-                "required": false,
-                "disabled": false,
-                "readonly": false,
-                "unique": false,
-                "pattern": null,
-                "description": null,
-                "maxLength": null,
-                "minLength": null,
-                "min": null,
-                "max": null,
-                "minDate": null,
-                "maxDate": null,
-                "selectableValues": null,
-                "selectableModel": null,
-                "multiple": 0,
-                "controlGroupKey": null,
-                "controlName": "date",
-                "controlIndex": 3,
-                "options": [],
-                "rows": null,
-                "columns": null,
-                "value": null,
-                "requiredIf": null,
-                "uploadURL": null,
-                "isRepeatable": false,
-                "children": [],
-                "uniqueOn": null,
-                "dynamicControlContainerClass": "clr-col-6"
-            },
-            {
                 "id": 72,
                 "formId": 18,
                 "formFormControlId": null,
@@ -138,7 +101,6 @@
                 "controlGroupKey": null,
                 "controlName": "date",
                 "controlIndex": 3,
-                "options": [],
                 "rows": null,
                 "columns": null,
                 "value": null,
@@ -147,7 +109,7 @@
                 "isRepeatable": false,
                 "children": [],
                 "uniqueOn": null,
-                "dynamicControlContainerClass": "clr-col-6"
+                "dynamicControlContainerClass": "clr-col-12"
             },
             {
                 "id": 73,
@@ -175,7 +137,6 @@
                 "controlGroupKey": null,
                 "controlName": "desc",
                 "controlIndex": 4,
-                "options": [],
                 "rows": null,
                 "columns": null,
                 "value": null,
@@ -184,7 +145,7 @@
                 "isRepeatable": false,
                 "children": [],
                 "uniqueOn": null,
-                "dynamicControlContainerClass": "clr-col-6"
+                "dynamicControlContainerClass": "clr-col-12"
             }
         ],
         "id": 18,
