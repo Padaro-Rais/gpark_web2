@@ -79,7 +79,7 @@ body h3:not([cds-text]) {
 
 /** ========================= TABLEAUX ========================= */
 #lib {
-  font-size: 1rem;
+  font-size: 0.8rem;
   line-height: 1.4rem;
 }
 #donnees {

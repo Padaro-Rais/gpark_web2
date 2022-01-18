@@ -37,7 +37,7 @@ import { Router } from '@angular/router';
             </div>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
-                <clr-icon shape="folder-open" badge="danger"></clr-icon>
+                <clr-icon shape="plus-circle" class="is-solid"></clr-icon>
                 Nouveau Versement
               </button>
             </div>
@@ -61,7 +61,7 @@ import { Router } from '@angular/router';
             </div>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
-                <clr-icon shape="folder-open" badge="danger"></clr-icon>
+                <clr-icon shape="plus-circle" class="is-solid"></clr-icon>
                 Nouveau Dossier
               </button>
             </div>
@@ -85,7 +85,7 @@ import { Router } from '@angular/router';
             </div>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
-                <clr-icon shape="folder-open" badge="danger"></clr-icon>
+                <clr-icon shape="plus-circle" class="is-solid"></clr-icon>
                 Nouveau Fichier
               </button>
             </div>
