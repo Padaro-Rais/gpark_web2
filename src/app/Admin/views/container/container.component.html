@@ -27,24 +27,23 @@
    
      
     </clr-dg-action-bar>
+    <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
     <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
+
     <clr-dg-column [clrDgField]="'group.label'" id="lib">
-      type
+      Nombre de dossier
     </clr-dg-column>
     <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
-      Type
+      Niveau de description
     </clr-dg-column>
     <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
-      Date d'acquisition
+      Type
     </clr-dg-column>
     <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-      Date d'expiration garantie
+      Entrepot
     </clr-dg-column>
     <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-      Emplacement
-    </clr-dg-column>
-    <clr-dg-column [clrDgField]="'details.current_status'" id="lib">
-      Etat
+      Conteneur parent
     </clr-dg-column>
     <clr-dg-row
       *clrDgItems="let container of containers"

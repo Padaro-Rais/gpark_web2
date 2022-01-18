@@ -29,23 +29,21 @@
       </clr-dg-action-bar>
       <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
       <clr-dg-column [clrDgField]="'group.label'" id="lib">
-        type
+        AUTEUR
       </clr-dg-column>
       <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
-        Type
+        Action
       </clr-dg-column>
       <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
-        Date d'acquisition
+        Element
       </clr-dg-column>
       <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-        Date d'expiration garantie
+        Table
       </clr-dg-column>
       <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-        Emplacement
+        Date
       </clr-dg-column>
-      <clr-dg-column [clrDgField]="'details.current_status'" id="lib">
-        Etat
-      </clr-dg-column>
+      
       <clr-dg-row
         *clrDgItems="let log of logs"
         [clrDgItem]="log"
@@ -94,7 +92,6 @@
         </clr-dg-action-overflow>
         <clr-dg-cell>{{ log.label }}</clr-dg-cell>
         <clr-dg-cell>{{log.label }}</clr-dg-cell>
-        <clr-dg-cell>{{ log.label }}</clr-dg-cell>
         <clr-dg-cell>{{ log.label }}</clr-dg-cell>
         <clr-dg-cell>{{ log.label }}</clr-dg-cell>
         <!-- <clr-dg-cell>

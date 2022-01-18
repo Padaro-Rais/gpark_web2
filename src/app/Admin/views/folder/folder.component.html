@@ -27,25 +27,25 @@
      
        
       </clr-dg-action-bar>
+      <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
       <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
+
       <clr-dg-column [clrDgField]="'group.label'" id="lib">
-        type
+        Nombre d'element
       </clr-dg-column>
       <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
-        Type
+        Niveau de description
       </clr-dg-column>
       <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
-        Date d'acquisition
+        Catégorie
       </clr-dg-column>
       <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-        Date d'expiration garantie
+        Conteneur
       </clr-dg-column>
       <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-        Emplacement
+        Dossier parent
       </clr-dg-column>
-      <clr-dg-column [clrDgField]="'details.current_status'" id="lib">
-        Etat
-      </clr-dg-column>
+  
       <clr-dg-row
         *clrDgItems="let folder of folders"
         [clrDgItem]="folder"
@@ -97,15 +97,14 @@
         <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
         <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
         <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
+        <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
+        <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
         <!-- <clr-dg-cell>
           <span class="label label-light-blue">
             {{ material.details.current_status }}
           </span>
         </clr-dg-cell> -->
-        <clr-dg-cell>...</clr-dg-cell>
-        <clr-dg-cell>
-          .
-        </clr-dg-cell>
+      
       </clr-dg-row>
       <clr-dg-detail *clrIfDetail="let detail">
         <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>

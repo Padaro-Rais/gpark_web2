@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { baseUrl } from 'src/environments/environment';
 import { TokenStorageService } from '../../token-storage.service';
 
@@ -10,8 +11,37 @@ export class WarehouseService {
 
   constructor(private httpClient: HttpClient,private tokenStorage: TokenStorageService) { }
 
-  getData(){
+  post(data:any) : Observable<any>{
+    const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
+    return this.httpClient.post(`${baseUrl}/warehouses`,data,config);
+  }
+
+  getData() : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
     return this.httpClient.get(`${baseUrl}/warehouses`,config);
   }
+
+  getById(id:any) : Observable<any>{
+    const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
+    return this.httpClient.get(`${baseUrl}/warehouses/`+id ,config);
+  }
+
+  update(id:any, data:any) : Observable<any>{
+    const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
+    return this.httpClient.put(`${baseUrl}/warehouses/`+id,data,config);
+  }
+
+
+  delete(id:any) : Observable<any>{
+    const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
+    return this.httpClient.delete(`${baseUrl}/warehouses/`+id ,config);
+  }
+
+
+
+
+
+
+
+
 }

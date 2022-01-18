@@ -15,9 +15,10 @@ import { WarehouseService } from 'src/app/_services/api/config/warehouse.service
 export class CategoryFolderComponent implements OnInit {
 
   ////////////////////////
-  forms = this.formclient.get(10).pipe(
+  forms = this.formclient.get(13).pipe(
     map(data => DynamicFormHelpers.buildFormSync(data))
   );
+  
   @ViewChild("formvalue") private formvalue!: SimpleDynamicFormComponent
   /////////////////////////
 
