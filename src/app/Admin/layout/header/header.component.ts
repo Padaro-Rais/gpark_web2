@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
       <div class="branding">
         <a href="..." class="nav-link">
           <!-- <clr-icon shape="my-custom-shape"></clr-icon> -->
-          <span class="title" id="app">ARCHLIK</span>
+          <span class="title" id="app-name">ARCHLIK</span>
         </a>
       </div>
       <div class="header-nav">
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
           routerLinkActive="active"
           class="nav-link nav-text"
         >
-          <span id="bord">TABLEAU DE BORD</span>
+          <span>TABLEAU DE BORD</span>
         </a>
       </div>
 

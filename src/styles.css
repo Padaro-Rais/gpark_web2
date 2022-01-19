@@ -37,16 +37,11 @@ body h3:not([cds-text]) {
   font-size: 130%;
 }
 
-#bord {
-  color: white;
+#app-name {
   font-weight: bold;
-  font-size: 50;
-}
-
-#app {
-  color: white;
-  font-weight: bold;
-  font-size: 150%;
+  margin-top: 6px;
+  letter-spacing: 2px;
+  font-size: 125%;
 }
 
 .datagrid-table .datagrid-cell {
