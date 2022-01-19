@@ -31,7 +31,9 @@
         </a> -->
     </clr-dg-action-bar>
     <clr-dg-column [clrDgField]="'label'" id="lib">Nom</clr-dg-column>
-    <clr-dg-column [clrDgField]="'group.label'" id="lib"> Prénom </clr-dg-column>
+    <clr-dg-column [clrDgField]="'group.label'" id="lib">
+      Prénom
+    </clr-dg-column>
     <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
       Age
     </clr-dg-column>
@@ -55,18 +57,15 @@
               Modifier
             </button>
           </a> -->
-        <button class="btn btn-link btn-block btn-sm">Activer</button>
-        <button class="btn btn-link btn-block btn-sm">Evaluer</button>
-        <a routerLink="/app/material/update">
-          <button class="btn btn-link btn-block btn-sm">Modifier</button>
-        </a>
-        <a routerLink="/app/add-Task">
-          <button class="btn btn-link btn-block btn-sm">nouvelle tâche</button>
-        </a>
-        <a routerLink="/app/add-Contract">
-          <button class="btn btn-link btn-block btn-sm">nouveau contrat</button>
-        </a>
-        <button class="btn btn-link btn-block btn-sm">Archiver</button>
+        <button class="btn btn-link btn-block btn-sm">
+          <clr-icon shape="pencil" class="is-solid"></clr-icon>
+          Modifier
+        </button>
+
+        <button class="btn btn-link btn-block btn-sm">
+          <clr-icon shape="trash" class="is-solid"></clr-icon>
+          Supprimer
+        </button>
         <!-- <a routerLink="/app/material/calender/{{ material.id }}">
             <button class="action-item">
               <clr-icon shape="calendar" size="25"></clr-icon>

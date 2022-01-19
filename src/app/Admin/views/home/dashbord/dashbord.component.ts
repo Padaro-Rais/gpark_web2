@@ -93,7 +93,7 @@ import { Router } from '@angular/router';
                   shape="file-group"
                   size="50"
                 ></clr-icon>
-                <div class="clr-col-9">Ajoutez un nouveau fichiers</div>
+                <div class="clr-col-9">Ajoutez un nouveau fichier</div>
               </div>
               <div class="card-text"></div>
             </div>

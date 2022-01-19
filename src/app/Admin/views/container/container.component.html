@@ -11,7 +11,12 @@
 <!-- Page Content -->
 <div class="clr-col-sm-12 backform">
   <ng-container *ngIf="forms | async as form">
-    <app-simple-dynamic-form #formvalue [form]="form" (formEvent)="onSubmit($event)" (componentReadyStateChanges)="onComponentReadyChange()"></app-simple-dynamic-form>
+    <app-simple-dynamic-form
+      #formvalue
+      [form]="form"
+      (formEvent)="onSubmit($event)"
+      (componentReadyStateChanges)="onComponentReadyChange()"
+    ></app-simple-dynamic-form>
   </ng-container>
 </div>
 
@@ -24,8 +29,6 @@
           Nouveau
         </button>
       </a> -->
-   
-     
     </clr-dg-action-bar>
     <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
     <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
@@ -56,33 +59,14 @@
             Modifier
           </button>
         </a> -->
-        <button
-          class="btn btn-link btn-block btn-sm"
-        >
-          Activer
+        <button class="btn btn-link btn-block btn-sm">
+          <clr-icon shape="pencil" class="is-solid"></clr-icon>
+          Modifier
         </button>
-        <button
-          class="btn btn-link btn-block btn-sm"
-        >
-          Evaluer
-        </button>
-        <a routerLink="/app/material/update">
-          <button class="btn btn-link btn-block btn-sm">Modifier</button>
-        </a>
-        <a routerLink="/app/add-Task">
-          <button class="btn btn-link btn-block btn-sm">
-            nouvelle tâche
-          </button>
-        </a>
-        <a routerLink="/app/add-Contract">
-          <button class="btn btn-link btn-block btn-sm">
-            nouveau contrat
-          </button>
-        </a>
-        <button
-          class="btn btn-link btn-block btn-sm"
-        >
-          Archiver
+
+        <button class="btn btn-link btn-block btn-sm">
+          <clr-icon shape="trash" class="is-solid"></clr-icon>
+          Supprimer
         </button>
         <!-- <a routerLink="/app/material/calender/{{ material.id }}">
           <button class="action-item">
@@ -102,9 +86,7 @@
         </span>
       </clr-dg-cell> -->
       <clr-dg-cell>...</clr-dg-cell>
-      <clr-dg-cell>
-        .
-      </clr-dg-cell>
+      <clr-dg-cell> . </clr-dg-cell>
     </clr-dg-row>
     <clr-dg-detail *clrIfDetail="let detail">
       <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
@@ -119,9 +101,7 @@
               </button>
             </a>
             <a routerLink="/app/add-Task">
-              <button class="btn btn-outlin btn-block">
-                Nouveau contrat
-              </button>
+              <button class="btn btn-outlin btn-block">Nouveau contrat</button>
             </a>
             <a routerLink="/app/add-Task">
               <button class="btn btn-outlin btn-block">Activer</button>
@@ -157,12 +137,6 @@
             <td>{{ detail.description }}</td>
           </tr>
         </table>
-        
-        
-       
-        
-        
-       
       </clr-dg-detail-body>
     </clr-dg-detail>
     <clr-dg-footer>
