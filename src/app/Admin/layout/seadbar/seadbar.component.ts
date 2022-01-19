@@ -22,7 +22,7 @@ import { Component, OnInit } from '@angular/core';
         clrverticalnavicon
         role="none"
         shape="home"
-        size="30"
+        size="20"
       ></clr-icon>
       <span class="nav-text"> TABLEAU DE BORD </span>
     </a>
@@ -37,7 +37,7 @@ import { Component, OnInit } from '@angular/core';
       clrverticalnavicon
       role="none"
       shape="install"
-      size="30"
+      size="20"
     ></clr-icon>
     <span class="nav-text"> VERSEMENT </span>
   </a>
@@ -52,7 +52,7 @@ import { Component, OnInit } from '@angular/core';
         clrverticalnavicon
         role="none"
         shape="container"
-        size="30"
+        size="20"
       ></clr-icon>
       <span class="nav-text"> CONTENEURS</span>
     </a>
@@ -67,7 +67,7 @@ import { Component, OnInit } from '@angular/core';
         clrverticalnavicon
         role="none"
         shape="directory"
-        size="30"
+        size="20"
       ></clr-icon>
       <span class="nav-text"> DOSSIERS </span>
     </a>
@@ -82,7 +82,7 @@ import { Component, OnInit } from '@angular/core';
         clrverticalnavicon
         role="none"
         shape="file-group"
-        size="30"
+        size="20"
       ></clr-icon>
       <span class="nav-text"> FICHIERS </span>
     </a>
@@ -97,7 +97,7 @@ import { Component, OnInit } from '@angular/core';
         clrverticalnavicon
         role="none"
         shape="clipboard"
-        size="30"
+        size="20"
       ></clr-icon>
       <span class="nav-text"> Journal </span>
     </a>
@@ -105,7 +105,7 @@ import { Component, OnInit } from '@angular/core';
     <clr-vertical-nav-group routerLinkActive="active">
       <clr-icon
         shape="file-settings"
-        size="30"
+        size="20"
         role="none"
         clrverticalnavicon
       ></clr-icon>
@@ -117,7 +117,7 @@ import { Component, OnInit } from '@angular/core';
           routerLink="/app/warehouse"
           routerLinkActive="active"
         >
-          <clr-icon shape="container-volume" size="20"></clr-icon>
+          <clr-icon shape="container-volume" size="15"></clr-icon>
           Entrepot
         </a>
         <a
@@ -125,7 +125,7 @@ import { Component, OnInit } from '@angular/core';
           routerLink="/app/type-container"
           routerLinkActive="active"
         >
-          <clr-icon shape="container" size="20"></clr-icon>
+          <clr-icon shape="container" size="15"></clr-icon>
           Type Contenaire
         </a>
         <a
@@ -133,7 +133,7 @@ import { Component, OnInit } from '@angular/core';
           routerLink="/app/category-folder"
           routerLinkActive="active"
         >
-          <clr-icon shape="folder" class="has-badge-info" size="20"></clr-icon>
+          <clr-icon shape="folder" class="has-badge-info" size="15"></clr-icon>
           Categorie Dossier
         </a>
        
@@ -142,7 +142,7 @@ import { Component, OnInit } from '@angular/core';
           routerLink="/app/group-folder"
           routerLinkActive="active"
         >
-          <clr-icon shape="file-group" size="20"></clr-icon>
+          <clr-icon shape="file-group" size="15"></clr-icon>
           Groupe De Fichiers
         </a>
 
@@ -151,7 +151,7 @@ import { Component, OnInit } from '@angular/core';
           routerLink="/app/users"
           routerLinkActive="active"
         >
-          <clr-icon shape="user" class="has-badge-info" size="20"></clr-icon>
+          <clr-icon shape="user" class="has-badge-info" size="15"></clr-icon>
           Utilisateurs & Permissions
         </a>
       </clr-vertical-nav-group-children>
