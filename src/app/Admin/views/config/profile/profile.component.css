@@ -1,0 +1,21 @@
+.table tbody td,
+.table tbody th {
+  font-size: 15px;
+  text-align: left;
+  padding: 18px;
+  letter-spacing: 0.1rem;
+}
+
+.table tbody td {
+  border-bottom: none;
+  border-top-style: none;
+}
+
+.table tbody th {
+  border-right-style: none;
+}
+
+.table-row {
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
