@@ -94,13 +94,18 @@ export class GroupFolderComponent implements OnInit {
         this.formvalue.reset()
         this.getData()
         this.sniper = false
+        this.init()
+
       },
 
       (err) => {
         this.toastr.error(err.error.message);
         if (err.error.message === "Unauthorized") {
           this.router.navigateByUrl('/auth/login')
+
         }
+        this.init()
+
       }
     );
   }
@@ -115,6 +120,8 @@ export class GroupFolderComponent implements OnInit {
         this.cancel = false
         this.selectedValue = ""
         this.id = ""
+        this.init()
+
       },
 
       (err) => {
@@ -123,6 +130,8 @@ export class GroupFolderComponent implements OnInit {
           this.router.navigateByUrl('/auth/login')
         }
         this.sniper = false
+        this.init()
+
       }
     );
   }

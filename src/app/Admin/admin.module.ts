@@ -39,6 +39,7 @@ import { CategoryFolderComponent } from './views/config/category-folder/category
 import { GroupFolderComponent } from './views/config/group-folder/group-folder.component';
 import { ProfileComponent } from './views/config/profile/profile.component';
 import { DepositComponent } from './views/deposit/deposit.component';
+import { ActionpipePipe } from './Pipes/actionpipe.pipe';
 
 export const AdminRoute: Routes = [
   {
@@ -113,6 +114,7 @@ export const AdminRoute: Routes = [
     GroupFolderComponent,
     ProfileComponent,
     DepositComponent,
+    ActionpipePipe,
   ],
   imports: [
     CommonModule,

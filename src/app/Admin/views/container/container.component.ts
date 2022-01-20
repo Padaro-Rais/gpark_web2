@@ -144,6 +144,8 @@ export class ContainerComponent implements OnInit {
         this.formvalue.reset()
         this.getData()
         this.sniper = false
+        this.init()
+
       },
 
       (err) => {
@@ -151,6 +153,8 @@ export class ContainerComponent implements OnInit {
         if (err.error.message === "Unauthorized") {
           this.router.navigateByUrl('/auth/login')
         }
+        this.init()
+
       }
     );
   }
@@ -166,6 +170,8 @@ export class ContainerComponent implements OnInit {
         this.cancel = false
         this.selectedValue = ""
         this.id = ""
+        this.init()
+
       },
 
       (err) => {
@@ -174,6 +180,8 @@ export class ContainerComponent implements OnInit {
           this.router.navigateByUrl('/auth/login')
         }
         this.sniper = false
+        this.init()
+
       }
     );
   }

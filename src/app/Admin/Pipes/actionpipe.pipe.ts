@@ -1,9 +1,10 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'etat'
+  name: 'actionpipe'
 })
-export class EtatPipe implements PipeTransform {
+export class ActionpipePipe implements PipeTransform {
+
   transform(value: number): string {
     switch (value) {
       case 1:
@@ -11,14 +12,13 @@ export class EtatPipe implements PipeTransform {
       case 2:
         return 'READ';
       case 3:
-          return 'UPDATE';
-          case 4:
-          return 'DELETE';
+        return 'UPDATE';
+      case 4:
+        return 'DELETE';
       default:
         // return value;
         throw new Error('Undefined case');
     }
-
-    ///
   }
+
 }

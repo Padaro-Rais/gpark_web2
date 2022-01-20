@@ -94,6 +94,8 @@ export class CategoryFolderComponent implements OnInit {
         this.formvalue.reset()
         this.getData()
         this.sniper = false
+        this.init()
+
       },
 
       (err) => {
@@ -101,6 +103,8 @@ export class CategoryFolderComponent implements OnInit {
         if (err.error.message === "Unauthorized") {
           this.router.navigateByUrl('/auth/login')
         }
+        this.init()
+
       }
     );
   }

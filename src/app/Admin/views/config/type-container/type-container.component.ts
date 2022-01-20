@@ -93,6 +93,8 @@ export class TypeContainerComponent implements OnInit {
         this.formvalue.reset()
         this.getData()
         this.sniper = false
+        this.init()
+
       },
 
       (err) => {
@@ -100,6 +102,8 @@ export class TypeContainerComponent implements OnInit {
         if (err.error.message === "Unauthorized") {
           this.router.navigateByUrl('/auth/login')
         }
+        this.init()
+
       }
     );
   }
