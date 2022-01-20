@@ -21,19 +21,25 @@ import { Router } from '@angular/router';
       <div class="clr-row">
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
-            <div class="card-header">Versement</div>
-            <hr>
+            <div class="card-header">
+              <clr-icon shape="drag-handle-corner" size="30"></clr-icon>
+              Versement
+            </div>
+            <hr />
             <div class="card-block">
-              <div class="card-title clr-col-9">
+              <div class="clr-row">
                 <clr-icon
-                  class="clr-col-5"
+                  class="clr-col-3"
                   shape="install"
-                  size="90"
+                  size="50"
                 ></clr-icon>
-                Versements
+                <div class="clr-col-9">
+                  Ajoutez un nouveau groupe de fichiers
+                </div>
               </div>
               <div class="card-text"></div>
             </div>
+            <br>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
                 <clr-icon shape="plus-circle" class="is-solid"></clr-icon>
@@ -45,19 +51,25 @@ import { Router } from '@angular/router';
 
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
-            <div class="card-header">Dépôt de dossier</div>
-            <hr>
+            <div class="card-header">
+              <clr-icon shape="drag-handle-corner" size="30"></clr-icon>
+              Création de dossiers
+            </div>
+            <hr />
             <div class="card-block">
-              <div class="card-title clr-col-9">
+              <div class="clr-row">
                 <clr-icon
-                  class="clr-col-5"
+                  class="clr-col-3"
                   shape="folder-open"
-                  size="90"
+                  size="50"
                 ></clr-icon>
-                Dossiers
+                <div class="clr-col-9">
+                  Accédez au formulaire de création d'un nouveau dossier
+                </div>
               </div>
               <div class="card-text"></div>
             </div>
+            <br>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
                 <clr-icon shape="plus-circle" class="is-solid"></clr-icon>
@@ -69,19 +81,23 @@ import { Router } from '@angular/router';
 
         <div class="clr-col-md-4 clr-col-12">
           <div class="card big-card">
-            <div class="card-header">Enrégistrement de fichier</div>
-            <hr>
+            <div class="card-header">
+              <clr-icon shape="drag-handle-corner" size="30"></clr-icon>
+              Enrégistrement de fichier
+            </div>
+            <hr />
             <div class="card-block">
-              <div class="card-title clr-col-9">
+              <div class="clr-row">
                 <clr-icon
-                  class="clr-col-5"
+                  class="clr-col-3"
                   shape="file-group"
-                  size="90"
+                  size="50"
                 ></clr-icon>
-                Fichiers
+                <div class="clr-col-9">Ajoutez un nouveau fichiers</div>
               </div>
               <div class="card-text"></div>
             </div>
+            <br>
             <div class="card-footer">
               <button class="btn btn-outline-primary">
                 <clr-icon shape="plus-circle" class="is-solid"></clr-icon>
