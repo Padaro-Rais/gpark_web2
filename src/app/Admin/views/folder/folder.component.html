@@ -23,13 +23,18 @@
 <div class="clr-col-12">
   <clr-datagrid>
     <clr-dg-action-bar>
-      <!-- <a routerLink="/app/add-Material">
-          <button type="button" class="btn">
-            <clr-icon shape="plus-circle" size="25"></clr-icon>
-            Nouveau
-          </button>
-        </a> -->
+      <button type="button" class="btn" (click)="getData()">
+        <clr-icon shape="sync" size="25"></clr-icon>
+        Actualiser
+      </button>
+
+      <button  *ngIf="cancel" type="button" class="btn btn-danger" (click)="onCanselAction()">
+        <clr-icon shape="times" size="25"></clr-icon>
+        Annuler
+      </button>
     </clr-dg-action-bar>
+    <clr-dg-column [clrDgField]="'label'" id="lib">Identifiant</clr-dg-column>
+
     <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
     <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
 
@@ -57,12 +62,12 @@
               Modifier
             </button>
           </a> -->
-        <button class="btn btn-link btn-block btn-sm">
+        <button class="btn btn-link btn-block btn-sm" (click)="onEditAction(folder)">
           <clr-icon shape="pencil" class="is-solid"></clr-icon>
           Modifier
         </button>
 
-        <button class="btn btn-link btn-block btn-sm">
+        <button class="btn btn-link btn-block btn-sm" (click)="onDelete(folder.id)">
           <clr-icon shape="trash" class="is-solid"></clr-icon>
           Supprimer
         </button>
@@ -72,15 +77,17 @@
               Calendrier
             </button>
           </a> -->
-      </clr-dg-action-overflow>
-      <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
-      <!-- <clr-dg-cell>
+        </clr-dg-action-overflow>
+        <clr-dg-cell>N°{{ folder.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ folder.ref }}</clr-dg-cell>
+
+        <clr-dg-cell>{{ folder.label }}</clr-dg-cell>
+        <clr-dg-cell>{{ folder.nb_case }}</clr-dg-cell>
+        <clr-dg-cell>{{ folder.level_description }}</clr-dg-cell>
+        <clr-dg-cell>{{ folder.id_category}}</clr-dg-cell>
+        <clr-dg-cell>{{ folder.id_container }}</clr-dg-cell>
+        <clr-dg-cell>{{ folder.id_parent }}</clr-dg-cell>
+        <!-- <clr-dg-cell>
           <span class="label label-light-blue">
             {{ material.details.current_status }}
           </span>
@@ -147,4 +154,7 @@
       </clr-dg-pagination>
     </clr-dg-footer>
   </clr-datagrid>
+
+  <div class="load" *ngIf="sniper" ><clr-spinner [clrMedium]="true"></clr-spinner></div>
+
 </div>

@@ -25,7 +25,7 @@
           </button>
         </a> -->
     </clr-dg-action-bar>
-    <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
+    <clr-dg-column [clrDgField]="'label'" id="lib">Identifiant</clr-dg-column>
     <clr-dg-column [clrDgField]="'group.label'" id="lib">
       AUTEUR
     </clr-dg-column>
@@ -66,17 +66,17 @@
             </button>
           </a> -->
       </clr-dg-action-overflow>
-      <clr-dg-cell>{{ log.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ log.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ log.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ log.label }}</clr-dg-cell>
+      <clr-dg-cell>N°{{ log.id }}</clr-dg-cell>
+      <clr-dg-cell>{{ log.auteur }}</clr-dg-cell>
+      <clr-dg-cell>{{ log.typ_action }}</clr-dg-cell>
+      <clr-dg-cell>{{ log.id_element}}</clr-dg-cell>
       <!-- <clr-dg-cell>
           <span class="label label-light-blue">
             {{ material.details.current_status }}
           </span>
         </clr-dg-cell> -->
-      <clr-dg-cell>...</clr-dg-cell>
-      <clr-dg-cell> . </clr-dg-cell>
+      <clr-dg-cell>{{ log.table }}</clr-dg-cell>
+      <clr-dg-cell> {{log.created_at | date}}</clr-dg-cell>
     </clr-dg-row>
     <clr-dg-detail *clrIfDetail="let detail">
       <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>

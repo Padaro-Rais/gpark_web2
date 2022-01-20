@@ -9,6 +9,7 @@ import {
   FormsClient,
 } from 'src/app/core/components/dynamic-inputs/core';
 import { FileService } from 'src/app/_services/api/file.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-file',
@@ -26,14 +27,26 @@ export class FileComponent implements OnInit {
   constructor(
     @Inject(FORM_CLIENT) private formclient: FormsClient,
     private toastr: ToastrService,
-    private service: FileService
+    private service: FileService,
+    private tokenStorage : TokenStorageService
   ) {}
+
+
+  user: any = this.tokenStorage.getUser()
+  init() {
+    setTimeout(() => {
+      console.log("Waite");
+      this.formvalue.setControlValue('auteur', this.user.details.lastname+" "+ this.user.details.firstname);
+    }, 1000);
+  }
 
   data: any;
   files: any;
 
   ngOnInit(): void {
     this.getData();
+    this.init()
+
   }
 
   getData() {

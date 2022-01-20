@@ -23,12 +23,16 @@
 <div class="clr-col-sm-12">
   <clr-datagrid>
     <clr-dg-action-bar>
-      <!-- <a routerLink="/app/add-Material">
-          <button type="button" class="btn">
-            <clr-icon shape="plus-circle" size="25"></clr-icon>
-            Nouveau
+          <button type="button" class="btn" (click)="getData()">
+            <clr-icon shape="sync" size="25"></clr-icon>
+            Actualiser
           </button>
-        </a> -->
+
+          <button  *ngIf="cancel" type="button" class="btn btn-danger" (click)="onCanselAction()">
+            <clr-icon shape="times" size="25"></clr-icon>
+            Annuler
+          </button>
+
     </clr-dg-action-bar>
     <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
     <clr-dg-column [clrDgField]="'group.label'" id="lib">
@@ -46,12 +50,12 @@
               Modifier
             </button>
           </a> -->
-        <button class="btn btn-link btn-block btn-sm">
+        <button class="btn btn-link btn-block btn-sm" (click)="onEditAction(warehouse)">
           <clr-icon shape="pencil" class="is-solid"></clr-icon>
           Modifier
         </button>
 
-        <button class="btn btn-link btn-block btn-sm">
+        <button class="btn btn-link btn-block btn-sm" (click)="onDelete(warehouse.id)">
           <clr-icon shape="trash" class="is-solid"></clr-icon>
           Supprimer
         </button>
@@ -78,7 +82,7 @@
     <clr-dg-footer>
       <clr-dg-pagination #pagination [clrDgPageSize]="10">
         <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">
-          Materiels par page
+          Entrepot par page
         </clr-dg-page-size>
         {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
         {{ pagination.totalItems }} warehouses
@@ -86,5 +90,5 @@
     </clr-dg-footer>
   </clr-datagrid>
 
-  <div class="load"><clr-spinner [clrMedium]="true"></clr-spinner></div>
+  <div class="load" *ngIf="sniper" ><clr-spinner [clrMedium]="true"></clr-spinner></div>
 </div>

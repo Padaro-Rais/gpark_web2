@@ -26,7 +26,7 @@ export class WarehouseService {
     return this.httpClient.get(`${baseUrl}/warehouses/`+id ,config);
   }
 
-  update(id:any, data:any) : Observable<any>{
+  put(id:any, data:any) : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
     return this.httpClient.put(`${baseUrl}/warehouses/`+id,data,config);
   }
