@@ -1,69 +1,77 @@
 <div class="app-page-header clr-row">
-    <div class="clr-col-sm-12">
-      <div class="page-title">
-        <div class="card-header">
-          <h2>DOSSIERS</h2>
-        </div>
+  <div class="clr-col-sm-12">
+    <div class="page-title">
+      <div class="card-header">
+        <h2>DOSSIERS</h2>
       </div>
     </div>
   </div>
-  
-  <!-- Page Content -->
-  <div class="clr-col-12 backform">
-    <ng-container *ngIf="forms | async as form">
-      <app-simple-dynamic-form #formvalue [form]="form" (formEvent)="onSubmit($event)" (componentReadyStateChanges)="onComponentReadyChange()"></app-simple-dynamic-form>
-    </ng-container>
-  </div>
-  
-  <div class="clr-col-12">
-    <clr-datagrid>
-      <clr-dg-action-bar>
-        <button type="button" class="btn" (click)="getData()">
-          <clr-icon shape="sync" size="25"></clr-icon>
-          Actualiser
-        </button>
-  
-        <button  *ngIf="cancel" type="button" class="btn btn-danger" (click)="onCanselAction()">
-          <clr-icon shape="times" size="25"></clr-icon>
-          Annuler
-        </button>
-       
-      </clr-dg-action-bar>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Identifiant</clr-dg-column>
+</div>
 
-      <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
+<!-- Page Content -->
+<div class="clr-col-12 backform">
+  <ng-container *ngIf="forms | async as form">
+    <app-simple-dynamic-form
+      #formvalue
+      [form]="form"
+      (formEvent)="onSubmit($event)"
+      (componentReadyStateChanges)="onComponentReadyChange()"
+    ></app-simple-dynamic-form>
+  </ng-container>
+</div>
 
-      <clr-dg-column [clrDgField]="'group.label'" id="lib">
-        Nombre d'element
-      </clr-dg-column>
-      <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
-        Niveau de description
-      </clr-dg-column>
-      <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
-        Catégorie
-      </clr-dg-column>
-      <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-        Conteneur
-      </clr-dg-column>
-      <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-        Dossier parent
-      </clr-dg-column>
-  
-      <clr-dg-row
-        *clrDgItems="let folder of folders"
-        [clrDgItem]="folder"
-      >
-        <clr-dg-action-overflow>
-          <!-- <a (click)="updateData(material.id)">
+<div class="clr-col-12">
+  <clr-datagrid>
+    <clr-dg-action-bar>
+      <button type="button" class="btn" (click)="getData()">
+        <clr-icon shape="sync" size="25"></clr-icon>
+        Actualiser
+      </button>
+
+      <button  *ngIf="cancel" type="button" class="btn btn-danger" (click)="onCanselAction()">
+        <clr-icon shape="times" size="25"></clr-icon>
+        Annuler
+      </button>
+    </clr-dg-action-bar>
+    <clr-dg-column [clrDgField]="'label'" id="lib">Identifiant</clr-dg-column>
+
+    <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
+    <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
+
+    <clr-dg-column [clrDgField]="'group.label'" id="lib">
+      Nombre d'element
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
+      Niveau de description
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
+      Catégorie
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
+      Conteneur
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
+      Dossier parent
+    </clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let folder of folders" [clrDgItem]="folder">
+      <clr-dg-action-overflow>
+        <!-- <a (click)="updateData(material.id)">
             <button class="btn btn-primary" id="modifier">
               <clr-icon shape="pencil" id="clr" size="20"></clr-icon>
               Modifier
             </button>
           </a> -->
-          <button class="btn btn-link btn-block btn-sm" (click)="onEditAction(folder)">Modifier</button>
-        <button class="btn btn-link btn-block btn-sm" (click)="onDelete(folder.id)" >Supprimer</button>
-          <!-- <a routerLink="/app/material/calender/{{ material.id }}">
+        <button class="btn btn-link btn-block btn-sm" (click)="onEditAction(folder)">
+          <clr-icon shape="pencil" class="is-solid"></clr-icon>
+          Modifier
+        </button>
+
+        <button class="btn btn-link btn-block btn-sm" (click)="onDelete(folder.id)">
+          <clr-icon shape="trash" class="is-solid"></clr-icon>
+          Supprimer
+        </button>
+        <!-- <a routerLink="/app/material/calender/{{ material.id }}">
             <button class="action-item">
               <clr-icon shape="calendar" size="25"></clr-icon>
               Calendrier
@@ -84,78 +92,69 @@
             {{ material.details.current_status }}
           </span>
         </clr-dg-cell> -->
-      
-      </clr-dg-row>
-      <clr-dg-detail *clrIfDetail="let detail">
-        <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
-        <clr-dg-detail-body>
-          <div class="clr-row">
-            <div class="clr-col-sm-12 clr-col-md-6">
-              <hr />
-              <a routerLink="/app/add-Task">
-                <button class="btn btn-outlin btn-block">
-                  <clr-icon shape="tasks" size="30"></clr-icon>
-                  Nouvelle tâche
-                </button>
-              </a>
-              <a routerLink="/app/add-Task">
-                <button class="btn btn-outlin btn-block">
-                  Nouveau contrat
-                </button>
-              </a>
-              <a routerLink="/app/add-Task">
-                <button class="btn btn-outlin btn-block">Activer</button>
-              </a>
-              <a routerLink="/app/add-Task">
-                <button class="btn btn-outlin btn-block">Evaluer</button>
-              </a>
-            </div>
-            <div class="clr-col-sm-12 clr-col-md-6">
-              <div class="clr-row" id="img-card">
-                <div class="clr-col-lg-12 clr-col-12">
-                  <a href="javascript:void(0)" class="card clickable">
-                    <div class="card-img">
-                      <img src="{{ detail.img }}" />
-                    </div>
-                    <div class="card-block">
-                      <p class="card-text">...</p>
-                    </div>
-                  </a>
-                </div>
+    </clr-dg-row>
+    <clr-dg-detail *clrIfDetail="let detail">
+      <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
+      <clr-dg-detail-body>
+        <div class="clr-row">
+          <div class="clr-col-sm-12 clr-col-md-6">
+            <hr />
+            <a routerLink="/app/add-Task">
+              <button class="btn btn-outlin btn-block">
+                <clr-icon shape="tasks" size="30"></clr-icon>
+                Nouvelle tâche
+              </button>
+            </a>
+            <a routerLink="/app/add-Task">
+              <button class="btn btn-outlin btn-block">Nouveau contrat</button>
+            </a>
+            <a routerLink="/app/add-Task">
+              <button class="btn btn-outlin btn-block">Activer</button>
+            </a>
+            <a routerLink="/app/add-Task">
+              <button class="btn btn-outlin btn-block">Evaluer</button>
+            </a>
+          </div>
+          <div class="clr-col-sm-12 clr-col-md-6">
+            <div class="clr-row" id="img-card">
+              <div class="clr-col-lg-12 clr-col-12">
+                <a href="javascript:void(0)" class="card clickable">
+                  <div class="card-img">
+                    <img src="{{ detail.img }}" />
+                  </div>
+                  <div class="card-block">
+                    <p class="card-text">...</p>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
-          <h2>Materiel</h2>
-          <hr id="rupture" />
-          <table id="customers">
-            <tr>
-              <th>Nom</th>
-              <td>{{ detail.label }}</td>
-            </tr>
-            <tr>
-              <th>Description</th>
-              <td>{{ detail.description }}</td>
-            </tr>
-          </table>
-          
-          
-         
-          
-          
-         
-        </clr-dg-detail-body>
-      </clr-dg-detail>
-      <clr-dg-footer>
-        <clr-dg-pagination #pagination [clrDgPageSize]="10">
-          <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">
-            Materiels par page
-          </clr-dg-page-size>
-          {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
-          {{ pagination.totalItems }} folder
-        </clr-dg-pagination>
-      </clr-dg-footer>
-    </clr-datagrid>
+        </div>
+        <h2>Materiel</h2>
+        <hr id="rupture" />
+        <table id="customers">
+          <tr>
+            <th>Nom</th>
+            <td>{{ detail.label }}</td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>{{ detail.description }}</td>
+          </tr>
+        </table>
+      </clr-dg-detail-body>
+    </clr-dg-detail>
+    <clr-dg-footer>
+      <clr-dg-pagination #pagination [clrDgPageSize]="10">
+        <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">
+          Materiels par page
+        </clr-dg-page-size>
+        {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
+        {{ pagination.totalItems }} folder
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
 
-    <div class="load" *ngIf="sniper" ><clr-spinner [clrMedium]="true"></clr-spinner></div>
+  <div class="load" *ngIf="sniper" ><clr-spinner [clrMedium]="true"></clr-spinner></div>
 
-  </div>
+</div>

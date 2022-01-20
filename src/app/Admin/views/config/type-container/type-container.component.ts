@@ -9,6 +9,7 @@ import { SimpleDynamicFormComponent } from 'src/app/core/components/dynamic-inpu
 import { DynamicFormHelpers, FormsClient } from 'src/app/core/components/dynamic-inputs/core';
 import { TypeContainerService } from 'src/app/_services/api/config/type-container.service';
 import { WarehouseService } from 'src/app/_services/api/config/warehouse.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 @Component({
   selector: 'app-type-container',
   templateUrl: './type-container.component.html',
@@ -23,7 +24,18 @@ export class TypeContainerComponent implements OnInit {
   @ViewChild("formvalue") private formvalue!: SimpleDynamicFormComponent
   /////////////////////////
 
-  constructor(@Inject(FORM_CLIENT) private formclient: FormsClient, private toastr: ToastrService, private service: TypeContainerService, private router: Router, private confirm: ConfirmDialogService) { }
+  constructor(@Inject(FORM_CLIENT) private formclient: FormsClient, private toastr: ToastrService, private service: TypeContainerService,
+   private router: Router, private confirm: ConfirmDialogService, private tokenStorage : TokenStorageService) { }
+
+
+  user: any = this.tokenStorage.getUser()
+  init() {
+    setTimeout(() => {
+      console.log("Waite");
+      this.formvalue.setControlValue('auteur', this.user.details.lastname+" "+ this.user.details.firstname);
+    }, 1000);
+  }
+
 
   data: any;
   typeContenaires: any;
@@ -37,6 +49,8 @@ export class TypeContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData()
+    this.init()
+
   }
 
   getData() {

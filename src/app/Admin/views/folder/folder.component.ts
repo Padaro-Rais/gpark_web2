@@ -7,6 +7,7 @@ import { FORM_CLIENT } from 'src/app/core/components/dynamic-inputs/angular';
 import { SimpleDynamicFormComponent } from 'src/app/core/components/dynamic-inputs/angular/components/simple-dynamic-form/simple-form.component';
 import { DynamicFormHelpers, FormsClient } from 'src/app/core/components/dynamic-inputs/core';
 import { FolderService } from 'src/app/_services/api/folder.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { ConfirmDialogService } from '../../helpers/confirm-dialog/confirm-dialog.service';
 
 @Component({
@@ -23,8 +24,18 @@ export class FolderComponent implements OnInit {
     @ViewChild("formvalue") private formvalue!: SimpleDynamicFormComponent
     /////////////////////////
   
-    constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: FolderService, private router: Router, private confirm: ConfirmDialogService) { }
+    constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: FolderService, 
+    private router: Router, private confirm: ConfirmDialogService, private tokenStorage: TokenStorageService) { }
   
+
+    user: any = this.tokenStorage.getUser()
+    init() {
+      setTimeout(() => {
+        console.log("Waite");
+        this.formvalue.setControlValue('auteur', this.user.details.lastname+" "+ this.user.details.firstname);
+      }, 1000);
+    }
+
     data: any;
   folders: any;
   sniper: boolean = true;
@@ -37,6 +48,8 @@ export class FolderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData()
+    this.init()
+
   }
 
   getData() {

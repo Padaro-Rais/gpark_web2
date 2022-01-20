@@ -40,10 +40,27 @@
 
     <clr-dg-row *clrDgItems="let type of typeContenaires" [clrDgItem]="type">
       <clr-dg-action-overflow>
-        
-        <button class="btn btn-link btn-block btn-sm" (click)="onEditAction(type)">Modifier</button>
-        <button class="btn btn-link btn-block btn-sm" (click)="onDelete(type.id)" >Supprimer</button>
+        <!-- <a (click)="updateData(material.id)">
+            <button class="btn btn-primary" id="modifier">
+              <clr-icon shape="pencil" id="clr" size="20"></clr-icon>
+              Modifier
+            </button>
+          </a> -->
+        <button class="btn btn-link btn-block btn-sm" (click)="onEditAction(type)">
+          <clr-icon shape="pencil" class="is-solid"></clr-icon>
+          Modifier
+        </button>
 
+        <button class="btn btn-link btn-block btn-sm" (click)="onDelete(type.id)">
+          <clr-icon shape="trash" class="is-solid"></clr-icon>
+          Supprimer
+        </button>
+        <!-- <a routerLink="/app/material/calender/{{ material.id }}">
+            <button class="action-item">
+              <clr-icon shape="calendar" size="25"></clr-icon>
+              Calendrier
+            </button>
+          </a> -->
       </clr-dg-action-overflow>
       <clr-dg-cell>{{ type.ref }}</clr-dg-cell>
       <clr-dg-cell>{{ type.label }}</clr-dg-cell>

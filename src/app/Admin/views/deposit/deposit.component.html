@@ -22,50 +22,54 @@
 <div class="clr-col-12">
   <clr-datagrid>
     <clr-dg-action-bar>
-      <!-- <a routerLink="/app/add-Material">
-          <button type="button" class="btn">
-            <clr-icon shape="plus-circle" size="25"></clr-icon>
-            Nouveau
-          </button>
-        </a> -->
+      <button type="button" class="btn" (click)="getData()">
+        <clr-icon shape="sync" size="25"></clr-icon>
+        Actualiser
+      </button>
+
+      <button
+        *ngIf="cancel"
+        type="button"
+        class="btn btn-danger"
+        (click)="onCanselAction()"
+      >
+        <clr-icon shape="times" size="25"></clr-icon>
+        Annuler
+      </button>
     </clr-dg-action-bar>
-    <clr-dg-column [clrDgField]="'label'" id="lib">Libellé</clr-dg-column>
-    <clr-dg-column [clrDgField]="'group.label'" id="lib"> type </clr-dg-column>
+    <clr-dg-column [clrDgField]="'label'" id="lib">Identifiant</clr-dg-column>
     <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
-      Type
+      Référence
     </clr-dg-column>
     <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
-      Date d'acquisition
+      Libellé
     </clr-dg-column>
     <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-      Date d'expiration garantie
+      Date
     </clr-dg-column>
     <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
-      Emplacement
+      Description
     </clr-dg-column>
-    <clr-dg-column [clrDgField]="'details.current_status'" id="lib">
-      Etat
-    </clr-dg-column>
+
     <clr-dg-row *clrDgItems="let deposit of deposits" [clrDgItem]="deposit">
       <clr-dg-action-overflow>
-        <!-- <a (click)="updateData(material.id)">
-            <button class="btn btn-primary" id="modifier">
-              <clr-icon shape="pencil" id="clr" size="20"></clr-icon>
-              Modifier
-            </button>
-          </a> -->
-        <button class="btn btn-link btn-block btn-sm">Activer</button>
-        <button class="btn btn-link btn-block btn-sm">Evaluer</button>
-        <a routerLink="/app/material/update">
-          <button class="btn btn-link btn-block btn-sm">Modifier</button>
-        </a>
-        <a routerLink="/app/add-Task">
-          <button class="btn btn-link btn-block btn-sm">nouvelle tâche</button>
-        </a>
-        <a routerLink="/app/add-Contract">
-          <button class="btn btn-link btn-block btn-sm">nouveau contrat</button>
-        </a>
-        <button class="btn btn-link btn-block btn-sm">Archiver</button>
+        <button class="btn btn-link btn-block btn-sm">
+          <clr-icon shape="plus-circle" class="is-solid"></clr-icon>
+          Nouveau Fichier
+        </button>
+        <button
+          class="btn btn-link btn-block btn-sm"
+          (click)="onEditAction(deposit)"
+        >
+          <clr-icon shape="pencil" class="is-solid"></clr-icon> Modifier
+        </button>
+        <button
+          class="btn btn-link btn-block btn-sm"
+          (click)="onDelete(deposit.id)"
+        >
+          <clr-icon shape="trash" class="is-solid"></clr-icon> Supprimer
+        </button>
+
         <!-- <a routerLink="/app/material/calender/{{ material.id }}">
             <button class="action-item">
               <clr-icon shape="calendar" size="25"></clr-icon>
@@ -73,18 +77,16 @@
             </button>
           </a> -->
       </clr-dg-action-overflow>
+      <clr-dg-cell>N°{{ deposit.id }}</clr-dg-cell>
+      <clr-dg-cell>{{ deposit.ref }}</clr-dg-cell>
       <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
-      <clr-dg-cell>{{ deposit.label }}</clr-dg-cell>
+      <clr-dg-cell>{{ deposit.date }}</clr-dg-cell>
+      <clr-dg-cell>{{ deposit.desc }}</clr-dg-cell>
       <!-- <clr-dg-cell>
           <span class="label label-light-blue">
             {{ material.details.current_status }}
           </span>
         </clr-dg-cell> -->
-      <clr-dg-cell>...</clr-dg-cell>
-      <clr-dg-cell> . </clr-dg-cell>
     </clr-dg-row>
     <clr-dg-detail *clrIfDetail="let detail">
       <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
@@ -147,5 +149,7 @@
       </clr-dg-pagination>
     </clr-dg-footer>
   </clr-datagrid>
-  <div class="load"><clr-spinner [clrMedium]="true"></clr-spinner></div>
+  <div class="load" *ngIf="sniper">
+    <clr-spinner [clrMedium]="true"></clr-spinner>
+  </div>
 </div>

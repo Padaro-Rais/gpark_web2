@@ -10,6 +10,7 @@ import { DynamicFormHelpers, FormsClient } from 'src/app/core/components/dynamic
 import { CategorieFolderService } from 'src/app/_services/api/config/categorie-folder.service';
 import { GroupFileService } from 'src/app/_services/api/config/group-file.service';
 import { WarehouseService } from 'src/app/_services/api/config/warehouse.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-group-folder',
@@ -25,7 +26,17 @@ export class GroupFolderComponent implements OnInit {
   @ViewChild("formvalue") private formvalue!: SimpleDynamicFormComponent
   /////////////////////////
 
-  constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: GroupFileService, private router: Router, private confirm: ConfirmDialogService) { }
+  constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: GroupFileService, 
+  private router: Router, private confirm: ConfirmDialogService, private tokenStorage : TokenStorageService) { }
+
+
+  user: any = this.tokenStorage.getUser()
+  init() {
+    setTimeout(() => {
+      console.log("Waite");
+      this.formvalue.setControlValue('auteur', this.user.details.lastname+" "+ this.user.details.firstname);
+    }, 1000);
+  }
 
   data: any;
   groupes: any;
@@ -39,6 +50,8 @@ export class GroupFolderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData()
+    this.init()
+
   }
 
   getData() {

@@ -12,6 +12,6 @@ export class LogService {
 
   getData(){
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.get(`${baseUrl}/containers`,config);
+    return this.httpClient.get(`${baseUrl}/logs`,config);
   }
 }

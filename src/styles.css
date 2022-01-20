@@ -37,16 +37,11 @@ body h3:not([cds-text]) {
   font-size: 130%;
 }
 
-#bord {
-  color: white;
+#app-name {
   font-weight: bold;
-  font-size: 50;
-}
-
-#app {
-  color: white;
-  font-weight: bold;
-  font-size: 150%;
+  margin-top: 6px;
+  letter-spacing: 2px;
+  font-size: 125%;
 }
 
 .datagrid-table .datagrid-cell {
@@ -113,4 +108,20 @@ body h3:not([cds-text]) {
   padding: 15px;
   width: 120px;
   z-index: 3;
+}
+
+
+.clr-row .clr-control-container input,
+.clr-row .clr-control-container select,
+.clr-row .clr-control-container textarea {
+  width: 100%;
+  background-color: white;
+  max-width: 100%;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  border: 1px solid;
+  border-radius: 5px;
 }

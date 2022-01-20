@@ -11,7 +11,12 @@
 <!-- Page Content -->
 <div class="clr-col-sm-12 backform">
   <ng-container *ngIf="forms | async as form">
-    <app-simple-dynamic-form #formvalue [form]="form" (formEvent)="onSubmit($event)" (componentReadyStateChanges)="onComponentReadyChange()"></app-simple-dynamic-form>
+    <app-simple-dynamic-form
+      #formvalue
+      [form]="form"
+      (formEvent)="onSubmit($event)"
+      (componentReadyStateChanges)="onComponentReadyChange()"
+    ></app-simple-dynamic-form>
   </ng-container>
 </div>
 
@@ -23,11 +28,15 @@
         Actualiser
       </button>
 
-      <button  *ngIf="cancel" type="button" class="btn btn-danger" (click)="onCanselAction()">
+      <button
+        *ngIf="cancel"
+        type="button"
+        class="btn btn-danger"
+        (click)="onCanselAction()"
+      >
         <clr-icon shape="times" size="25"></clr-icon>
         Annuler
       </button>
-     
     </clr-dg-action-bar>
     <clr-dg-column [clrDgField]="'label'" id="lib">Identifiant</clr-dg-column>
 
@@ -60,8 +69,18 @@
             Modifier
           </button>
         </a> -->
-        <button class="btn btn-link btn-block btn-sm" (click)="onEditAction(container)">Modifier</button>
-        <button class="btn btn-link btn-block btn-sm" (click)="onDelete(container.id)" >Supprimer</button>
+        <button
+          class="btn btn-link btn-block btn-sm"
+          (click)="onEditAction(container)"
+        >
+          <clr-icon shape="pencil" class="is-solid"></clr-icon> Modifier
+        </button>
+        <button
+          class="btn btn-link btn-block btn-sm"
+          (click)="onDelete(container.id)"
+        >
+          <clr-icon shape="trash" class="is-solid"></clr-icon> Supprimer
+        </button>
         <!-- <a routerLink="/app/material/calender/{{ material.id }}">
           <button class="action-item">
             <clr-icon shape="calendar" size="25"></clr-icon>
@@ -74,7 +93,7 @@
       <clr-dg-cell>{{ container.ref }}</clr-dg-cell>
       <clr-dg-cell>{{ container.label }}</clr-dg-cell>
       <clr-dg-cell>{{ container.nb_case }}</clr-dg-cell>
-      <clr-dg-cell>{{ container.level_description}}</clr-dg-cell>
+      <clr-dg-cell>{{ container.level_description }}</clr-dg-cell>
       <clr-dg-cell>{{ container.id_type }}</clr-dg-cell>
       <!-- <clr-dg-cell>
         <span class="label label-light-blue">
@@ -82,9 +101,7 @@
         </span>
       </clr-dg-cell> -->
       <clr-dg-cell>{{ container.id_warehouse }}</clr-dg-cell>
-      <clr-dg-cell>
-        .
-      </clr-dg-cell>
+      <clr-dg-cell> . </clr-dg-cell>
     </clr-dg-row>
     <clr-dg-detail *clrIfDetail="let detail">
       <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
@@ -99,9 +116,7 @@
               </button>
             </a>
             <a routerLink="/app/add-Task">
-              <button class="btn btn-outlin btn-block">
-                Nouveau contrat
-              </button>
+              <button class="btn btn-outlin btn-block">Nouveau contrat</button>
             </a>
             <a routerLink="/app/add-Task">
               <button class="btn btn-outlin btn-block">Activer</button>
@@ -137,12 +152,6 @@
             <td>{{ detail.description }}</td>
           </tr>
         </table>
-        
-        
-       
-        
-        
-       
       </clr-dg-detail-body>
     </clr-dg-detail>
     <clr-dg-footer>
@@ -156,6 +165,7 @@
     </clr-dg-footer>
   </clr-datagrid>
 
-  <div class="load" *ngIf="sniper" ><clr-spinner [clrMedium]="true"></clr-spinner></div>
-
+  <div class="load" *ngIf="sniper">
+    <clr-spinner [clrMedium]="true"></clr-spinner>
+  </div>
 </div>
