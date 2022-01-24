@@ -2,7 +2,7 @@
     <div class="clr-col-sm-12">
       <div class="page-title">
         <div class="card-header">
-          <h2>AFFECTATIONS</h2>
+          <h2>MES AGENTS</h2>
         </div>
       </div>
     </div>
@@ -38,39 +38,55 @@
           Annuler
         </button>
       </clr-dg-action-bar>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Reference</clr-dg-column>
-
-      <clr-dg-column [clrDgField]="'label'" id="lib">Entrprise</clr-dg-column>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Parcking</clr-dg-column>
   
-    
+      <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
+      <clr-dg-column [clrDgField]="'label'" id="lib">Nom</clr-dg-column>
+  
+      <clr-dg-column [clrDgField]="'group.label'" id="lib">
+        Prenoms
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
+        Addresse
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
+        Telephone
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
+        Matricule Entreprise
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
+        Parking
+      </clr-dg-column>
   
       <clr-dg-row
-        *clrDgItems="let affectation of affectations"
-        [clrDgItem]="affectation"
+        *clrDgItems="let agent of agents"
+        [clrDgItem]="agent"
       >
         <clr-dg-action-overflow>
-          <!-- <button
+          <button
             class="btn btn-link btn-block btn-sm"
-            (click)="onEditAction(affectation)"
+            (click)="onEditAction(agent)"
           >
             <clr-icon shape="pencil" class="is-solid"></clr-icon>
             Modifier
-          </button> -->
+          </button>
   
           <button
             class="btn btn-link btn-block btn-sm"
-            (click)="onDelete(affectation.id)"
+            (click)="onDelete(agent.id)"
           >
             <clr-icon shape="trash" class="is-solid"></clr-icon>
-            Retirer
+            Supprimer
           </button>
         </clr-dg-action-overflow>
-        <clr-dg-cell>N°{{ affectation.id }}</clr-dg-cell>
-        <clr-dg-cell>{{ affectation.entreprise.name }}</clr-dg-cell>
+        <clr-dg-cell>N°{{ agent.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ agent.nom }}</clr-dg-cell>
   
-        <clr-dg-cell>{{ affectation.parking.nom }}</clr-dg-cell>
-
+        <clr-dg-cell>{{ agent.prenoms }}</clr-dg-cell>
+        <clr-dg-cell>{{ agent.adresse }}</clr-dg-cell>
+        <clr-dg-cell>{{ agent.telephone }}</clr-dg-cell>
+        <clr-dg-cell>{{ agent.matricule_ent }}</clr-dg-cell>
+        <clr-dg-cell>{{ agent.parking.nom }}</clr-dg-cell>
       </clr-dg-row>
       <clr-dg-detail *clrIfDetail="let detail">
         <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
@@ -129,7 +145,7 @@
             Materiels par page
           </clr-dg-page-size>
           {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
-          {{ pagination.totalItems }} affectation
+          {{ pagination.totalItems }} entreprise
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>

@@ -1,33 +1,29 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
-
-
+import { ConfirmDialogService } from 'src/app/Admin/helpers/confirm-dialog/confirm-dialog.service';
 import { FORM_CLIENT } from 'src/app/core/components/dynamic-inputs/angular';
 import { SimpleDynamicFormComponent } from 'src/app/core/components/dynamic-inputs/angular/components/simple-dynamic-form/simple-form.component';
 import { DynamicFormHelpers, FormsClient } from 'src/app/core/components/dynamic-inputs/core';
-import { AffectationService } from 'src/app/_services/api/affectation.service';
-import { EntrepriseService } from 'src/app/_services/api/entreprise.service';
+import { ParkingService } from 'src/app/_services/Clients/parking.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
-import { ConfirmDialogService } from '../../helpers/confirm-dialog/confirm-dialog.service';
 
 @Component({
-  selector: 'app-afectation',
-  templateUrl: './afectation.component.html',
-  styleUrls: ['./afectation.component.css']
+  selector: 'app-mes-parking',
+  templateUrl: './mes-parking.component.html',
+  styleUrls: ['./mes-parking.component.css']
 })
-export class AfectationComponent implements OnInit {
+export class MesParkingComponent implements OnInit {
 
-////////////////////////
-forms = this.formclient.get(22).pipe(
+  ////////////////////////
+ forms = this.formclient.get(20).pipe(
   map(data => DynamicFormHelpers.buildFormSync(data))
 );
 @ViewChild("formvalue") private formvalue!: SimpleDynamicFormComponent
 /////////////////////////
 
-constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: AffectationService, 
+constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: ParkingService, 
 private router: Router, private confirm: ConfirmDialogService, private tokenStorage: TokenStorageService) { }
 
 
@@ -40,7 +36,7 @@ init() {
 }
 
 data: any;
-affectations: any;
+parkings: any;
 sniper: boolean = true;
 
 cancel: boolean = false;
@@ -60,8 +56,8 @@ this.sniper = true
 this.service.get().subscribe(
   (res) => {
     this.data = res;
-    this.affectations = this.data.data;
-    console.log(this.affectations);
+    this.parkings = this.data.data;
+    console.log(this.parkings);
     this.sniper = false
   },
 
@@ -125,40 +121,8 @@ this.service.get().subscribe(
 
 
 onSubmit(body: { [prop: string]: any }) {
-console.log(body)
-this.sniper = true
 
-if (this.selectedValue) {
-  this.create(body);
-
-} else {
-  this.create(body);
 }
-}
-
-private create(value: { [index: string]: any }) {
-this.service.post(value).subscribe(
-  (res) => {
-    this.toastr.success('sauvegarde réussie !');
-    this.formvalue.reset()
-    this.getData()
-    this.sniper = false
-    this.init()
-
-  },
-
-  (err) => {
-    this.toastr.error(err.error.message);
-    if (err.error.message === "Unauthorized") {
-      this.router.navigateByUrl('/auth/login')
-    }
-    this.init()
-
-  }
-);
-}
-
-
 
 
 
@@ -166,8 +130,11 @@ this.service.post(value).subscribe(
 onEditAction(value: { [index: string]: any }) {
 this.selectedValue = value;
 if (this.formvalue) {
-  this.formvalue.setControlValue('entriprise_id', value.entreprise.id);
-  this.formvalue.setControlValue('parking_id', value.parking.id);
+  this.formvalue.setControlValue('nom', value.nom);
+  this.formvalue.setControlValue('adresse', value.adresse);
+  this.formvalue.setControlValue('quartier', value.quartier);
+  this.formvalue.setControlValue('ville', value.ville);
+
 
 
 
@@ -185,41 +152,13 @@ this.id = ""
 this.cancel = false
 }
 
-onDelete(_id: any) {
 
 
-this.confirm
-  .confirmDialog(
-    'Veuillez cliquer sur OK pour confirmer'
-  )
-  .afterClosed()
-  .subscribe((res) => {
-    console.log(res);
-    if (res) {
-      this.sniper = true
 
-      this.service.delete(_id).subscribe(
-        (res) => {
-          this.toastr.success('suppression réussi !');
-          this.getData()
-          this.sniper = false
-        },
-
-        (err) => {
-          this.toastr.error(err.error.message);
-          if (err.error.message === "Unauthorized") {
-            this.router.navigateByUrl('/auth/login')
-          }
-          this.sniper = false
-        }
-      );
-    }
-  });
-
-}
 
 onComponentReadyChange() {
 console.log(this.formvalue?.formgroup)
 }
+
 
 }

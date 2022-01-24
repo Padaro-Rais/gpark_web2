@@ -25,6 +25,10 @@ import { ClientComponent } from './views/client/client.component';
 import { AfectationComponent } from './views/afectation/afectation.component';
 import { DynamicFormControlModule } from '../core/components/dynamic-inputs/angular';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TransactionComponent } from './views/transaction/transaction.component';
+import { MesParkingComponent } from './views/Clients/mes-parking/mes-parking.component';
+import { MesAgentsComponent } from './views/Clients/mes-agents/mes-agents.component';
+import { MesTransactionComponent } from './views/Clients/mes-transaction/mes-transaction.component';
 
 export const AdminRoute: Routes = [
   {
@@ -38,6 +42,14 @@ export const AdminRoute: Routes = [
       { path: 'parkings', component: ParkingComponent },
       { path: 'affectations', component: AfectationComponent },
       { path: 'clients', component: ClientComponent },
+      { path: 'transactions', component: TransactionComponent },
+
+
+      { path: 'mes-parkings', component: MesParkingComponent },
+      { path: 'mes-agents', component: MesAgentsComponent },
+      { path: 'mes-transactions', component: MesTransactionComponent },
+
+
 
 
     ],
@@ -58,6 +70,10 @@ export const AdminRoute: Routes = [
     ParkingComponent,
     ClientComponent,
     AfectationComponent,
+    TransactionComponent,
+    MesParkingComponent,
+    MesAgentsComponent,
+    MesTransactionComponent,
   ],
   imports: [
     CommonModule,

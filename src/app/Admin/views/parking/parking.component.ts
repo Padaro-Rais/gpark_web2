@@ -189,13 +189,12 @@ this.service.put(this.id, value).subscribe(
 onEditAction(value: { [index: string]: any }) {
 this.selectedValue = value;
 if (this.formvalue) {
-  this.formvalue.setControlValue('ref', value.ref);
-  this.formvalue.setControlValue('label', value.label);
-  this.formvalue.setControlValue('nb_case', value.nb_case);
-  this.formvalue.setControlValue('level_description', value.level_description);
-  this.formvalue.setControlValue('id_category', value.id_category);
-  this.formvalue.setControlValue('id_container', value.id_container);
-  this.formvalue.setControlValue('id_parent', value.id_parent);
+  this.formvalue.setControlValue('nom', value.nom);
+  this.formvalue.setControlValue('adresse', value.adresse);
+  this.formvalue.setControlValue('quartier', value.quartier);
+  this.formvalue.setControlValue('ville', value.ville);
+
+
 
 
 

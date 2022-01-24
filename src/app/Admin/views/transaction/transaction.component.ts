@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { TransactionService } from 'src/app/_services/api/transaction.service';
+
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 
@@ -10,22 +11,23 @@ import { DynamicFormHelpers, FormsClient } from 'src/app/core/components/dynamic
 import { EntrepriseService } from 'src/app/_services/api/entreprise.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { ConfirmDialogService } from '../../helpers/confirm-dialog/confirm-dialog.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-entreprise',
-  templateUrl: './entreprise.component.html',
-  styleUrls: ['./entreprise.component.css']
+  selector: 'app-transaction',
+  templateUrl: './transaction.component.html',
+  styleUrls: ['./transaction.component.css']
 })
-export class EntrepriseComponent implements OnInit {
+export class TransactionComponent implements OnInit {
 
  ////////////////////////
- forms = this.formclient.get(19).pipe(
+forms = this.formclient.get(22).pipe(
   map(data => DynamicFormHelpers.buildFormSync(data))
 );
 @ViewChild("formvalue") private formvalue!: SimpleDynamicFormComponent
 /////////////////////////
 
-constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: EntrepriseService, 
+constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: TransactionService, 
 private router: Router, private confirm: ConfirmDialogService, private tokenStorage: TokenStorageService) { }
 
 
@@ -38,7 +40,7 @@ init() {
 }
 
 data: any;
-entreprises: any;
+transactions: any;
 sniper: boolean = true;
 
 cancel: boolean = false;
@@ -58,8 +60,8 @@ this.sniper = true
 this.service.get().subscribe(
   (res) => {
     this.data = res;
-    this.entreprises = this.data.data;
-    console.log(this.entreprises);
+    this.transactions = this.data.data;
+    console.log(this.transactions);
     this.sniper = false
   },
 
@@ -127,7 +129,6 @@ console.log(body)
 this.sniper = true
 
 if (this.selectedValue) {
-  this.update(body);
 
 } else {
   this.create(body);
@@ -156,42 +157,21 @@ this.service.post(value).subscribe(
 );
 }
 
-private update(value: { [index: string]: any }) {
-console.log(value)
-this.service.put(this.id, value).subscribe(
-  (res) => {
-    this.toastr.success('modification réussie !');
-    this.formvalue.reset()
-    this.getData()
-    this.sniper = false
-    this.cancel = false
-    this.selectedValue = ""
-    this.id = ""
-    this.init()
 
-  },
 
-  (err) => {
-    this.toastr.error(err.error.message);
-    if (err.error.message === "Unauthorized") {
-      this.router.navigateByUrl('/auth/login')
-    }
-    this.sniper = false
-    this.init()
-
-  }
-);
-}
 
 onEditAction(value: { [index: string]: any }) {
 this.selectedValue = value;
 if (this.formvalue) {
-  this.formvalue.setControlValue('matricule', value.Entreprise.matricule);
-  this.formvalue.setControlValue('name', value.Entreprise.name);
-  this.formvalue.setControlValue('adresse', value.Entreprise.adresse);
-  this.formvalue.setControlValue('telephone', value.Entreprise.telephone);
-  this.formvalue.setControlValue('username', value.username);
-  this.formvalue.setControlValue('email', value.email);
+  this.formvalue.setControlValue('ref', value.ref);
+  this.formvalue.setControlValue('label', value.label);
+  this.formvalue.setControlValue('nb_case', value.nb_case);
+  this.formvalue.setControlValue('level_description', value.level_description);
+  this.formvalue.setControlValue('id_category', value.id_category);
+  this.formvalue.setControlValue('id_container', value.id_container);
+  this.formvalue.setControlValue('id_parent', value.id_parent);
+
+
 
   console.log(value.id)
   this.id = value.id
@@ -236,7 +216,6 @@ this.confirm
       );
     }
   });
-
 
 }
 

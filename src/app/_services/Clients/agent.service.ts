@@ -7,38 +7,40 @@ import { TokenStorageService } from '../token-storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionService {
+export class AgentService {
 
   constructor(private httpClient: HttpClient,private tokenStorage: TokenStorageService) { }
 
-  getData(){
+
+  user: any = this.tokenStorage.getUser()
+  // post(data:any) : Observable<any>{
+  //   const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
+  //   return this.httpClient.post(`${baseUrl}/parkings`,data,config);
+  // }
+
+  get() : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.get(`${baseUrl}/transactions`,config);
+    return this.httpClient.get(`${baseUrl}/clientagent/${this.user.Entreprise.id}`,config);
   }
 
   post(data:any) : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.post(`${baseUrl}/transactions`,data,config);
-  }
-
-  get() : Observable<any>{
-    const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.get(`${baseUrl}/transactions`,config);
+    return this.httpClient.post(`${baseUrl}/agents`,data,config);
   }
 
   getById(id:any) : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.get(`${baseUrl}/transactions/`+id ,config);
+    return this.httpClient.get(`${baseUrl}/agents/`+id ,config);
   }
 
   put(id:any, data:any) : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.put(`${baseUrl}/transactions/`+id,data,config);
+    return this.httpClient.put(`${baseUrl}/agents/`+id,data,config);
   }
 
 
   delete(id:any) : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.delete(`${baseUrl}/transactions/`+id ,config);
+    return this.httpClient.delete(`${baseUrl}/agents/`+id ,config);
   }
 }

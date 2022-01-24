@@ -2,23 +2,14 @@
     <div class="clr-col-sm-12">
       <div class="page-title">
         <div class="card-header">
-          <h2>AFFECTATIONS</h2>
+          <h2>MES TRANSACTIONS</h2>
         </div>
       </div>
     </div>
   </div>
   
   <!-- Page Content -->
-  <div class="clr-col-12 backform">
-    <ng-container *ngIf="forms | async as form">
-      <app-simple-dynamic-form
-        #formvalue
-        [form]="form"
-        (formEvent)="onSubmit($event)"
-        (componentReadyStateChanges)="onComponentReadyChange()"
-      ></app-simple-dynamic-form>
-    </ng-container>
-  </div>
+
   
   <div class="clr-col-12">
     <clr-datagrid>
@@ -38,39 +29,48 @@
           Annuler
         </button>
       </clr-dg-action-bar>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Reference</clr-dg-column>
-
-      <clr-dg-column [clrDgField]="'label'" id="lib">Entrprise</clr-dg-column>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Parcking</clr-dg-column>
   
-    
+      <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
+      <clr-dg-column [clrDgField]="'label'" id="lib">Code</clr-dg-column>
+  
+      <clr-dg-column [clrDgField]="'group.label'" id="lib">
+        Prix
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
+        N° Plaque
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
+       date
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
+        Agent
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'guarantee.expired'" id="lib">
+        Parking
+      </clr-dg-column>
   
       <clr-dg-row
-        *clrDgItems="let affectation of affectations"
-        [clrDgItem]="affectation"
+        *clrDgItems="let transaction of transactions"
+        [clrDgItem]="transaction"
       >
         <clr-dg-action-overflow>
-          <!-- <button
+          <button
             class="btn btn-link btn-block btn-sm"
-            (click)="onEditAction(affectation)"
+            (click)="onEditAction(transaction)"
           >
             <clr-icon shape="pencil" class="is-solid"></clr-icon>
             Modifier
-          </button> -->
-  
-          <button
-            class="btn btn-link btn-block btn-sm"
-            (click)="onDelete(affectation.id)"
-          >
-            <clr-icon shape="trash" class="is-solid"></clr-icon>
-            Retirer
           </button>
-        </clr-dg-action-overflow>
-        <clr-dg-cell>N°{{ affectation.id }}</clr-dg-cell>
-        <clr-dg-cell>{{ affectation.entreprise.name }}</clr-dg-cell>
   
-        <clr-dg-cell>{{ affectation.parking.nom }}</clr-dg-cell>
-
+          
+        </clr-dg-action-overflow>
+        <clr-dg-cell>N°{{ transaction.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ transaction.code }}</clr-dg-cell>
+        <clr-dg-cell>{{ transaction.client.prix }}</clr-dg-cell>
+        <clr-dg-cell>{{ transaction.num_plaque }}</clr-dg-cell>
+        <clr-dg-cell>{{ transaction.date }}</clr-dg-cell>
+        <clr-dg-cell>{{ transaction.agent.nom }} {{ transaction.agent.prenoms }}</clr-dg-cell> 
+        <clr-dg-cell>{{ transaction.agent.parking.nom }}</clr-dg-cell> 
       </clr-dg-row>
       <clr-dg-detail *clrIfDetail="let detail">
         <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
@@ -129,7 +129,7 @@
             Materiels par page
           </clr-dg-page-size>
           {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
-          {{ pagination.totalItems }} affectation
+          {{ pagination.totalItems }} transaction
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>

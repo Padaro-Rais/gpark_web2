@@ -2,23 +2,13 @@
     <div class="clr-col-sm-12">
       <div class="page-title">
         <div class="card-header">
-          <h2>PARKINGS</h2>
+          <h2>MES PARKINGS</h2>
         </div>
       </div>
     </div>
   </div>
   
-  <!-- Page Content -->
-  <div class="clr-col-12 backform">
-    <ng-container *ngIf="forms | async as form">
-      <app-simple-dynamic-form
-        #formvalue
-        [form]="form"
-        (formEvent)="onSubmit($event)"
-        (componentReadyStateChanges)="onComponentReadyChange()"
-      ></app-simple-dynamic-form>
-    </ng-container>
-  </div>
+
   
   <div class="clr-col-12">
     <clr-datagrid>
@@ -65,13 +55,7 @@
             Modifier
           </button>
   
-          <button
-            class="btn btn-link btn-block btn-sm"
-            (click)="onDelete(parking.id)"
-          >
-            <clr-icon shape="trash" class="is-solid"></clr-icon>
-            Supprimer
-          </button>
+      
         </clr-dg-action-overflow>
         <clr-dg-cell>N°{{ parking.id }}</clr-dg-cell>
         <clr-dg-cell>{{ parking.nom }}</clr-dg-cell>
