@@ -40,6 +40,11 @@ import { GroupFolderComponent } from './views/config/group-folder/group-folder.c
 import { ProfileComponent } from './views/config/profile/profile.component';
 import { DepositComponent } from './views/deposit/deposit.component';
 import { ActionpipePipe } from './Pipes/actionpipe.pipe';
+import { EntrepriseComponent } from './views/entreprise/entreprise.component';
+import { ParkingComponent } from './views/parking/parking.component';
+import { ClientComponent } from './views/client/client.component';
+import { AfectationComponent } from './views/afectation/afectation.component';
+import { TransactionComponent } from './views/transaction/transaction.component';
 
 export const AdminRoute: Routes = [
   {
@@ -50,35 +55,11 @@ export const AdminRoute: Routes = [
       { path: 'dashbord', component: DashbordComponent },
       { path: 'testform', component: TestFormComponent },
 
-      { path: 'deposits', component: DepositComponent },
-
-
-      { path: 'container', component: ContainerComponent },
-      { path: 'add-container', component: AddContainerComponent },
-      { path: 'Update-container/:id', component: UpdateContainerComponent },
-      { path: 'detail-container/:id', component: DetailContainerComponent },
-
-      { path: 'folder', component: FolderComponent },
-      { path: 'add-folder', component: AddFolderComponent },
-      { path: 'update-folder/:id', component: UpdateFolderComponent },
-
-      { path: 'file', component: FileComponent },
-      { path: 'add-file', component: AddFileComponent },
-      { path: 'update-file/:id', component: UpdateFileComponent },
-
-      { path: 'users', component: UsersComponent },
-      { path: 'add-users', component: AddUsersComponent },
-      { path: 'update-users/:id', component: UpdateUsersComponent },
-
-      { path: 'logs', component: LogsComponent },
-      { path: 'warehouse', component: WarehouseComponent },
-      { path: 'type-container', component: TypeContainerComponent },
-
-      { path: 'category-folder', component: CategoryFolderComponent },
-      { path: 'group-folder', component: GroupFolderComponent },
-
-      { path: 'profile', component: ProfileComponent },
-
+      { path: 'entreprises', component: EntrepriseComponent },
+      { path: 'parkings', component: ParkingComponent },
+      { path: 'affectations', component: AfectationComponent },
+      { path: 'clients', component: ClientComponent },
+      { path: 'transactions', component: TransactionComponent },
 
 
     ],
@@ -115,6 +96,11 @@ export const AdminRoute: Routes = [
     ProfileComponent,
     DepositComponent,
     ActionpipePipe,
+    EntrepriseComponent,
+    ParkingComponent,
+    ClientComponent,
+    AfectationComponent,
+    TransactionComponent,
   ],
   imports: [
     CommonModule,
