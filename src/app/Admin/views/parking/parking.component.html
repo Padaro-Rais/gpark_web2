@@ -1,1 +1,104 @@
-<p>parking works!</p>
+<div class="app-page-header clr-row">
+    <div class="clr-col-sm-12">
+      <div class="page-title">
+        <div class="card-header">
+          <h2>DOSSIERS</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page Content -->
+  <div class="clr-col-12 backform">
+    <ng-container *ngIf="forms | async as form">
+      <app-simple-dynamic-form
+        #formvalue
+        [form]="form"
+        (formEvent)="onSubmit($event)"
+        (componentReadyStateChanges)="onComponentReadyChange()"
+      ></app-simple-dynamic-form>
+    </ng-container>
+  </div>
+  
+  <div class="clr-col-12">
+    <clr-datagrid>
+      <clr-dg-action-bar>
+        <button type="button" class="btn" (click)="getData()">
+          <clr-icon shape="sync" size="25"></clr-icon>
+          Actualiser
+        </button>
+  
+        <button
+          *ngIf="cancel"
+          type="button"
+          class="btn btn-danger"
+          (click)="onCanselAction()"
+        >
+          <clr-icon shape="times" size="25"></clr-icon>
+          Annuler
+        </button>
+      </clr-dg-action-bar>
+  
+      <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
+      <clr-dg-column [clrDgField]="'label'" id="lib">Nom</clr-dg-column>
+  
+      <clr-dg-column [clrDgField]="'group.label'" id="lib">
+        Addresse
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
+        Quartier
+      </clr-dg-column>
+      <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
+        ville
+      </clr-dg-column>
+   
+      <clr-dg-row
+        *clrDgItems="let parking of parkings"
+        [clrDgItem]="parking"
+      >
+        <clr-dg-action-overflow>
+          <button
+            class="btn btn-link btn-block btn-sm"
+            (click)="onEditAction(parking)"
+          >
+            <clr-icon shape="pencil" class="is-solid"></clr-icon>
+            Modifier
+          </button>
+  
+          <button
+            class="btn btn-link btn-block btn-sm"
+            (click)="onDelete(parking.id)"
+          >
+            <clr-icon shape="trash" class="is-solid"></clr-icon>
+            Supprimer
+          </button>
+        </clr-dg-action-overflow>
+        <clr-dg-cell>N°{{ parking.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ parking.nom }}</clr-dg-cell>
+  
+        <clr-dg-cell>{{ parking.adresse }}</clr-dg-cell>
+        <clr-dg-cell>{{ parking.quartier }}</clr-dg-cell>
+        <clr-dg-cell>{{ parking.ville }}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
+        <clr-dg-detail-body>
+          
+        </clr-dg-detail-body>
+      </clr-dg-detail>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+          <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">
+            Materiels par page
+          </clr-dg-page-size>
+          {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
+          {{ pagination.totalItems }} parking
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+  
+    <div class="load" *ngIf="sniper">
+      <clr-spinner [clrMedium]="true"></clr-spinner>
+    </div>
+  </div>
+  
