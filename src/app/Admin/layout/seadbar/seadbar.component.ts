@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-seadbar',
@@ -6,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styles: [],
 })
 export class SeadbarComponent implements OnInit {
-  constructor() {}
+  constructor( private tokenStorage: TokenStorageService) { }
 
   permission: boolean = false;
 
+  client: boolean = true;
+
+
   ngOnInit(): void {
-    if (localStorage.getItem('permission') == '1') {
+    if (this.tokenStorage.getUser().Entreprise.role === '1') {
       this.permission = true;
+      this.client = false;
     }
+
+   console.log('role'+this.tokenStorage.getUser().Entreprise.role)
   }
 }

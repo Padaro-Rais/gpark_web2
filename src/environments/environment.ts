@@ -5,5 +5,5 @@ export const environment = {
 
 // export const baseUrl = `https://api.gmao.lik.tg/public/api`
 
-export const baseUrlLog = `http://127.0.0.1:8000/api/v1/auth/`
-export const baseUrl = `http://127.0.0.1:8000/api/v1`
+export const baseUrlLog = `https://api.park.pozyfit.com/Gparking_api/public/api/v1/auth/`
+export const baseUrl = `https://api.park.pozyfit.com/Gparking_api/public/api/v1`

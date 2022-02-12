@@ -127,7 +127,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DynamicFormControlModule.forRoot({
       serverConfigs: {
         host: '',
-        controlBindingsPath: 'api/v1/control-bindings',
       },
       formsAssets : 'assets/resources/forms.json'
     }),

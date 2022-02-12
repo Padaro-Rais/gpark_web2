@@ -18,7 +18,18 @@ export class ParkingService {
 
   get() : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.get(`${baseUrl}/clientparking/${this.user.Entreprise.id}`,config);
+    return this.httpClient.get(`${baseUrl}/clientparking/${this.tokenStorage.getUser().Entreprise.id}`,config);
+  }
+
+
+  getoption() : Observable<any>{
+    const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
+    return this.httpClient.get(`${baseUrl}/option/parking/${this.tokenStorage.getUser().Entreprise.id}`,config);
+  }
+
+  getent() : Observable<any>{
+    const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
+    return this.httpClient.get(`${baseUrl}/option/entreprise`,config);
   }
 
   // getById(id:any) : Observable<any>{

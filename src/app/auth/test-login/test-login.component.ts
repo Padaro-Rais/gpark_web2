@@ -48,6 +48,8 @@ export class TestLoginComponent implements OnInit {
   }
 
   LoginProcess() {
+    this.hideBtn = false
+    this.showBtn = true
     this.authService
       .login(this.formGroup.value.email, this.formGroup.value.password)
       .subscribe(
@@ -64,7 +66,10 @@ export class TestLoginComponent implements OnInit {
         },
         (err) => {
           this.errorMessage = err.error.message
+          alert("Email ou mot de passe Incorrect")
           this.isLoginFailed = true
+          this.hideBtn = true
+          this.showBtn = false
         },
       )
   }

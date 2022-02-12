@@ -20,7 +20,7 @@ export class AgentService {
 
   get() : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.get(`${baseUrl}/clientagent/${this.user.Entreprise.id}`,config);
+    return this.httpClient.get(`${baseUrl}/clientagent/${this.tokenStorage.getUser().Entreprise.id}`,config);
   }
 
   post(data:any) : Observable<any>{

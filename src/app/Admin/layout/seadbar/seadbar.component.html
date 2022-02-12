@@ -7,6 +7,7 @@
       <span class="sib_items">Statistiques</span>
     </a> -->
 
+    <ng-container *ngIf="client">
     <a
       class="nav-link ng-star-inserted"
       clrVerticalNavLink
@@ -31,7 +32,7 @@
     <clr-icon
       clrverticalnavicon
       role="none"
-      shape="install"
+      shape="bars"
       size="20"
     ></clr-icon>
     <span class="nav-text"> MES PARKINKS</span>
@@ -46,7 +47,7 @@
       <clr-icon
         clrverticalnavicon
         role="none"
-        shape="container"
+        shape="assign-user"
         size="20"
       ></clr-icon>
       <span class="nav-text"> MES AGENTS</span>
@@ -61,14 +62,14 @@
       <clr-icon
         clrverticalnavicon
         role="none"
-        shape="directory"
+        shape="file-group"
         size="20"
       ></clr-icon>
       <span class="nav-text">MES TRASACTIONS</span>
     </a>
+  </ng-container>
 
-
-    <clr-vertical-nav-group routerLinkActive="active">
+    <clr-vertical-nav-group routerLinkActive="active" *ngIf="permission">
       <clr-icon
         shape="file-settings"
         size="20"
@@ -84,14 +85,14 @@
           routerLinkActive="active"
         >
           <clr-icon shape="container-volume" size="15"></clr-icon>
-          ENTREPRISES
+          ENTREPRISES/UTILISATEURS
         </a>
         <a
           clrVerticalNavLink
           routerLink="/app/parkings"
           routerLinkActive="active"
         >
-          <clr-icon shape="container" size="15"></clr-icon>
+          <clr-icon shape="drag-handle-corner" size="15"></clr-icon>
           PARKINGS
         </a>
         <a
@@ -99,7 +100,7 @@
           routerLink="/app/affectations"
           routerLinkActive="active"
         >
-          <clr-icon shape="folder" class="has-badge-info" size="15"></clr-icon>
+          <clr-icon shape="assign-user" class="has-badge-info" size="15"></clr-icon>
           AFFECTAIONS
         </a>
 
@@ -108,7 +109,7 @@
           routerLink="/app/clients"
           routerLinkActive="active"
         >
-          <clr-icon shape="folder" class="has-badge-info" size="15"></clr-icon>
+          <clr-icon shape="copy-to-clipboard" class="has-badge-info" size="15"></clr-icon>
           CLIENTS
         </a>
 
@@ -117,7 +118,7 @@
         routerLink="/app/transactions"
         routerLinkActive="active"
       >
-        <clr-icon shape="folder" class="has-badge-info" size="15"></clr-icon>
+        <clr-icon shape="success-standard" class="has-badge-info" size="15"></clr-icon>
         TRANSACTIONS
       </a>
        

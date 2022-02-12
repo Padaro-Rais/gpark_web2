@@ -29,16 +29,16 @@
         </button>
       </clr-dg-action-bar>
   
-      <clr-dg-column [clrDgField]="'label'" id="lib">Référence</clr-dg-column>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Nom</clr-dg-column>
+      <clr-dg-column  id="lib">Référence</clr-dg-column>
+      <clr-dg-column [clrDgField]="'parking.nom'" id="lib">Nom</clr-dg-column>
   
-      <clr-dg-column [clrDgField]="'group.label'" id="lib">
+      <clr-dg-column [clrDgField]="'parking.adresse'" id="lib">
         Addresse
       </clr-dg-column>
-      <clr-dg-column [clrDgField]="'category.label_cat'" id="lib">
+      <clr-dg-column [clrDgField]="'parking.quartier'" id="lib">
         Quartier
       </clr-dg-column>
-      <clr-dg-column [clrDgField]="'details.supplied_at'" id="lib">
+      <clr-dg-column [clrDgField]="'parking.ville'" id="lib">
         ville
       </clr-dg-column>
    
@@ -57,26 +57,26 @@
   
       
         </clr-dg-action-overflow>
-        <clr-dg-cell>N°{{ parking.id }}</clr-dg-cell>
-        <clr-dg-cell>{{ parking.nom }}</clr-dg-cell>
+        <clr-dg-cell>N°{{ parking.parking.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ parking.parking.nom }}</clr-dg-cell>
   
-        <clr-dg-cell>{{ parking.adresse }}</clr-dg-cell>
-        <clr-dg-cell>{{ parking.quartier }}</clr-dg-cell>
-        <clr-dg-cell>{{ parking.ville }}</clr-dg-cell>
+        <clr-dg-cell>{{ parking.parking.adresse }}</clr-dg-cell>
+        <clr-dg-cell>{{ parking.parking.quartier }}</clr-dg-cell>
+        <clr-dg-cell>{{ parking.parking.ville }}</clr-dg-cell>
       </clr-dg-row>
       <clr-dg-detail *clrIfDetail="let detail">
         <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
         <clr-dg-detail-body>
-          
+          <p>Aucun Detail</p>
         </clr-dg-detail-body>
       </clr-dg-detail>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [clrDgPageSize]="10">
           <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">
-            Materiels par page
+           
           </clr-dg-page-size>
           {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
-          {{ pagination.totalItems }} parking
+          {{ pagination.totalItems }} 
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>

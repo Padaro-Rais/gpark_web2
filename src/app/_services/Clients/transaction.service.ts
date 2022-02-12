@@ -19,6 +19,6 @@ export class TransactionService {
 
   get() : Observable<any>{
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
-    return this.httpClient.get(`${baseUrl}/clienttransaction/${this.user.Entreprise.id}`,config);
+    return this.httpClient.get(`${baseUrl}/clienttransaction/${this.tokenStorage.getUser().Entreprise.id}`,config);
   }
 }

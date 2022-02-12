@@ -5,8 +5,9 @@ import { map } from 'rxjs/operators';
 import { ConfirmDialogService } from 'src/app/Admin/helpers/confirm-dialog/confirm-dialog.service';
 import { FORM_CLIENT } from 'src/app/core/components/dynamic-inputs/angular';
 import { SimpleDynamicFormComponent } from 'src/app/core/components/dynamic-inputs/angular/components/simple-dynamic-form/simple-form.component';
-import { DynamicFormHelpers, FormsClient } from 'src/app/core/components/dynamic-inputs/core';
+import { DynamicFormHelpers, FormsClient, IHTMLFormControl, ISelectItem, SelectInput } from 'src/app/core/components/dynamic-inputs/core';
 import { AgentService } from 'src/app/_services/Clients/agent.service';
+import { ParkingService } from 'src/app/_services/Clients/parking.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class MesAgentsComponent implements OnInit {
   /////////////////////////
   
   constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: AgentService, 
-  private router: Router, private confirm: ConfirmDialogService, private tokenStorage: TokenStorageService) { }
+  private router: Router, private confirm: ConfirmDialogService, private tokenStorage: TokenStorageService , private pservice: ParkingService ) { }
   
   
   user: any = this.tokenStorage.getUser()
@@ -59,6 +60,7 @@ export class MesAgentsComponent implements OnInit {
       this.agents = this.data.data;
       console.log(this.agents);
       this.sniper = false
+      this.getOptionPark()
     },
   
     (err) => {
@@ -71,51 +73,39 @@ export class MesAgentsComponent implements OnInit {
   );
   }
   
-  // getOptionType() {
-  
-  //   this.typeService
-  
-  //     .get()
-  
-  //     .pipe(
-  
-  //       map((state) => {
-  
-  //         const { data } = state.items;
-  
-  //         console.log("hihihi")
-  
-  //         console.log(data);
-  
-  //         // Check if the form property is defined
-  
-  //         if (this.form) {
-  
-  //           // TODO : REBUILD CONTROL WITH NAME hr_level_id ITEMS
-  
-  //           this.form = rebuild_select_control_items(
-  //             this.form,
-  //             'type_id',
-  
-  //             data
-  
-  //               .map(
-  
-  //                 (value) =>
-  
-  //                   (({ name: value.label, value: value.id } as ISelectItem)),
-  
-  //               )
-  
-  //           )
-  
-  //         }
-  
-  //       })
-  
-  //     ).subscribe()
-  
-  // }
+  getOptionPark() {
+    this.pservice
+      .getoption()
+      .pipe(
+        map((state) => {
+          const { data } = state;
+ 
+          console.log(data)
+
+          if (!Array.isArray(data)) {
+            return;
+          }
+          let config: IHTMLFormControl | undefined = undefined;
+          if (this.formvalue) {
+            config = this.formvalue.getControlConfig('parking_id');
+          }
+
+          if (config) {
+            config = {
+              ...config,
+              clientBindings: undefined,
+              items: data
+                .map(
+                  (value: { nom: any; id: any; }) => (({ name: value.nom, value: value.id } as ISelectItem)))
+            } as SelectInput;
+            this.formvalue.setControlConfig(config);
+          }
+
+        })
+
+      ).subscribe()
+
+  }
   
   
   
@@ -196,12 +186,11 @@ export class MesAgentsComponent implements OnInit {
   onEditAction(value: { [index: string]: any }) {
   this.selectedValue = value;
   if (this.formvalue) {
-    this.formvalue.setControlValue('matricule', value.Entreprise.matricule);
-    this.formvalue.setControlValue('name', value.Entreprise.name);
-    this.formvalue.setControlValue('adresse', value.Entreprise.adresse);
-    this.formvalue.setControlValue('telephone', value.Entreprise.telephone);
-    this.formvalue.setControlValue('username', value.username);
-    this.formvalue.setControlValue('email', value.email);
+    this.formvalue.setControlValue('nom', value.nom);
+    this.formvalue.setControlValue('prenoms', value.prenoms);
+    this.formvalue.setControlValue('adresse', value.adresse);
+    this.formvalue.setControlValue('telephone', value.telephone);
+    this.formvalue.setControlValue('parking_id', value.parking.id);
   
     console.log(value.id)
     this.id = value.id

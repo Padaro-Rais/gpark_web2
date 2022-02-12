@@ -38,10 +38,10 @@
           Annuler
         </button>
       </clr-dg-action-bar>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Reference</clr-dg-column>
+      <clr-dg-column  id="lib">Reference</clr-dg-column>
 
-      <clr-dg-column [clrDgField]="'label'" id="lib">Entrprise</clr-dg-column>
-      <clr-dg-column [clrDgField]="'label'" id="lib">Parcking</clr-dg-column>
+      <clr-dg-column [clrDgField]="'entreprise.name'" id="lib">Entrprise</clr-dg-column>
+      <clr-dg-column [clrDgField]="'parking.nom'" id="lib">Parcking</clr-dg-column>
   
     
   
@@ -73,63 +73,18 @@
 
       </clr-dg-row>
       <clr-dg-detail *clrIfDetail="let detail">
-        <clr-dg-detail-header>Details Materiel</clr-dg-detail-header>
+        <clr-dg-detail-header>Details Afectation</clr-dg-detail-header>
         <clr-dg-detail-body>
-          <div class="clr-row">
-            <div class="clr-col-sm-12 clr-col-md-6">
-              <hr />
-              <a routerLink="/app/add-Task">
-                <button class="btn btn-outlin btn-block">
-                  <clr-icon shape="tasks" size="30"></clr-icon>
-                  Nouvelle tâche
-                </button>
-              </a>
-              <a routerLink="/app/add-Task">
-                <button class="btn btn-outlin btn-block">Nouveau contrat</button>
-              </a>
-              <a routerLink="/app/add-Task">
-                <button class="btn btn-outlin btn-block">Activer</button>
-              </a>
-              <a routerLink="/app/add-Task">
-                <button class="btn btn-outlin btn-block">Evaluer</button>
-              </a>
-            </div>
-            <div class="clr-col-sm-12 clr-col-md-6">
-              <div class="clr-row" id="img-card">
-                <div class="clr-col-lg-12 clr-col-12">
-                  <a href="javascript:void(0)" class="card clickable">
-                    <div class="card-img">
-                      <img src="{{ detail.img }}" />
-                    </div>
-                    <div class="card-block">
-                      <p class="card-text">...</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <h2>Materiel</h2>
-          <hr id="rupture" />
-          <table id="customers">
-            <tr>
-              <th>Nom</th>
-              <td>{{ detail.label }}</td>
-            </tr>
-            <tr>
-              <th>Description</th>
-              <td>{{ detail.description }}</td>
-            </tr>
-          </table>
+          <p>Auncun detail</p>
         </clr-dg-detail-body>
       </clr-dg-detail>
       <clr-dg-footer>
         <clr-dg-pagination #pagination [clrDgPageSize]="10">
           <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">
-            Materiels par page
+            
           </clr-dg-page-size>
           {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} ..
-          {{ pagination.totalItems }} affectation
+          {{ pagination.totalItems }} 
         </clr-dg-pagination>
       </clr-dg-footer>
     </clr-datagrid>

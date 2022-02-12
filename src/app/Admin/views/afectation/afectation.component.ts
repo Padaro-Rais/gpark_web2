@@ -7,9 +7,10 @@ import { map } from 'rxjs/operators';
 
 import { FORM_CLIENT } from 'src/app/core/components/dynamic-inputs/angular';
 import { SimpleDynamicFormComponent } from 'src/app/core/components/dynamic-inputs/angular/components/simple-dynamic-form/simple-form.component';
-import { DynamicFormHelpers, FormsClient } from 'src/app/core/components/dynamic-inputs/core';
+import { DynamicFormHelpers, FormsClient, IHTMLFormControl, ISelectItem, SelectInput } from 'src/app/core/components/dynamic-inputs/core';
 import { AffectationService } from 'src/app/_services/api/affectation.service';
 import { EntrepriseService } from 'src/app/_services/api/entreprise.service';
+import { ParkingService } from 'src/app/_services/api/parking.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { ConfirmDialogService } from '../../helpers/confirm-dialog/confirm-dialog.service';
 
@@ -28,7 +29,7 @@ forms = this.formclient.get(22).pipe(
 /////////////////////////
 
 constructor(@Inject(FORM_CLIENT) private formclient: FormsClient ,private toastr: ToastrService , private service: AffectationService, 
-private router: Router, private confirm: ConfirmDialogService, private tokenStorage: TokenStorageService) { }
+private router: Router, private confirm: ConfirmDialogService, private tokenStorage: TokenStorageService, private pservice: ParkingService, ) { }
 
 
 user: any = this.tokenStorage.getUser()
@@ -63,6 +64,9 @@ this.service.get().subscribe(
     this.affectations = this.data.data;
     console.log(this.affectations);
     this.sniper = false
+
+    this.getOptionPark()
+    this.getOptionEnt()
   },
 
   (err) => {
@@ -75,53 +79,72 @@ this.service.get().subscribe(
 );
 }
 
-// getOptionType() {
+getOptionPark() {
+  this.pservice
+    .get()
+    .pipe(
+      map((state) => {
+        const { data } = state;
 
-//   this.typeService
+        console.log(data)
 
-//     .get()
+        if (!Array.isArray(data)) {
+          return;
+        }
+        let config: IHTMLFormControl | undefined = undefined;
+        if (this.formvalue) {
+          config = this.formvalue.getControlConfig('parking_id');
+        }
 
-//     .pipe(
+        if (config) {
+          config = {
+            ...config,
+            clientBindings: undefined,
+            items: data
+              .map(
+                (value: { nom: any; id: any; }) => (({ name: value.nom, value: value.id } as ISelectItem)))
+          } as SelectInput;
+          this.formvalue.setControlConfig(config);
+        }
 
-//       map((state) => {
+      })
 
-//         const { data } = state.items;
-
-//         console.log("hihihi")
-
-//         console.log(data);
-
-//         // Check if the form property is defined
-
-//         if (this.form) {
-
-//           // TODO : REBUILD CONTROL WITH NAME hr_level_id ITEMS
-
-//           this.form = rebuild_select_control_items(
-//             this.form,
-//             'type_id',
-
-//             data
-
-//               .map(
-
-//                 (value) =>
-
-//                   (({ name: value.label, value: value.id } as ISelectItem)),
-
-//               )
-
-//           )
-
-//         }
-
-//       })
-
-//     ).subscribe()
-
-// }
+    ).subscribe()
+}
 
 
+getOptionEnt() {
+  this.pservice
+    .getent()
+    .pipe(
+      map((state) => {
+        const { data } = state;
+
+        console.log(data)
+
+        if (!Array.isArray(data)) {
+          return;
+        }
+        let config: IHTMLFormControl | undefined = undefined;
+        if (this.formvalue) {
+          config = this.formvalue.getControlConfig('entriprise_id');
+        }
+
+        if (config) {
+          config = {
+            ...config,
+            clientBindings: undefined,
+            items: data
+              .map(
+                (value: { name: any; id: any; }) => (({ name: value.name, value: value.id } as ISelectItem)))
+          } as SelectInput;
+          this.formvalue.setControlConfig(config);
+        }
+
+      })
+
+    ).subscribe()
+}
 
 
 onSubmit(body: { [prop: string]: any }) {

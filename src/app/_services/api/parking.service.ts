@@ -37,4 +37,10 @@ export class ParkingService {
     const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
     return this.httpClient.delete(`${baseUrl}/parkings/`+id ,config);
   }
+
+
+  getent() : Observable<any>{
+    const config = { headers: {Authorization: "Bearer "+this.tokenStorage.getToken()} };
+    return this.httpClient.get(`${baseUrl}/option/entreprise`,config);
+  }
 }
